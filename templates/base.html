@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    {% include 'partials/_head.html' %}
     <title>EAAE - {% block title %}{% endblock title %}</title>
 </head>
 <body>
     {% include 'partials/_nav.html' %}
     <main>
-        {% block main %}{% enblock main %}
+        {% block main %}{% endblock main %}
     </main>
     {% include 'partials/_footer.html' %}
 </body>
