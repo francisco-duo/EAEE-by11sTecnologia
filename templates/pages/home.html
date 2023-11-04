@@ -2,11 +2,11 @@
 {% load static %}
 {% block main %}
 <section class="d-flex align-items-end vh-100">
-    <div class="container d-flex justify-content-center align-items-center bg-light rounded-top vh-50 shadow-top">
+    <div class="container d-flex justify-content-center align-items-center bg-color-primary rounded-top vh-50 shadow-top">
         <div class="container p-5">
-            <h1 class="text-dark text-center my-2">FAÇA LOGIN NO APP DA EAEE</h1>
+            <h1 class="text-yellow text-center my-2">FAÇA LOGIN NO APP DA EAEE</h1>
             <div class="container d-flex justify-content-center m-2">
-                <a class="btn btn-primary my-4 shadow" href="#" role="button">LOGIN</a>
+                <a class="btn btn-orange my-4 shadow" href="{% url 'login' %}" role="button">LOGIN</a>
             </div>
         </div>
     </div>

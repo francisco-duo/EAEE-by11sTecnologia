@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}login{% endblock title %}
+
+{% block main %}
+<section class="d-flex justify-content-center align-items-center vh-100 p-auto">
+    <form>
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal text-center text-dark">LOGIN</h1>
+
+        <div class="form-floating mb-3">
+            <input name="login" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Nome de Usuário</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Senha">
+            <label for="floatingPassword">Senha</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+</section>
+{% endblock main %}
