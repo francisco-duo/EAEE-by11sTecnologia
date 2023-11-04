@@ -1,8 +1,12 @@
-from django.shortcuts import HttpResponse, redirect
+from django.shortcuts import render, redirect
 
 
 def user_page(request, user_name: str, ):
     if request.user.is_authenticated:
-        return HttpResponse(f'Bem vindo - {user_name}')
+        context_user = {
+            "username": request.user.username
+        }
+
+        return render(request, 'pages/user.html', {"context_user": context_user})
 
     return redirect('/login/')
