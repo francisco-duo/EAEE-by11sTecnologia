@@ -33,7 +33,7 @@ body {
     border: var(--bg-primary) !important;
 }
 
-.bg-secondary {
+.bg-color-secondary {
     background: var(--bg-secondary) !important;
 }
 
@@ -89,6 +89,15 @@ body {
 
 .vh-25 {
     height: 25vh !important;
+}
+
+.vw-25 {
+    width: 25vh !important;
+}
+
+/* Max height/ Max widht */
+.max-height-250 {
+    max-height: 250px !important;
 }
 
 /* Shadows */
