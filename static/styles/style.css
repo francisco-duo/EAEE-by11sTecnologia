@@ -106,3 +106,9 @@ body {
     -webkit-box-shadow: 0px -4px 15px 5px rgba(0, 0, 0, 0.33);
     box-shadow: 0px -4px 15px 5px rgba(0, 0, 0, 0.33);
 }
+
+/* Imgs */
+#patient_img {
+    width: 100px;
+    height: 100px;
+}

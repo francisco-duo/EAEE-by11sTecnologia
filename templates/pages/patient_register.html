@@ -1,0 +1,67 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}{{context_user.username}}{% endblock title %}
+
+{% block main %}
+
+<div class="container my-5 p-3">
+    <h3 class="text-center">
+        Cadastrar Paciente
+    </h3>
+</div>
+
+<section class="container flex-column bg-light rounded shadow-lg my-5">
+    <form action="" class="container">
+        {% csrf_token %}
+
+        <div class="row py-4">
+            <div class="col-sm-8">
+                <div class="form-floating mb-3">
+                    <input name="patient-name" type="text" class="form-control" id="floatingInput" placeholder="Nome completo">
+                    <label for="floatingInput">Nome completo</label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input name="patient-photo" type="file" class="form-control" id="floatingInput" placeholder="Foto">
+                    <label for="floatingInput">Foto do paciente</label>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-floating mb-3">
+                    <input name="patient-email" type="email" class="form-control" id="floatingInput" placeholder="exammple@exameple.com">
+                    <label for="floatingInput">Email</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input name="patient-email" type="text" class="form-control" id="floatingInput" placeholder="(xx) x xxxx-xxxx">
+                    <label for="floatingInput">Telefone para contato</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input name="patient-cpf" type="text" class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">CPF/ RG</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input name="patient-year" type="date" class="form-control" id="floatingInput" placeholder="Data de nascimento">
+                    <label for="floatingInput">Data de nascimento</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input name="patient-file" type="file" class="form-control" id="floatingInput" placeholder="Exames">
+                    <label for="floatingInput">Exame</label>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="button" class="btn btn-primary mb-3">Cadastrar</button>
+        </div>
+    </form>
+</section>
+{% endblock main %}

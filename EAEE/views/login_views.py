@@ -14,7 +14,7 @@ def app_login(request, ):
 
         if user:
             login_django(request, user)
-            return redirect(f'/usuario/{username}')
+            return redirect(f'/usuario/inicio')
         else:
             # Trocar esse return por uma message na interface
             return redirect('/login/')
