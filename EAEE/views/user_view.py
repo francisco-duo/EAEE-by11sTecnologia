@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
+from ..forms import FormComunicadoModel
 
 
 def user_page(request, ):
     if request.user.is_authenticated:
+        form = FormComunicadoModel(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+
         return render(request, 'pages/user.html', )
 
     return redirect('/login/')
