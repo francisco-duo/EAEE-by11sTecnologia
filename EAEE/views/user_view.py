@@ -20,3 +20,9 @@ def patient_view(request, ):
         return render(request, 'pages/patient_view.html', )
 
     return redirect('/login/')
+
+
+def register_patients_sessions(request, ):
+    if request.user.is_authenticated:
+        return render(request, 'pages/register_patients_sessions.html', )
+    return redirect('/login/')

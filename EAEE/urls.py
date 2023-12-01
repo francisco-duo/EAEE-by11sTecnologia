@@ -8,5 +8,4 @@ urlpatterns = [
     path('usuario/cadastro', patient_register, name='patient_register'),
     path('usuario/pacientes', patient_view, name='patient_view'),
     path('usuario/registros', register_patients_sessions, name='register_patients_sessions'),
-    
 ]
