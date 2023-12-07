@@ -5,8 +5,9 @@
 
 {% block main %}
 <section class="container flex-column my-5">
-    <div class="row d-flex justify-content-center align-items-center w-50" style="height: 275px !important; width: 100% !important;">
-        <form class="w-100" action="{% url 'patient_search_view' %}" method="GET">
+    <div class="row d-flex justify-content-center align-items-center w-50"
+        style="height: 275px !important; width: 100% !important;">
+        <form class="w-100" action="{% url 'patient_session_search_view' %}" method="GET">
             {% csrf_token %}
             <div class="form-floating mb-3">
                 <input name="q" class="form-control shadow" placeholder="Leave a comment here"
@@ -18,22 +19,24 @@
             </div>
         </form>
     </div>
-
+    
     {% for paciente in page_obj %}
+    {% if request.user == paciente.paciente_registro_paciente %}
     <div
         class="container position-relative d-flex justify-content-center align-items-start mb-3 py-3 px-2 bg-light rounded shadow">
         <div class="d-flex justify-content-center align-items-center">
-            <img src="{{ paciente.paciente_foto.url }}" alt="" class="rounded-circle" id="patient_img">
+            <img src="{{ paciente.paciente_registro_historico.paciente_foto.url }}" alt="" class="rounded-circle"
+                id="patient_img">
         </div>
 
         <div class="container flex-column align-items-center mx-3">
-            <h5 class="fs-5 border-bottom">{{ paciente.paciente_nome }}</h5>
-            <p>Responsável: {{ paciente.paciente_responsavel_nome }}</p>
-            <p>Email: {{ paciente.paciente_responsavel_email }}</p>
-            <p>Contato: {{ paciente.paciente_responsavel_contato }}</p>
-            <span>CPF: {{ paciente.paciente_responsavel_cpf }}</p>
-            <span>Data de Nascimento: {{ paciente.paciente_dt_nasc }}</p>
-            Exame: <a href="{{ paciente.paciente_exams.url }}">{{ paciente.paciente_exams }}</a>
+            <h5 class="fs-5 border-bottom">{{ paciente.paciente_registro_historico.paciente_nome }}</h5>
+            <p>Responsável: {{ paciente.paciente_registro_historico.paciente_responsavel_nome }}</p>
+            <p>Email: {{ paciente.paciente_registro_historico.paciente_responsavel_email }}</p>
+            <p>Contato: {{ paciente.paciente_registro_historico.paciente_responsavel_contato }}</p>
+            <span>CPF: {{ paciente.paciente_registro_historico.paciente_responsavel_cpf }}</p>
+                <span>Data de Nascimento: {{ paciente.paciente_registro_historico.paciente_dt_nasc }}</p>
+                    Exame: <a target="_blank" href="{{ paciente.paciente_registro_historico.paciente_exams.url }}">Abrir exame</a>
         </div>
         <a class="btn btn-primary rounded-circle position-absolute top-50 start-100 translate-middle" href="#"
             role="button">
@@ -44,8 +47,12 @@
             </svg>
         </a>
     </div>
+    {% endif %}
     {% endfor %}
+    <!-- {% for paciente in page_obj %}
     
+    {% endfor %} -->
+
     <div class="d-flex justify-content-center">
         {% include 'partials/_pagination.html' %}
     </div>

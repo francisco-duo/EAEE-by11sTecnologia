@@ -100,17 +100,49 @@ def register_patients_sessions(request, ):
 
         if request.method == 'POST':
             PacienteRegistroModel.objects.create(
-                paciente_registro_paciente = request.user,
-                paciente_registro_queixa = request.POST.get('queixa'),
-                paciente_registro_historico = PacienteModel.objects.get(id=request.POST.get('nome_paciente')),
-                paciente_registro_procedimento_avaliativo = request.POST.get('procedimentos'),
-                paciente_registro_observacao_clinica = request.POST.get('observacao'),
-                paciente_registro_resultado = request.POST.get('resultado'),
-                paciente_registro_conclusao = request.POST.get('conclusao'),
+                paciente_registro_paciente=request.user,
+                paciente_registro_queixa=request.POST.get('queixa'),
+                paciente_registro_historico=PacienteModel.objects.get(id=request.POST.get('nome_paciente')),
+                paciente_registro_procedimento_avaliativo=request.POST.get('procedimentos'),
+                paciente_registro_observacao_clinica=request.POST.get('observacao'),
+                paciente_registro_resultado=request.POST.get('resultado'),
+                paciente_registro_conclusao=request.POST.get('conclusao'),
             )
 
             return redirect('access')
         return render(request, 'pages/register_patients_sessions.html', {
             'pacientes': paciente_list,
         })
+    return redirect('/login/')
+
+
+def patient_session_view(request, ):
+    if request.user.is_authenticated:
+        pacientes = PacienteRegistroModel.objects.all()
+
+        paginator = Paginator(pacientes, 10)
+
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'pages/patient_session_view.html', {
+            'page_obj': page_obj
+        })
+    return redirect('/login/')
+
+
+def patient_session_search_view(request, ):
+    if request.user.is_authenticated:
+        query = request.GET.get('q')
+        pacientes = PacienteRegistroModel.objects.filter(
+            paciente_registro_historico__paciente_nome__icontains=query
+        )
+
+        paginator = Paginator(pacientes, 10)
+
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'pages/patient_session_view_busca.html', {'page_obj': page_obj})
+
     return redirect('/login/')

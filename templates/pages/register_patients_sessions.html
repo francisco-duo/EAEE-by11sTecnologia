@@ -5,8 +5,12 @@
 
 {% block main %}
 
+<div class="d-flex justify-content-center align-items-center mb-3">
+    <a href="{% url 'patient_session_view' %}" class="btn btn-primary mb-3">Meus Registros</a>
+</div>
+
 <section class="container flex-column bg-light rounded shadow-lg my-5">
-    <form action="{% url 'register_patients_sessions' %}" method="POST" class="container" enctype="multipart/form-data">
+    <form action="{% url 'register_patients_sessions' %}" method="POST" class="container my-3" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div class="row py-4">
