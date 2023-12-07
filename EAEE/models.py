@@ -39,13 +39,13 @@ class RegistroFinanceiroModel(models.Model):
 # Paciente
 
 
-class ExamePacienteModel(models.Model):
-    """
-        exame_paciente_nome: varchar
-        exame_paciente_dt_recebimento: date
-    """
+# class ExamePacienteModel(models.Model):
+#     """
+#         exame_paciente_nome: varchar
+#         exame_paciente_dt_recebimento: date
+#     """
 
-    ...
+#     ...
 
 
 class PacienteModel(models.Model):
@@ -67,7 +67,7 @@ class PacienteModel(models.Model):
     paciente_responsavel_contato = models.CharField(blank=True, max_length=255)
     paciente_responsavel_cpf = models.CharField(blank=True, max_length=255)
     paciente_exams = models.FileField(upload_to='files/')
-    paciente_foto = models.ImageField(upload_to='media/')
+    paciente_foto = models.ImageField(upload_to='photos/')
 
 # Registro de Pacientes
 
@@ -82,4 +82,11 @@ class PacienteRegistroModel(models.Model):
         paciente_registro_resultado: TextField
         paciente_registro_conclusao: TextField
     """
-    ...
+    paciente_registro_paciente =  models.ForeignKey(User, on_delete=models.DO_NOTHING)  # : ForeignKey Paciente
+    paciente_registro_queixa = models.TextField()  # : TextField
+    paciente_registro_historico = models.ForeignKey(PacienteModel, on_delete=models.CASCADE)  # : ForeignKey Exame
+    paciente_registro_procedimento_avaliativo = models.TextField()  # : TextField
+    paciente_registro_observacao_clinica = models.TextField()  # : TextField
+    paciente_registro_resultado = models.TextField()  # : TextField
+    paciente_registro_conclusao = models.TextField()  # : TextField
+    paciente_registro_dt_criacao = models.DateTimeField(default=timezone.now, verbose_name='Data')  # DateTime

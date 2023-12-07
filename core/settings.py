@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'EAEE',
 ]
 
-INSTALLED_APPS += ('django_summernote', )
+# INSTALLED_APPS += ('django_summernote', )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

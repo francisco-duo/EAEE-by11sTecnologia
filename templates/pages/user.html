@@ -6,53 +6,41 @@
 {% block main %}
 <div class="container my-5 p-3">
     <h3 class="text-center">
-        Ultimas Atualizações
+        Comunicados
     </h3>
 </div>
 
-<section class="d-flex justify-content-center align-items-start">
-    <div class="row flex-row justify-content-center align-items-center gap-2 container mb-5">
-        <div class="col-sm-12 col-lg-5 bg-light rounded shadow-lg px-2 py-4">
-            <div class="container p-2 mx-2">
-                <h4 class="border-bottom mb-2"><a href="">Nome do paciente</a></h4>
-                <div class="">
-                    <p>Email: example@exameple.com</p>
-                    <p>Contato: example@exameple.com</p>
-                    <p>Ultima Consulta: 08/12/2023</p>
-                </div>
+<section class="d-flex flex-column justify-content-center align-items-center">
+    <div class="row d-flex justify-content-center align-items-center w-50" style="height: 275px !important;">
+        <form class="w-100" action="{% url 'access' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <textarea name="comunicado" class="form-control shadow" placeholder="Leave a comment here"
+                    id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Comunicado</label>
             </div>
-        </div>
-        <div class="col-sm-12 col-lg-5 bg-light rounded shadow-lg px-2 py-4">
-            <div class="container p-2 mx-2">
-                <h4 class="border-bottom mb-2">Nome do paciente</h4>
-                <div class="">
-                    <p>Email: example@exameple.com</p>
-                    <p>Contato: example@exameple.com</p>
-                    <p>Ultima Consulta: 08/12/2023</p>
-                </div>
+            <div class="container d-flex justify-content-center align-items-center">
+                <button class="btn btn-primary shadow" type="submit">Enviar</button>
             </div>
-        </div>
-        <div class="col-sm-12 col-lg-5 bg-light rounded shadow-lg px-2 py-4">
-            <div class="container p-2 mx-2">
-                <h4 class="border-bottom mb-2">Nome do paciente</h4>
-                <div class="">
-                    <p>Email: example@exameple.com</p>
-                    <p>Contato: example@exameple.com</p>
-                    <p>Ultima Consulta: 08/12/2023</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-lg-5 d-flex max-height-250 bg-light rounded shadow-lg px-2 py-4">
+        </form>
+    </div>
 
+    <div class="row flex-row justify-content-center align-items-center gap-2 container mb-5">
+        {% for comunicado in page_obj %}
+        <div class="col-sm-12 col-lg-12 bg-light rounded shadow-lg px-2 py-4">
             <div class="container p-2 mx-2">
-                <h4 class="border-bottom mb-2">Nome do paciente</h4>
-                <div class="">
-                    <p>Email: example@exameple.com</p>
-                    <p>Contato: example@exameple.com</p>
-                    <p>Ultima Consulta: 08/12/2023</p>
+                <h4 class="border-bottom mb-2"><a href="">{{ comunicado.comunicado_usuario }}</a></h4>
+                <div class="py-3 px-2">
+                    <p class="text-justify fs-5 mb-4">{{ comunicado.comunicado_dt }}</p>
+                    <p class="text-justify">{{ comunicado.comunicado_mensagem }}</p>
                 </div>
             </div>
         </div>
+        {% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% include 'partials/_pagination.html' %}
     </div>
 </section>
 
