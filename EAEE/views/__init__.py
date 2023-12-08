@@ -5,4 +5,4 @@ from .user_view import (
     register_patients_sessions, patient_search_view,
     patient_session_view, patient_session_search_view
 )
-from .pdf_generator_view import export_pdf
+from .pdf_generator_view import render_pdf_view

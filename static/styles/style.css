@@ -13,11 +13,11 @@ body {
 }
 
 :root {
-    --bg-primary: #2A9D8F !important;
-    --bg-secondary: #E9C46A !important;
-    --bg-orange: #F4A261 !important;
+    --bg-primary: #36A1D9 !important;
+    --bg-secondary: #FAE052 !important;
+    --bg-orange: #DCE04D !important;
     --bg-dark-orange: #E76F51 !important;
-    --bg-dark-green: #264653 !important;
+    --bg-dark-green: #36A1D9 !important;
     --dark: #5A5E4F !important;
 }
 
