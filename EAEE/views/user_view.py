@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
-from ..models import ComunicadoModel, PacienteModel, PacienteRegistroModel
+from ..models import ComunicadoModel, PacienteModel, PacienteRegistroModel, RegistroFinanceiroTipoModel, RegistroFinanceiroModel
 
 
 def user_page(request, ):
@@ -146,3 +146,43 @@ def patient_session_search_view(request, ):
         return render(request, 'pages/patient_session_view_busca.html', {'page_obj': page_obj})
 
     return redirect('/login/')
+
+
+def financeiro(request, ):
+    if request.user.is_authenticated:
+        tipo_financeiro = RegistroFinanceiroTipoModel.objects.all()
+        registros_financeiros = RegistroFinanceiroModel.objects.all().order_by('-id')
+
+        valor_saida = 0
+        valor_entrada = 0
+
+        # Somando tipos de registro
+        for registro in registros_financeiros:
+            converte_tipo = float(registro.registro_financeiro_valor)
+            
+            if registro.registro_financeiro_tipo.id == 2:            
+                valor_entrada += converte_tipo
+            else:
+                print('outro valor')
+                valor_saida += converte_tipo
+
+        if request.user.id == 1:
+            if request.method == 'POST':
+                data = request.POST.get('data')
+                valor = request.POST.get('valor')
+                tipo = request.POST.get('tipo')
+
+                registro_financeiro = RegistroFinanceiroModel.objects.create(
+                    registro_financeiro_funcionario = request.user,
+                    registro_financeiro_valor = valor,
+                    registro_financeiro_tipo = RegistroFinanceiroTipoModel.objects.get(id=tipo)
+                )
+
+                return redirect('financeiro')
+            return render(request, 'pages/financeiro.html', {
+                'tipo_financeiro': tipo_financeiro,
+                'registros_financeiros': registros_financeiros,
+                'valor_saida': valor_saida,
+                'valor_entrada': valor_entrada
+            })        
+        return redirect('access')

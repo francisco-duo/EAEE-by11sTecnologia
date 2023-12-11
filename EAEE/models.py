@@ -33,8 +33,9 @@ class RegistroFinanceiroModel(models.Model):
     """
 
     registro_financeiro_funcionario = models.ForeignKey(User, blank=True, on_delete=models.DO_NOTHING)
-    registro_financeiro_valor = models.IntegerField(blank=True)
+    registro_financeiro_valor = models.CharField(max_length=255 ,blank=True)
     registro_financeiro_tipo = models.ForeignKey(RegistroFinanceiroTipoModel, on_delete=models.DO_NOTHING)
+    registro_financeiro_dt = models.DateTimeField(default=timezone.now, verbose_name='Data')
 
 # Paciente
 

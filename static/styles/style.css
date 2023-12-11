@@ -18,6 +18,8 @@ body {
     --bg-orange: #DCE04D !important;
     --bg-dark-orange: #E76F51 !important;
     --bg-dark-green: #36A1D9 !important;
+    --bg-red-card: #E57373;
+    --bg-green-car: #81C784;
     --dark: #5A5E4F !important;
 }
 
@@ -71,6 +73,14 @@ body {
 
 .text-yellow {
     color: var(--bg-secondary) !important;
+}
+
+.card-exit {
+    background: var(--bg-red-card);
+}
+
+.card-enter {
+    background: var(--bg-green-car);
 }
 
 /* Size */
