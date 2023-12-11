@@ -1,34 +1,180 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <style>
+        @page {
+            size: a4 portrait;
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+            @frame header_frame {
+                -pdf-frame-content: header_content;
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                height: 40pt;
+            }
 
-</head>
-<style>
-    @page {
-        size: a4 portrait;
-    }
+            @frame content_frame {
+                left: 50pt;
+                width: 512pt;
+                top: 90pt;
+                height: 632pt;
+            }
 
-</style>
+            @frame footer_frame {
+                -pdf-frame-content: footer_content;
+                left: 50pt;
+                width: 512pt;
+                top: 772pt;
+                height: 20pt;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- Content for Static Frame 'header_frame' -->
-    <div id="header_content">Lyrics-R-Us</div>
+    <div id="header_content">
+        <div class="file_header" style="display: flex; justify-content: space-evenly; align-items: center;">
+            <img src="static\images\eaee_png.png" alt="">
+            EAEE - CONTRATO DE PRESTAÇÃO DE SERVIÇOS
+        </div>
+    </div>
 
     <!-- Content for Static Frame 'footer_frame' -->
-    <div id="footer_content">(c) - page <pdf:pagenumber>
+    <div id="footer_content">QS 110 Conjunto 06 lote 04/05 salas 301 e 302 Samambaia, Brasília DF
+        CNPJ 33.055.734/0001-27.
+        - pagina <pdf:pagenumber>
             of <pdf:pagecount>
     </div>
 
     <!-- HTML Content -->
-    To PDF or not to PDF
+    <h1>CONTRATO DE PRESTAÇÃO DE SERVIÇOS PSICOTERÁPICOS 2023</h1>
+
+    <p><strong>CONTRATANTE:</strong> CRISTIANE VIEIRA DA COSTA<br>
+        Nacionalidade: _______________
+        Estado civil: _________________
+        Profissão: ____________________
+        CPF: 856.673.601-82
+        Residência: QNO 04 COJUN C LT 17
+        CEP: 72.250-403
+        Cidade: CEILANDIA
+        Estado: DF
+        Responsável pelo menor: ALINNE VIEIRA ROSA DA SILVA</p>
+
+    <p><strong>CONTRATADA:</strong> ESPAÇO DE ATENDIMENTO EDUCACIONAL ESPECIALIZADO<br>
+        Local: QS 110 Conjunto 06 lote 04/05 salas 301 e 302 Samambaia, Brasília DF<br>
+        CNPJ: 33.055.734/0001-27</p>
+    <br><br>
+    <p><strong>DO OBJETO DO CONTRATO</strong></p>
+
+    <p><strong>Cláusula 1ª.</strong> O OBJETO do presente instrumento é a prestação de serviços psicoterápicos, pela
+        CONTRATADA, sendo os mesmos prestados no Espaço de Atendimento Educacional Especializado.</p>
+    <br><br>
+    <p><strong>DA OBRIGAÇÃO DO CONTRATANTE QUANTO AO PAGAMENTO</strong></p>
+
+    <p><strong>Cláusula 2ª.</strong> É obrigação do CONTRATANTE efetuar os pagamentos mensais para a CONTRATADA, da
+        quantia mensal de R$ 400,00 referente às terapias de terapia ocupacional (um atendimento por semana de 45
+        minutos).</p>
+
+    /* <!-- ... Adicione as demais cláusulas e informações ... --> */
+    <br><br>
+    <h2>AGENDA DE ATENDIMENTOS:</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ESPECIALIDADE</th>
+                <th>DIA DA SEMANA</th>
+                <th>HORÁRIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TERAPIA OCUPACIONAL</td>
+                <td>SEXTA-FEIRA</td>
+                <td>16H ÀS 16:45</td>
+            </tr>
+            <tr>
+                <td>PSICOLOGIA</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Cláusula 3ª.</strong> As mensalidades deverão ser pagas por boleto bancário, ou através de transferência
+        bancária com envio do comprovante por meio eletrônico, seja e-mail ou WhatsApp. Aos pagamentos realizados
+        pontualmente incidirão um desconto de pontualidade de R$ 30,00 ficando no valor de R$ 370,00 reais, após o
+        vencimento será cobrado o valor integral.</p>
+    <br><br>
+    <h2>DO INADIMPLEMENTO</h2>
+    <p><strong>Cláusula 4ª.</strong> Deixando o CONTRATANTE de efetuar o pagamento da mensalidade dentro do prazo
+        estipulado, a este será cobrada uma multa de 2% do valor da parcela, mais juros de R$ 0,50 centavos ao dia. O
+        atraso no pagamento de qualquer uma das parcelas acarretará a perda automática do referido desconto supracitado
+        na cláusula 3ª).</p>
+    <br><br>
+    <h2>DA RESCISÃO</h2>
+    <p><strong>Cláusula 5ª.</strong> Este CONTRATO poderá ser rescindido por qualquer das partes, havendo necessidade
+        aviso a parte contrária de 30 dias de antecedência, para que não seja necessário efetuar o pagamento do mês e
+        todas as parcelas devem estar pagas na ocasião.</p>
+    <p><strong>Cláusula 6ª.</strong> Pode a CONTRATADA rescindir o presente contrato, após reunião interna do conselho
+        de terapeutas, por indisciplina do aluno representado neste instrumento, ou por inadimplência do CONTRATANTE,
+        por mais de dois meses consecutivos, sendo o mesmo avisado antecipadamente dos débitos para que providencie o
+        seu adimplemento.</p>
+    <p><strong>Cláusula 7ª.</strong> Ocorrendo a rescisão, a criança será desligada do Espaço de atendimento Educacional
+        Especializado.</p>
+    <br><br>
+    <h2>DO PRAZO</h2>
+    <p><strong>Cláusula 8ª.</strong> Este contrato tem duração de 12 meses, contando-se a partir de 06\01\2023,
+        vigorando por prazo indeterminado. As parcelas vencem todo dia 25 de cada mês.</p>
+    <br><br>
+    <h2>CONDIÇÕES GERAIS</h2>
+
+    <p><strong>Cláusula 9ª.</strong> Fica condicionada a validade deste contrato à matrícula regular do paciente.</p>
+
+    <p><strong>Cláusula 10ª.</strong> A não frequência dela nos atendimentos não desobriga do pagamento à CONTRATADA,
+        das parcelas mensais acordadas.</p>
+
+    <p><strong>Cláusula 11ª.</strong> Somente será feita a Reposição de atendimentos mediante a pronta apresentação de
+        ATESTADO MÉDICO. Ressalta-se que, em nenhuma hipótese será feito ANTECIPAÇÕES E REPOSIÇÃO DE VIAGENS, devido ao
+        planejamento terapêutico. Caso o cancelamento da terapia seja realizado pelo profissional, a mesma será reposta.
+    </p>
+
+    <p><strong>Cláusula 12ª.</strong> São respeitados todos os feriados nacionais e distritais, sendo esse
+        discricionário do EAEE. (Não há reposições de atendimentos neste período).</p>
+
+    <p><strong>Cláusula 13ª.</strong> O CONTRATANTE autoriza o uso da imagem em redes sociais do EAEE. (Facebook,
+        Instagram e site) dentro dos limites impostos pelas legislações vigentes.</p>
+
+    <p><strong>Cláusula 14ª.</strong> A contratada não ministra aulas de inglês para os reforços e acompanhamentos
+        escolares.</p>
+
+    <p><strong>Cláusula 15ª.</strong> É proibida a saída da criança da clínica sem a presença do responsável.</p>
+
+    <p><strong>Cláusula 16ª.</strong> Devolutivas e reuniões com as escolas serão realizadas no horário das sessões do
+        paciente.</p>
+    <br><br>
+    <h2>DO PERÍODO DE RECESSO</h2>
+
+    <p><strong>Cláusula 1ª.</strong> Estabelece-se como período de recesso, os dias 17 de julho à 21 de julho de 2023
+        bem como de 18 de dezembro de 2023 à 07 de janeiro de 2024. Períodos em que esta unidade de Atendimento
+        Especializado estará com suas atividades suspensas. Não havendo suspensões nos pagamentos das mensalidades e nem
+        reposições de atendimentos deste período.</p>
+    <br><br>
+    <p><strong>DO FORO</strong></p>
+
+    <p><strong>Cláusula 13ª.</strong> As partes elegem o foro da comarca da cidade de Samambaia DF, para dirimir
+        quaisquer controvérsias oriundas desse CONTRATO DE PRESTAÇÃO DE SERVIÇOS ESPECIALIZADOS.</p>
+
+    <p>E por estarem justas e contratadas, na melhor forma de direito, as partes assinam o presente instrumento em 02
+        (duas) vias originais e de igual teor e forma, na presença das testemunhas que também o assinam, dando tudo por
+        bom, firme e valioso.</p>
+
+    <p>Samambaia, ____ de __________________ de 2023.</p>
+    <br>
+    <br>
+    <p><strong>CONTRATANTE</strong>: __________________</p>
+    <p><strong>CONTRATADA</strong>: __________________</p>
 </body>
 
 </html>
