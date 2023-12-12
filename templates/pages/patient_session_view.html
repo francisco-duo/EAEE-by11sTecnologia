@@ -38,7 +38,7 @@
                 <span>Data de Nascimento: {{ paciente.paciente_registro_historico.paciente_dt_nasc }}</p>
                     Exame: <a target="_blank" href="{{ paciente.paciente_registro_historico.paciente_exams.url }}">Abrir exame</a>
         </div>
-        <a class="btn btn-primary rounded-circle position-absolute top-50 start-100 translate-middle" href="{% url 'pdf_view' paciente.id %}"
+        <a class="btn btn-primary rounded-circle position-absolute top-50 start-100 translate-middle" href="{% url 'pdf_view_session' paciente.id %}"
             role="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
                 viewBox="0 0 16 16">

@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <style>
+        @page {
+            size: a4 portrait;
+
+            @frame header_frame {
+                -pdf-frame-content: header_content;
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                height: 40pt;
+            }
+
+            @frame content_frame {
+                left: 50pt;
+                width: 512pt;
+                top: 90pt;
+                height: 632pt;
+            }
+
+            @frame footer_frame {
+                -pdf-frame-content: footer_content;
+                left: 50pt;
+                width: 512pt;
+                top: 772pt;
+                height: 20pt;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <div class="file_header" style="display: flex; justify-content: space-evenly; align-items: center;">
+            <img src="static\img\eaee_png.png" alt="" style="height: 200px;"><hr><hr>
+            EAEE - CONTRATO DE PRESTAÇÃO DE SERVIÇOS
+        </div>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        QS 110 Conjunto 06 lote 04/05 salas 301 e 302 Samambaia, Brasília DF CNPJ 33.055.734/0001-27.
+        - pagina <pdf:pagenumber>
+            of <pdf:pagecount>
+    </div>
+
+    <!-- HTML Content -->
+    <br>
+    <h5><strong>Paciente: </strong></h5>
+    <p>{{ paciente.paciente_registro_paciente.paciente_nome }}</p><br>
+    <h5><strong>Queixa do paciente: </strong></h5>
+    <p>{{ paciente.paciente_registro_queixa }}</p><br>
+    <h5><strong>Procedimentos: </strong></h5>
+    <p>{{ paciente.paciente_registro_procedimento_avaliativo }}</p><br>
+    <h5><strong>Observações clinicas: </strong></h5>
+    <p>{{ paciente.paciente_registro_observacao_clinica }}</p><br>
+    <h5><strong>Resultados: </strong></h5>
+    <p>{{ paciente.paciente_registro_resultado }}</p><br>
+    <h5><strong>Conclusões: </strong></h5>
+    <p>{{ paciente.paciente_registro_conclusao }}</p><br>
+
+    <p>{{ paciente.paciente_registro_dt_criacao }}</p>
+</body>
+
+</html>

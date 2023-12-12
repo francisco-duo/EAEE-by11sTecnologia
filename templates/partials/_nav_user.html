@@ -1,7 +1,7 @@
 <header class="bg-color-primary rounded-bottom shadow-lg">
     <div class="container d-flex justify-content-around p-3">
         <h5><a class="fs-4 badge bg-color-secondary rounded-pill shadow" href="{% url 'access' %}">Olá, {{ request.user.username }}</a></h5>
-        <h5 class="fs-5 text-light"><a class="fs-4 text-light" href="">
+        <h5 class="fs-5 text-light"><a class="fs-4 text-light" href="{% url 'cadastro' %}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white"
                     class="bi bi-person-vcard" viewBox="0 0 16 16">
                     <path
