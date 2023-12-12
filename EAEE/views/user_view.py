@@ -43,15 +43,36 @@ def patient_register(request, ):
             dt_nascimento = request.POST.get('patient-year')
             foto_paciente = request.FILES.get('patient-photo')
             exame_paciente = request.FILES.get('patient-file')
+            exame_paciente_2 = request.FILES.get('patient-file2')
+            exame_paciente_3 = request.FILES.get('patient-file3')
 
+            contato_2 = request.POST.get('patient-contato_2')
+            profissao = request.POST.get('patient-profissao')
+            estado_civil = request.POST.get('patient-ec')
+            nacionalidade = request.POST.get('patient-nacionalidade')
+            endereco = request.POST.get('patient-endereco')
+            cep = request.POST.get('patient-cep')
+            estado = request.POST.get('patient-estado')
+            cidade = request.POST.get('patient-cidade')
+            
             paciente_model = PacienteModel(
                 paciente_nome=nome_paciente,
                 paciente_dt_nasc=dt_nascimento,
                 paciente_responsavel_nome=nome_responsavel,
                 paciente_responsavel_email=email,
                 paciente_responsavel_contato=contato,
+                paciente_responsavel_contato_2=contato_2,             
                 paciente_responsavel_cpf=cpf,
+                paciente_responsavel_nacionalidade=nacionalidade,
+                paciente_responsavel_profissao=profissao,
+                paciente_responsavel_estado_civil=estado_civil,
+                paciente_responsavel_endereco=endereco,
+                paciente_responsavel_cep=cep,
+                paciente_responsavel_cidade=cidade,
+                paciente_responsavel_estado=estado,
                 paciente_exams=exame_paciente,
+                paciente_exams_2=exame_paciente_2,
+                paciente_exams_3=exame_paciente_3,
                 paciente_foto=foto_paciente,
             )
             paciente_model.save()
@@ -170,12 +191,14 @@ def financeiro(request, ):
             if request.method == 'POST':
                 data = request.POST.get('data')
                 valor = request.POST.get('valor')
+                destino = request.POST.get('destino')
                 tipo = request.POST.get('tipo')
 
-                registro_financeiro = RegistroFinanceiroModel.objects.create(
-                    registro_financeiro_funcionario = request.user,
-                    registro_financeiro_valor = valor,
-                    registro_financeiro_tipo = RegistroFinanceiroTipoModel.objects.get(id=tipo)
+                RegistroFinanceiroModel.objects.create(
+                    registro_financeiro_funcionario=request.user,
+                    registro_financeiro_valor=valor,
+                    registro_financeiro_destino=destino,
+                    registro_financeiro_tipo=RegistroFinanceiroTipoModel.objects.get(id=tipo)
                 )
 
                 return redirect('financeiro')
@@ -186,3 +209,42 @@ def financeiro(request, ):
                 'valor_entrada': valor_entrada
             })        
         return redirect('access')
+
+
+def financeiro_search(request, ):
+    if request.user.is_authenticated:
+        
+        tipo_financeiro = RegistroFinanceiroTipoModel.objects.all()
+        mes = request.GET.get('mes')
+        ano = request.GET.get('ano')
+        registros = RegistroFinanceiroModel.objects.filter(
+            data_filtro__year=ano, data_filtro__month=mes
+        )
+        
+        # Soma total
+        valor_saida = 0
+        valor_entrada = 0
+
+        # Somando tipos de registro
+        for registro in registros:
+            converte_tipo = float(registro.registro_financeiro_valor)
+            
+            if registro.registro_financeiro_tipo.id == 2:            
+                valor_entrada += converte_tipo
+            else:
+                print('outro valor')
+                valor_saida += converte_tipo
+
+        paginator = Paginator(registros, 10)
+
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'pages/financeiro_search.html', {
+            'page_obj': page_obj,
+            'tipo_financeiro': tipo_financeiro,        
+            'valor_saida': valor_saida,
+            'valor_entrada': valor_entrada
+            })
+
+    return redirect('/login/')

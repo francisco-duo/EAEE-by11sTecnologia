@@ -53,7 +53,10 @@
                 <button type="submit" class="btn btn-primary mb-3">Registrar</button>
             </div>
     </form>
+</section>
 
+<section>
+    
     <form action="{% url 'financeiro_search' %}" method="GET" class="container py-3 px-2">
         {% csrf_token %}
 
@@ -90,7 +93,6 @@
                 <button type="submit" class="btn btn-primary mb-3">Pesquisar</button>
             </div>
     </form>
-
 </section>
 
 <section class="d-flex justify-content-center align-items-center mx-5 mt-5">
@@ -105,7 +107,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for registro in registros_financeiros%}
+            {% for registro in page_obj %}
             {% if registro.registro_financeiro_tipo.registro_financeiro_tipo == 'Entrada' %}
             <tr class="table-success">
                 <th scope="row">{{ registro.id }}</th>
@@ -132,5 +134,9 @@
         </tbody>
     </table>
 
+    
 </section>
+<div class="d-flex justify-content-center">
+    {% include 'partials/_pagination.html' %}
+</div>
 {% endblock %}

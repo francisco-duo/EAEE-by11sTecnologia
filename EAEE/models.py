@@ -33,10 +33,15 @@ class RegistroFinanceiroModel(models.Model):
     """
 
     registro_financeiro_funcionario = models.ForeignKey(User, blank=True, on_delete=models.DO_NOTHING)
-    registro_financeiro_valor = models.CharField(max_length=255 ,blank=True)
+    registro_financeiro_valor = models.CharField(max_length=255, blank=True)
+    registro_financeiro_destino = models.CharField(max_length=255, blank=True)
     registro_financeiro_tipo = models.ForeignKey(RegistroFinanceiroTipoModel, on_delete=models.DO_NOTHING)
     registro_financeiro_dt = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    data_filtro = models.DateField(null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        self.data_filtro = self.registro_financeiro_dt.date()
+        super().save(*args, **kwargs)
 # Paciente
 
 
@@ -66,22 +71,22 @@ class PacienteModel(models.Model):
     paciente_responsavel_nome = models.CharField(blank=True, max_length=255)
     paciente_responsavel_email = models.EmailField(blank=True)
     paciente_responsavel_contato = models.CharField(blank=True, max_length=255)
-    paciente_responsavel_contato_2 = models.CharField(blank=True, max_length=255)
-    
+    paciente_responsavel_contato_2 = models.CharField(blank=False, max_length=255)
+
     paciente_responsavel_cpf = models.CharField(blank=True, max_length=255)
     paciente_responsavel_nacionalidade = models.CharField(blank=True, max_length=255)
-    paciente_responsavel_profissao = models.CharField(blank=True, max_length=255)
-    paciente_responsavel_estado_civil = models.CharField(blank=True, max_length=255)
+    paciente_responsavel_profissao = models.CharField(blank=False, max_length=255)
+    paciente_responsavel_estado_civil = models.CharField(blank=False, max_length=255)
 
     paciente_responsavel_endereco = models.CharField(blank=True, max_length=255)
     paciente_responsavel_cep = models.CharField(blank=True, max_length=255)
     paciente_responsavel_cidade = models.CharField(blank=True, max_length=255)
     paciente_responsavel_estado = models.CharField(blank=True, max_length=255)
 
-    paciente_exams = models.FileField(upload_to='files/')
-    paciente_exams_2 = models.FileField(upload_to='files/')
-    paciente_exams_3 = models.FileField(upload_to='files/')
-    paciente_foto = models.ImageField(upload_to='photos/')
+    paciente_exams = models.FileField(upload_to='files/', blank=False)
+    paciente_exams_2 = models.FileField(upload_to='files/', blank=False)
+    paciente_exams_3 = models.FileField(upload_to='files/', blank=False)
+    paciente_foto = models.ImageField(upload_to='photos/', blank=False)
 
 # Registro de Pacientes
 

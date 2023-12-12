@@ -6,7 +6,7 @@ from django.contrib.staticfiles import finders
 from django.shortcuts import get_object_or_404
 from xhtml2pdf import pisa
 
-from ..models import PacienteRegistroModel
+from ..models import PacienteRegistroModel, PacienteModel
 
 
 def link_callback(uri, rel):
@@ -45,7 +45,10 @@ def link_callback(uri, rel):
 def render_pdf_view(request, pk):
     if request.method == 'GET':
         template_path = 'pages/pdf_generator.html'
-        context = {'context': get_object_or_404(PacienteRegistroModel, id=pk)}
+        context = {
+                    'context': get_object_or_404(PacienteRegistroModel, id=pk),
+                    'paciente': get_object_or_404(PacienteModel, id=pk)
+                }
 
         # Create a Django response object, and specify content_type as pdf
         response = HttpResponse(content_type='application/pdf')

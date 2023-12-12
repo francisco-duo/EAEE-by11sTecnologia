@@ -48,18 +48,19 @@
     </div>
 
     <!-- HTML Content -->
+    
     <h1>CONTRATO DE PRESTAÇÃO DE SERVIÇOS PSICOTERÁPICOS 2023</h1>
 
-    <p><strong>CONTRATANTE:</strong> CRISTIANE VIEIRA DA COSTA<br>
-        Nacionalidade: _______________
-        Estado civil: _________________
-        Profissão: ____________________
-        CPF: 856.673.601-82
-        Residência: QNO 04 COJUN C LT 17
-        CEP: 72.250-403
-        Cidade: CEILANDIA
-        Estado: DF
-        Responsável pelo menor: ALINNE VIEIRA ROSA DA SILVA</p>
+    <p><strong>CONTRATANTE:</strong> {{ paciente.paciente_responsavel_nome }}<br>
+        Nacionalidade: {{ paciente.paciente_responsavel_nacionalidade }}
+        Estado civil: {{ paciente.paciente_responsavel_estado_civil }}
+        Profissão: {{ paciente.paciente_responsavel_profissao }}
+        CPF: {{ pacient.paciente_responsavel_cpf }}
+        Residência: {{ pacient.paciente_responsavel_endereco }}
+        CEP: {{ pacient.paciente_responsavel_cep }}
+        Cidade: {{ pacient.paciente_responsavel_cidade }}
+        Estado: {{ pacient.paciente_responsavel_estado }}
+        Responsável pelo menor: {{ pacient.paciente_nome }}</p>
 
     <p><strong>CONTRATADA:</strong> ESPAÇO DE ATENDIMENTO EDUCACIONAL ESPECIALIZADO<br>
         Local: QS 110 Conjunto 06 lote 04/05 salas 301 e 302 Samambaia, Brasília DF<br>
@@ -173,8 +174,7 @@
     <p>Samambaia, ____ de __________________ de 2023.</p>
     <br>
     <br>
-    <p><strong>CONTRATANTE</strong>: __________________</p>
-    <p><strong>CONTRATADA</strong>: __________________</p>
+    <p><strong>CONTRATANTE</strong>: __________________  <strong>CONTRATADA</strong>: __________________</p>
 </body>
 
 </html>

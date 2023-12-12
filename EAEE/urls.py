@@ -3,7 +3,7 @@ from .views import (
     home_page, app_login, user_page, patient_register,
     patient_view, patient_search_view, register_patients_sessions,
     patient_session_view, patient_session_search_view, render_pdf_view,
-    financeiro
+    financeiro, financeiro_search
 )
 
 urlpatterns = [
@@ -17,5 +17,6 @@ urlpatterns = [
     path('usuario/registros_usuario/busca', patient_session_search_view, name='patient_session_search_view'),
     path('usuario/registros_usuario/pdf/<int:pk>', render_pdf_view, name='pdf_view'),
     path('usuario/pacientes/busca', patient_search_view, name='patient_search_view'),
-    path('usuario/financeiro', financeiro, name='financeiro')
+    path('usuario/financeiro', financeiro, name='financeiro'),
+    path('usuario/financeiro/busca', financeiro_search, name='financeiro_search'),
 ]

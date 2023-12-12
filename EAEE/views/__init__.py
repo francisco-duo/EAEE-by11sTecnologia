@@ -4,6 +4,6 @@ from .user_view import (
     user_page, patient_register, patient_view,
     register_patients_sessions, patient_search_view,
     patient_session_view, patient_session_search_view,
-    financeiro
+    financeiro, financeiro_search
 )
 from .pdf_generator_view import render_pdf_view

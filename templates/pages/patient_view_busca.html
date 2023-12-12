@@ -23,7 +23,7 @@
     <div
         class="container position-relative d-flex justify-content-center align-items-start mb-3 py-3 px-2 bg-light rounded shadow">
         <div class="d-flex justify-content-center align-items-center">
-            <img src="{{ paciente.foto_paciente.url }}" alt="" class="rounded-circle" id="patient_img">
+            <img src="{{ paciente.paciente_foto.url }}" alt="" class="rounded-circle" id="patient_img">
         </div>
 
         <div class="container flex-column align-items-center mx-3">
@@ -33,16 +33,9 @@
             <p>Contato: {{ paciente.paciente_responsavel_contato }}</p>
             <span>CPF: {{ paciente.paciente_responsavel_cpf }}</p>
                 <span>Data de Nascimento: {{ paciente.paciente_dt_nasc }}</p>
-                    Exame: <a href="{{ paciente.paciente_exams.url }}">{{ paciente.paciente_exams }}</a>
+                    Exame: <a href="{{ paciente.paciente_exams.url }}">{{ paciente.paciente_exams }}</a> <br>
+                    <a href="{% url 'pdf_view' paciente.id %}" class="btn btn-primary mt-3">Gerar Contrato</a>
         </div>
-        <a class="btn btn-primary rounded-circle position-absolute top-50 start-100 translate-middle" href="#"
-            role="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
-                viewBox="0 0 16 16">
-                <path
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-            </svg>
-        </a>
     </div>
     {% endfor %}
 
