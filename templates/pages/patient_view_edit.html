@@ -1,0 +1,157 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}Paciente{% endblock title %}
+
+{% block main %}
+<section class="container flex-column bg-light rounded shadow-lg my-5">
+    <form action="{% url 'patient_edit' paciente.id  %}" method="POST" class="container" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row py-4">
+            <div class="col-sm-8">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_nome }}" name="patient-name" type="text" class="form-control"
+                        id="floatingInput" placeholder="Nome completo">
+                    <label for="floatingInput">Nome completo</label>
+                </div>
+            </div>
+
+            {% if paciente.paciente_foto %}
+            {% else %}
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_foto }}" accept="media/photos/*" name="patient-photo" type="file"
+                        class="form-control" id="floatingInput" placeholder="Foto">
+                    <label for="floatingInput">Foto do paciente</label>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="col-sm-8">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_nome }}" name="resp-patient-name" type="text"
+                        class="form-control" id="floatingInput" placeholder="Nome completo">
+                    <label for="floatingInput">Nome do Responsável</label>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_email }}" name="patient-email" type="email"
+                        class="form-control" id="floatingInput" placeholder="exammple@exameple.com">
+                    <label for="floatingInput">Email</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_contato }}" name="patient-contact" type="text"
+                        class="form-control" id="floatingInput" placeholder="(xx) x xxxx-xxxx">
+                    <label for="floatingInput">Telefone para contato</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_cpf }}" name="patient-cpf" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">CPF/ RG</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_contato_2 }}" name="patient-contato_2" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">Contato Secundario</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_profissao }}" name="patient-profissao" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">Profissão</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_estado_civil }}" name="patient-ec" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">Estado Civíl</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_nacionalidade }}" name="patient-nacionalidade"
+                        type="text" class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">Nacionalidade</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_endereco }}" name="patient-endereco" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">Endereço</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_cep }}" name="patient-cep" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">CEP</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_estado }}" name="patient-estado" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">Estado</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_responsavel_cidade }}" name="patient-cidade" type="text"
+                        class="form-control" id="floatingInput" placeholder="CPF/ RG">
+                    <label for="floatingInput">Cidade</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_dt_nasc|date:'Y-m-d' }}" name="patient-year" type="date"
+                        class="form-control" id="floatingInput" placeholder="Data de nascimento">
+                    <label for="floatingInput">Data de nascimento</label>
+                </div>
+            </div>
+            {% if paciente.paciente_exams %}
+            {% else %}
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_exams }}" accept="media/files/*" name="patient-file" type="file"
+                        class="form-control" id="floatingInput" placeholder="Exames">
+                    <label for="floatingInput">Exame</label>
+                </div>
+            </div>
+            {% endif %}
+            {% if paciente.paciente_exams_2 %}
+            {% else %}
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_exams_2 }}" accept="media/files/*" name="patient-file2"
+                        type="file" class="form-control" id="floatingInput" placeholder="Exames">
+                    <label for="floatingInput">Exame</label>
+                </div>
+            </div>
+            {% endif %}
+            {% if paciente.paciente_exams_2 %}
+            {% else %}
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_exams_3 }}" accept="media/files/*" name="patient-file3"
+                        type="file" class="form-control" id="floatingInput" placeholder="Exames">
+                    <label for="floatingInput">Exame</label>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Cadastrar</button>
+        </div>
+    </form>
+</section>
+{% endblock main %}

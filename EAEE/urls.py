@@ -3,7 +3,8 @@ from .views import (
     home_page, app_login, user_page, patient_register,
     patient_view, patient_search_view, register_patients_sessions,
     patient_session_view, patient_session_search_view, render_pdf_view,
-    financeiro, financeiro_search, render_pdf_session, cadastrar_usuario
+    financeiro, financeiro_search, render_pdf_session, cadastrar_usuario,
+    patient_edit
 )
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     path('usuario/inicio', user_page, name='access'),
     path('usuario/cadastro', patient_register, name='patient_register'),
     path('usuario/pacientes', patient_view, name='patient_view'),
+    path('usuario/pacientes/editar/<int:pk>', patient_edit, name='patient_edit'),
     path('usuario/registros', register_patients_sessions, name='register_patients_sessions'),
     path('usuario/registros_usuario', patient_session_view, name='patient_session_view'),
     path('usuario/registros_usuario/busca', patient_session_search_view, name='patient_session_search_view'),

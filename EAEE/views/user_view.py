@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
@@ -82,6 +82,39 @@ def patient_register(request, ):
         return render(request, 'pages/patient_register.html', )
 
     return redirect('login')
+
+
+def patient_edit(request, pk):
+    if request.user.is_authenticated:
+        paciente = get_object_or_404(PacienteModel, id=pk)
+
+        if request.method == 'POST':
+            paciente.paciente_nome = request.POST.get('patient-name')
+            paciente.paciente_responsavel_nome = request.POST.get('resp-patient-name')
+            paciente.paciente_responsavel_email = request.POST.get('patient-email')
+            paciente.paciente_responsavel_contato = request.POST.get('patient-contact')
+            paciente.paciente_responsavel_cpf = request.POST.get('patient-cpf')
+            paciente.paciente_dt_nasc = request.POST.get('patient-year')
+            paciente.paciente_foto = request.FILES.get('patient-photo')
+            paciente.paciente_exams = request.FILES.get('patient-file')
+            paciente.paciente_exams_2 = request.FILES.get('patient-file2')
+            paciente.paciente_exams_3 = request.FILES.get('patient-file3')
+
+            paciente.paciente_responsavel_contato_2 = request.POST.get('patient-contato_2')
+            paciente.paciente_responsavel_profissao = request.POST.get('patient-profissao')
+            paciente.paciente_responsavel_estado_civil = request.POST.get('patient-ec')
+            paciente.paciente_responsavel_nacionalidade = request.POST.get('patient-nacionalidade')
+            paciente.paciente_responsavel_endereco = request.POST.get('patient-endereco')
+            paciente.paciente_responsavel_cep = request.POST.get('patient-cep')
+            paciente.paciente_responsavel_estado = request.POST.get('patient-estado')
+            paciente.paciente_responsavel_cidade = request.POST.get('patient-cidade')
+
+            paciente.save()
+
+            return redirect('access')
+        
+        return render(request, 'pages/patient_view_edit.html', {'paciente': paciente})
+    return redirect('/login/')
 
 
 def patient_view(request, ):

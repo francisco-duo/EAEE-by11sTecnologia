@@ -34,7 +34,10 @@
             <span>CPF: {{ paciente.paciente_responsavel_cpf }}</p>
                 <span>Data de Nascimento: {{ paciente.paciente_dt_nasc }}</p>
                     Exame: <a href="{{ paciente.paciente_exams.url }}">{{ paciente.paciente_exams }}</a> <br>
-                    <a href="{% url 'pdf_view' paciente.id %}" class="btn btn-primary mt-3">Gerar Contrato</a>
+            <div class="d-flex">
+                <a href="{% url 'pdf_view' paciente.id %}" class="btn btn-primary mt-3 me-2">Gerar Contrato</a>
+                <a href="{% url 'patient_edit' paciente.id %}" class="btn btn-primary mt-3">Editar Paciente</a>
+            </div>
         </div>
     </div>
     {% endfor %}
