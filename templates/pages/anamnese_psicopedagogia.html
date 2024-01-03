@@ -1,0 +1,282 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}cadastrar paciente{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+    <div class="container my-2 rounded shadow-lg bg-primary">
+        <h1 class="border-bottom text-light">Anamnese Psicopedagogia</h1>
+
+        <p class="py-3 px-2">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia ipsam sed molestiae at soluta ratione
+            beatae. Ut velit omnis ipsum voluptatibus, nulla obcaecati. Hic eius, quae possimus ex amet deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum impedit quidem doloribus minima nesciunt modi
+            libero aspernatur sit tempore culpa, ipsa repudiandae beatae similique soluta. Voluptatem nemo cupiditate
+            quas nesciunt.
+        </p>
+
+        <div class="d-flex">
+            <a href="{% url 'cadastrar_responsavel' request.user.username %}" class="btn btn-success mx-1">Cadastro de
+                Reponsável</a>
+        </div>
+    </div>
+    <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row py-4">
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="paciente" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Nome de paciente</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="idade_que_frequentou_a_escola" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Com que idade começou a frequentar a escola?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="como_foi_a_adaptacao" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Como foi a adaptação?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="reprovou_qual_serie" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Reprovou? Qual Série?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="como_se_relaciona_com_os_colegas_e_professores" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Como se realciona com os colegas e professores?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="motiva_a_ir_para_escola" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Se sente motivado a ir para a escola?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="assiduo_com_frequencia" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Assíduo ou falta com frequência?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="realiza_atividades_com_frequencia" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Realiza as atividades de casa com satisfação?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="independente" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Precisa de suporte ou é independente ao realizar?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="matematica_ou_portugues" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Demonstra predileção por matemática ou língua portuguesa?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="dificuldade_de_aprendizagem" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Que dificuldades de aprendizagem você observa?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="antecedentes" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Na família, há antecedentes com dificuldades?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="queixas" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="Conversa excessiva">Conversa excessiva</option>
+                        <option value="Seguir comandos">Seguir comandos</option>
+                        <option value="Desatenção">Desatenção</option>
+                        <option value="Apatia">Apatia</option>
+                        <option value="Agitação">Agitação</option>
+                        <option value="Baixa tolerância a frustação">Baixa tolerância a frustação</option>
+                        <option value="Memória de curto prazo">Memória de curto prazo</option>
+                        <option value="Timidez">Timidez</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <label for="floatingSelect">Realiza as atividades de casa com satisfação?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="compreensivel" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Fala compreensível?Troca ou omissõesde fonemas?História com começo, meio e fim?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="corpo_desenvolto" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">É corporalmente desenvolto?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="bicicleta" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Anda de bicicleta, patins, patinete?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="organizado" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Organizado com seus pertences?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="ajuda" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Ajuda na organização da casa? Que afazeres são de sua responsabilidade?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="censura" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">É muito censurado?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="brinquedos" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Brinquedos/ Brincadeiras/ Personagens/ Programas de TV favoritos?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="desenhar" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Gosta de desenhar, colorir, modelar?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="tempo_eletronico" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Tempo diário de uso em eletrônicos</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="hora_livre" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">O que gosta de fazer nas horas livres?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="potencialidades" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Potencialidades marcantes</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="fragilidades" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Fragilidades evidentes?</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Concluir</button>
+        </div>
+    </form>
+</section>
+{% endblock main %}

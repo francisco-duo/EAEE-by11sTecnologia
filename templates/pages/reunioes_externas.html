@@ -1,0 +1,73 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}Devolutiva{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+    <div class="container my-2 rounded shadow-lg bg-primary">
+        <h1 class="border-bottom text-light">Devolutiva</h1>
+
+        <p class="py-3 px-2">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia ipsam sed molestiae at soluta ratione
+            beatae. Ut velit omnis ipsum voluptatibus, nulla obcaecati. Hic eius, quae possimus ex amet deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum impedit quidem doloribus minima nesciunt modi
+            libero aspernatur sit tempore culpa, ipsa repudiandae beatae similique soluta. Voluptatem nemo cupiditate
+            quas nesciunt.
+        </p>
+
+        <div class="d-flex">
+            <a href="{% url 'cadastrar_responsavel' request.user.username %}" class="btn btn-success mx-1">Cadastro de
+                Reponsável</a>
+        </div>
+    </div>
+    <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row py-4">
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="paciente" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Nome de paciente</label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input name="data" type="date" class="form-control" id="floatingInput"
+                        placeholder="Data de nascimento">
+                    <label for="floatingInput">Data</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="participantes envolvidos" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Participantes Envolvidos</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="sintese" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Síntese</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Concluir</button>
+        </div>
+    </form>
+</section>
+{% endblock main %}

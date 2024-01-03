@@ -1,0 +1,494 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}Anamnese Psicológica{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+    <div class="container my-2 rounded shadow-lg bg-primary">
+        <h1 class="border-bottom text-light">Anamnese Psicológica</h1>
+
+        <p class="py-3 px-2">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia ipsam sed molestiae at soluta ratione
+            beatae. Ut velit omnis ipsum voluptatibus, nulla obcaecati. Hic eius, quae possimus ex amet deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum impedit quidem doloribus minima nesciunt modi
+            libero aspernatur sit tempore culpa, ipsa repudiandae beatae similique soluta. Voluptatem nemo cupiditate
+            quas nesciunt.
+        </p>
+
+        <div class="d-flex">
+            <a href="{% url 'cadastrar_responsavel' request.user.username %}" class="btn btn-success mx-1">Cadastro de
+                Reponsável</a>
+        </div>
+    </div>
+    <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row py-4">
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="paciente" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Nome de paciente</label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">Ambiente Familiar</h3>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="qnt_irmaos" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Número de irmãos</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="reacao_nascimento" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Reação da criança em relação ao nascimento de irmãos mais novos (caso
+                        haja)?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="reprovou_qual_serie" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Reprovou? Qual Série?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="relacionamento_irmaos" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Relacionamento com os irmãos:
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="relacionamento_pais" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Relacionamento com os pais
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="relacionamento_familia" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Relacionamento com a família materna e paterna:
+                    </label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">Comportamento</h3>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="personalidade" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="agressiva">agressiva</option>
+                        <option value="passiva">passiva</option>
+                        <option value="tímida">tímida</option>
+                        <option value="extrovertida">extrovertida</option>
+                        <option value="ansiosa">ansiosa</option>
+                        <option value="depressiva">depressiva</option>
+                    </select>
+                    <label for="floatingSelect">Personalidade</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="comportamento" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Comportamento de roer unhas/ Chupar dedos/ Tiques</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="humor" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Humor habitual</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="humor" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Humor habitual</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="brincar_sozinho" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Prefere brincar sozinho ou em grupo?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="mudanca_humor" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Estranha mudanças no ambiente?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="seguir_comandos" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Aceita seguir comandos?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="brincadeiras" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Brinquedos e brincadeiras preferidas?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="gosta_musica" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Gosta de música? Quais</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="bate_parede" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Bate a cabeça na parede?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="habito" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Que atitudes são tomadas diante desse hábito?</label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">Escolar</h3>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="reprovou" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Reprovou na escola?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="relacionamento_escola" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Relacionamento com os colegas da escola?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="relacionamento_professores" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Relacionamento com os professores da escola?</label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">Desenvolvimento</h3>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="idade_desfraude" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Com que idade ocorreu o desfralde?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="desfraude_dificuldades" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Apresentou dificuldades? Se sim, qual a posição dos pais?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="higiene" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Faz a higiene sozinho?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="banho" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Banho/ Escovar dentes/ Se vestir
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="problema_fala" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Apresenta algum problema ao falar?
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="troca_letras" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Troca letras?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="cama_dos_pais" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Quando acorda vai para a cama dos pais?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="medo_dormir_sozinho" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Medo de dormir sozinho?
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="objeto_para_dormir" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Utiliza algum objeto para dormir?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="urina_na_cama" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Costuma urinar na cama?
+                    </label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">Alimentação</h3>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="horario_refeicoes" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Tem horário para as refeições?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="refeicoes_familia" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Faz as refeições com a família?
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="local" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Em que local?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="assite_enquanto_come" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Enquanto come, assiste a TV ou mexe em eletrônicos?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="como_se_alimenta" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Como se alimenta (rápido, devagar, mastiga bem, demonstra voracidade
+                        alimentar...)?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="seletividade_alimentar" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Apresenta seletividade alimentar?</label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">Sexualidade</h3>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="curiosidade_sexual" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Apresentou curiosidade sexual?
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="atitude_dos_pais" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Acha importante dar informações sexuais? Por que?</label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">Saúde/ Clínico</h3>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="tratamento_medico" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Faz algum tratamento médico?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="esteve_internado" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Já esteve internado?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="motivo_internacao" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Motivo da internação?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="foi_operado" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Já foi operado?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="adoece" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Adoece facilmente?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="faz_acompanhamento" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Fez acompanhamento psicológico antes? </label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <select name="encaminhamento" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="escolar">escolar</option>
+                        <option value="médico">médico</option>
+                        <option value="Família observou demandas">Família observou demandas</option>
+                    </select>
+                    <label for="floatingSelect">Encaminhamento</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="queixa" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Queixa psicológica principal:</label>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Concluir</button>
+        </div>
+    </form>
+</section>
+{% endblock main %}

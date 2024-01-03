@@ -3,28 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-class ComunicadoModel(models.Model):
-    """
-    comunicado_usuario: ForeignKey User
-    comunicado_mensagem: TextField
-    comunicado_dt: Date
-    """
-
-    comunicado_usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    comunicado_mensagem = models.TextField()
-    comunicado_dt = models.DateTimeField(default=timezone.now, verbose_name='Data')
-
-# Financeiro
-
-
-class RegistroFinanceiroTipoModel(models.Model):
-    """
-    registro_financeiro_tipo: varchar
-    """
-
-    registro_financeiro_tipo = models.CharField(blank=True, max_length=255)
-
-
 class RegistroFinanceiroModel(models.Model):
     """
     registro_financeiro_funcionario: ForeignKey User
@@ -65,7 +43,6 @@ class PacienteModel(models.Model):
         paciente_exams: file --> ForeignKey
         paciente_foto: image
     """
-
     paciente_nome = models.CharField(max_length=255, blank=True)
     paciente_dt_nasc = models.DateField(blank=True)
     paciente_responsavel_nome = models.CharField(blank=True, max_length=255)

@@ -1,81 +1,84 @@
-<header class="bg-color-primary rounded-bottom shadow-lg">
-    <div class="container d-flex justify-content-around p-3">
-        <h5><a class="fs-4 badge bg-color-secondary rounded-pill shadow" href="{% url 'access' %}">Olá, {{ request.user.username }}</a></h5>
-        <h5 class="fs-5 text-light"><a class="fs-4 text-light" href="{% url 'cadastro' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white"
-                    class="bi bi-person-vcard" viewBox="0 0 16 16">
-                    <path
-                        d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
-                    <path
-                        d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12z" />
-                </svg>
-            </a> Novo Usuário</h5>
-        <h5 class="text-light"><a class="fs-4 text-light" href="{% url 'login' %}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-              </svg>
-            </a> Sair</h5>
+{% load static %}
+
+<nav class="navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'inicio' request.user.username %}">
+            <img src="../../static/img/eaee_png.png" alt="" style="width: 100px !important;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="text-transform: capitalize;">
+                    Olá, {{ request.user.username }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                            href="{% url 'inicio' request.user.username %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cadastrar_paciente' request.user.username %}">Cadastrar
+                            Paciente</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cadastrar_responsavel' request.user.username %}">Cadastrar
+                            Responsável</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cadastrar_responsavel' request.user.username %}">Pacientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{% url 'cadastrar_responsavel' request.user.username %}">Responsáveis</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Procedimentos Avaliativos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"
+                                    href="{% url 'anamnese_psicopedagogia' request.user.username %}">Anamnese
+                                    Psicopedagogia</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'anamnese_psicologia' request.user.username %}">Anamnese
+                                    Psicologica</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'anamnese_fonoaudiologia' request.user.username %}">Anamnese
+                                    Fonoaudiologia</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'anamnese_psicomotricidade' request.user.username %}">Anamnese
+                                    Psicomotricidade</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'encaminhamento' request.user.username %}">Encaminhamento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{% url 'supervisao_multiprofissional' request.user.username %}">Supervisão
+                            Multiprofissional</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reunioes_externas' request.user.username %}">Reuniões
+                            Externas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'devolutiva' request.user.username %}">Devolutiva</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'evolucao_diaria' request.user.username %}">Evolução Diária</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
     </div>
-    <section class="row d-flex justify-content-center align-items-center my-5 mx-2 py-3">
-        <div class="col-3">
-            <a href="{% url 'patient_register'%}" class="d-flex justify-content-center align-items-center mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white"
-                    class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                    <path
-                        d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    <path
-                        d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z" />
-                </svg>
-
-            </a>
-            <p class="text-center text-light">Cadastro</p>
-        </div>
-        <div class="col-3">
-            <a href="{% url 'patient_view'%}" class="d-flex justify-content-center align-items-center mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white"
-                    class="bi bi-person-lines-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
-                </svg>
-            </a>
-            <p class="text-center text-light">Pacientes</p>
-        </div>
-        <div class="col-3">
-            <a href="{% url 'register_patients_sessions' %}"
-                class="d-flex justify-content-center align-items-center mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white"
-                    class="bi bi-file-earmark-person" viewBox="0 0 16 16">
-                    <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path
-                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z" />
-                </svg>
-
-            </a>
-            <p class="text-center text-light">Registros</p>
-        </div>
-        <div class="col-3">
-            <a href="{% url 'financeiro' %}" class="d-flex justify-content-center align-items-center mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-wallet2"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z" />
-                </svg>
-            </a>
-            <p class="text-center text-light">Financeiro</p>
-        </div>
-        <!-- <div class="col-3">
-            <a href="" class="d-flex justify-content-center align-items-center mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white"
-                    class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                    <path
-                        d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    <path
-                        d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z" />
-                </svg>
-
-            </a>
-            <p class="text-center text-light">Cadastro</p>
-        </div> -->
-    </section>
-</header>
+</nav>
