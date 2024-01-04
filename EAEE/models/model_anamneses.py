@@ -6,13 +6,14 @@ from EAEE.models import model_pacientes
 
 
 class Psicopedagogia(models.Model):
-    idade_que_comecou_a_frequentar_escola = models.CharField(blank=False, max_results=255)
+    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
+    idade_que_comecou_a_frequentar_escola = models.CharField(blank=False, max_length=255)
     como_foi_adaptacao = models.TextField(blank=False)
-    reprovou = models.CharField(blank=False, max_results=255)
+    reprovou = models.CharField(blank=False, max_length=255)
     ralacao_professores_colegas = models.TextField(blank=False)
     motivado_escola = models.CharField(blank=False)
     falta_assiduo = models.TextField(blank=False)
-    realiza_atividades_com_satisfacao = models.CharField(blank=False, max_results=255)
+    realiza_atividades_com_satisfacao = models.CharField(blank=False, max_length=255)
     precisa_ajuda = models.TextField(blank=False)
     predilecao_matematica_portugues = models.TextField(blank=False)
     dificuldades_aprendizagem = models.TextField(blank=False)
@@ -21,9 +22,9 @@ class Psicopedagogia(models.Model):
     fala_compreensivel = models.TextField(blank=False)
     troca_ou_omissao_fonemas = models.TextField(blank=False)
     conta_historia = models.TextField(blank=False)
-    corporalmente_desenvolto = models.CharField(blank=False, max_results=255)
-    anda_bicicleta = models.CharField(blank=False, max_results=255)
-    organizado = models.CharField(blank=False, max_results=255)
+    corporalmente_desenvolto = models.CharField(blank=False, max_length=255)
+    anda_bicicleta = models.CharField(blank=False, max_length=255)
+    organizado = models.CharField(blank=False, max_length=255)
     ajuda_em_casa = models.TextField(blank=False)
     censurado = models.TextField(blank=False)
     brinquedos_favorito = models.TextField(blank=False)
@@ -35,12 +36,13 @@ class Psicopedagogia(models.Model):
 
 
 class Psicologia(models.Model):
-    numero_irmaos = models.CharField(blank=False, max_results=255)
+    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
+    numero_irmaos = models.CharField(blank=False, max_length=255)
     reacao_nascimento_irmao = models.TextField(blank=False)
     relacionamento_irmaos = models.TextField(blank=False)
     relacionamento_pais = models.TextField(blank=False)
     relacionamento_familia = models.TextField(blank=False)
-    personalidade = models.CharField(blank=False, max_results=255)
+    personalidade = models.CharField(blank=False, max_length=255)
     comportamento_roer_unhas = models.TextField(blank=False)
     humor_habitual = models.TextField(blank=False)
     brinca_sozinho_ou_grupo = models.TextField(blank=False)
@@ -79,12 +81,13 @@ class Psicologia(models.Model):
     idade_operado = models.TextField(blank=False)
     adoece_facilmente = models.TextField(blank=False)
     acompanhamento_psicologico = models.TextField(blank=False)
-    encaminhamento = models.CharField(blank=False, max_results=255)
+    encaminhamento = models.CharField(blank=False, max_length=255)
     algum_membro_ja_fez_acompanhamento_psicologico = models.TextField(blank=False)
     queixa_psicologica_principal = models.TextField(blank=False)
 
 
 class Fonoaudiologia(models.Model):
+    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     encaminhado = models.TextField(blank=False)
     queixa = models.TextField(blank=False)
     tratamento_anterior = models.TextField(blank=False)
@@ -94,7 +97,7 @@ class Fonoaudiologia(models.Model):
     quando_comeu = models.TextField(blank=False)
     quando_balburciou = models.TextField(blank=False)
     primeiras_palavras = models.TextField(blank=False)
-    articulação_palavras = models.TextField(blank=False)
+    articulacao_palavras = models.TextField(blank=False)
     regressao_linguistica = models.TextField(blank=False)
     comunicacao_atual = models.TextField(blank=False)
     mamadeira_chupeta = models.TextField(blank=False)
@@ -122,6 +125,7 @@ class Fonoaudiologia(models.Model):
 
 
 class Psicomotricidade(models.Model):
+    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     como_era_bebe = models.TextField(blank=False)
     idade_que_firmou_a_cabeca = models.TextField(blank=False)
     sentou_sem_apoio = models.TextField(blank=False)
@@ -154,7 +158,7 @@ class Psicomotricidade(models.Model):
 class DevolutivaModel(models.Model):
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     dt_devolutiva = models.DateField(blank=False, verbose_name='Data')
-    para = models.CharField(blank=False, max_results=255, verbose_name='Para')
+    para = models.CharField(blank=False, max_length=255, verbose_name='Para')
     sintese = models.TextField(blank=False, verbose_name='Síntese')
 
 
