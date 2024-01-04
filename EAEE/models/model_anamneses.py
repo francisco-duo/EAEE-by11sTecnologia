@@ -11,7 +11,7 @@ class Psicopedagogia(models.Model):
     como_foi_adaptacao = models.TextField(blank=False)
     reprovou = models.CharField(blank=False, max_length=255)
     ralacao_professores_colegas = models.TextField(blank=False)
-    motivado_escola = models.CharField(blank=False)
+    motivado_escola = models.CharField(blank=False, max_length=255)
     falta_assiduo = models.TextField(blank=False)
     realiza_atividades_com_satisfacao = models.CharField(blank=False, max_length=255)
     precisa_ajuda = models.TextField(blank=False)

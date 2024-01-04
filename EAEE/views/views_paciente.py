@@ -110,7 +110,7 @@ def anamnese_psicopedagogia(request, usuario):
                 fragilidades_evidentes=request.POST.get('patient-file'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/anamnese_psicopedagogia.html')
+        return render(request, 'pages/anamnese_psicopedagogia.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
 
@@ -169,7 +169,7 @@ def anamnese_psicologia(request, usuario):
                 queixa_psicologica_principal=request.POST.get('queixa'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/anamnese_psicologia.html')
+        return render(request, 'pages/anamnese_psicologia.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
 
@@ -215,7 +215,7 @@ def anamnese_fonoaudiologia(request, usuario):
                 expectativa_do_acompanhamento_fonoaudiologico=request.POST.get('Qual a expectativa com o acompanhamento fonoaudiológico?'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/anamnese_fonoaudiologia.html')
+        return render(request, 'pages/anamnese_fonoaudiologia.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
 
@@ -225,22 +225,36 @@ def anamnese_psicomotricidade(request, usuario):
         if request.method == 'POST':
             TipoDeVinculoComPacienteModels.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
-                paciente_filiacao_nome=request.POST.get('patient-name'),
-                paciente_filiacao_tipo_vinculo=request.POST.get('vinculo'),
-                paciente_filiacao_email=request.POST.get('patient-email'),
-                paciente_filiacao_dt_nascimento=request.POST.get('patient-year'),
-                paciente_filiacao_contato_telefone_pessoal=request.POST.get('contato'),
-                paciente_filiacao_contato_telefone_empresa=request.POST.get('contato2'),
-                paciente_filiacao_cpf=request.POST.get('patient-cpf'),
-                paciente_filiacao_nacionalidade=request.POST.get('patient-nacionalidade'),
-                paciente_filiacao_profissao=request.POST.get('patient-profissao'),
-                paciente_filiacao_estado_civil=request.POST.get('patient-ec'),
-                paceinte_filiacao_endereco=request.POST.get('patient-endereco'),
-                paceinte_filiacao_cep=request.POST.get('patient-cep'),
-                paceinte_filiacao_comprovante_residencia=request.POST.get('patient-file'),
+                como_era_bebe=request.POST.get('Como era quando bebê? Calmo ou agitado?'),
+                idade_que_firmou_a_cabeca=request.POST.get('Em que idade firmou a cabeça?'),
+                sentou_sem_apoio=request.POST.get('Sentou sem apoio?'),
+                engatinhou=request.POST.get('Engatinhou?'),
+                ficou_de_pe=request.POST.get('Ficou de pé?'),
+                andou=request.POST.get('Quando começou a andar'),
+                fez_uso_do_andaja=request.POST.get('Fez uso do “anda já”? Se sim, por quanto tempo?'),
+                preferecia_pela_mao=request.POST.get('Preferência por qual das mãos?'),
+                como_realiza_atividades=request.POST.get('Como realiza as seguintes atividades (pintura, desenho, recorte, colagem, encaixes, quebra-cabeça)?'),
+                anda_bicicleta=request.POST.get('Sabe andar de bicicleta?'),
+                idade_andou_bicicleta=request.POST.get('Com que idade aprendeu?'),
+                como_se_sai_nas_brincadeiras=request.POST.get('Como se sai nas seguintes brincadeiras/ atividades:'),
+                abotoa_roupas=request.POST.get('Sabe abotoar e desabotoar roupas?'),
+                troca_roupas_sozinho=request.POST.get('Troca de roupa sozinho?'),
+                amarra_cadarco=request.POST.get('Sabe amarrar o cadarço?'),
+                pega_obj_pequenos=request.POST.get('Consegue pega objetos bem pequenos?'),
+                preferencias_brinquedos=request.POST.get('Que tipo de brinquedos gosta?'),
+                brincadeiras_sozinho=request.POST.get('Brincadeiras que pratica sozinho?'),
+                outras_preferencias=request.POST.get('Outras preferências:'),
+                nao_gosta=request.POST.get('Do que a criança não gosta?'),
+                idade_frequentou_escola=request.POST.get('Quando começou a frequentar a escola?'),
+                gosta_escola=request.POST.get('Gosta de ir à escola?'),
+                gosta_professores=request.POST.get('Gosta dos professores?'),
+                relacao_colegas=request.POST.get('Como se relaciona com os colegas da escola?'),
+                dificuldades_no_ambiente_escolar=request.POST.get('Dificuldades observadas no ambiente escolar:'),
+                atividades_juntos_no_tempo_livre=request.POST.get('O que fazem juntos no tempo livre?'),
+                pratica_esportes=request.POST.get('Pratica esportes?'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/anamnese_psicomotricidade.html')
+        return render(request, 'pages/anamnese_psicomotricidade.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
     
@@ -250,22 +264,12 @@ def devolutiva(request, usuario):
         if request.method == 'POST':
             TipoDeVinculoComPacienteModels.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
-                paciente_filiacao_nome=request.POST.get('patient-name'),
-                paciente_filiacao_tipo_vinculo=request.POST.get('vinculo'),
-                paciente_filiacao_email=request.POST.get('patient-email'),
-                paciente_filiacao_dt_nascimento=request.POST.get('patient-year'),
-                paciente_filiacao_contato_telefone_pessoal=request.POST.get('contato'),
-                paciente_filiacao_contato_telefone_empresa=request.POST.get('contato2'),
-                paciente_filiacao_cpf=request.POST.get('patient-cpf'),
-                paciente_filiacao_nacionalidade=request.POST.get('patient-nacionalidade'),
-                paciente_filiacao_profissao=request.POST.get('patient-profissao'),
-                paciente_filiacao_estado_civil=request.POST.get('patient-ec'),
-                paceinte_filiacao_endereco=request.POST.get('patient-endereco'),
-                paceinte_filiacao_cep=request.POST.get('patient-cep'),
-                paceinte_filiacao_comprovante_residencia=request.POST.get('patient-file'),
+                dt_devolutiva=request.POST.get('data'),
+                para=request.POST.get('para'),
+                sintese=request.POST.get('sintese'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/devolutiva.html')
+        return render(request, 'pages/devolutiva.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
 
@@ -275,22 +279,12 @@ def reunioes_externas(request, usuario):
         if request.method == 'POST':
             TipoDeVinculoComPacienteModels.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
-                paciente_filiacao_nome=request.POST.get('patient-name'),
-                paciente_filiacao_tipo_vinculo=request.POST.get('vinculo'),
-                paciente_filiacao_email=request.POST.get('patient-email'),
-                paciente_filiacao_dt_nascimento=request.POST.get('patient-year'),
-                paciente_filiacao_contato_telefone_pessoal=request.POST.get('contato'),
-                paciente_filiacao_contato_telefone_empresa=request.POST.get('contato2'),
-                paciente_filiacao_cpf=request.POST.get('patient-cpf'),
-                paciente_filiacao_nacionalidade=request.POST.get('patient-nacionalidade'),
-                paciente_filiacao_profissao=request.POST.get('patient-profissao'),
-                paciente_filiacao_estado_civil=request.POST.get('patient-ec'),
-                paceinte_filiacao_endereco=request.POST.get('patient-endereco'),
-                paceinte_filiacao_cep=request.POST.get('patient-cep'),
-                paceinte_filiacao_comprovante_residencia=request.POST.get('patient-file'),
+                dt_devolutiva=request.POST.get('data'),
+                participantes=request.POST.get('participantes envolvidos'),
+                sintese=request.POST.get('sintese'), 
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/reunioes_externas.html')
+        return render(request, 'pages/reunioes_externas.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
 
@@ -300,22 +294,12 @@ def encaminhamento(request, usuario):
         if request.method == 'POST':
             TipoDeVinculoComPacienteModels.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
-                paciente_filiacao_nome=request.POST.get('patient-name'),
-                paciente_filiacao_tipo_vinculo=request.POST.get('vinculo'),
-                paciente_filiacao_email=request.POST.get('patient-email'),
-                paciente_filiacao_dt_nascimento=request.POST.get('patient-year'),
-                paciente_filiacao_contato_telefone_pessoal=request.POST.get('contato'),
-                paciente_filiacao_contato_telefone_empresa=request.POST.get('contato2'),
-                paciente_filiacao_cpf=request.POST.get('patient-cpf'),
-                paciente_filiacao_nacionalidade=request.POST.get('patient-nacionalidade'),
-                paciente_filiacao_profissao=request.POST.get('patient-profissao'),
-                paciente_filiacao_estado_civil=request.POST.get('patient-ec'),
-                paceinte_filiacao_endereco=request.POST.get('patient-endereco'),
-                paceinte_filiacao_cep=request.POST.get('patient-cep'),
-                paceinte_filiacao_comprovante_residencia=request.POST.get('patient-file'),
+                dt_devolutiva=request.POST.get('data'),
+                para=request.POST.get('para'),
+                sintese=request.POST.get('sintese'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/encaminhamento.html')
+        return render(request, 'pages/encaminhamento.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
 
@@ -325,22 +309,11 @@ def evolucao_diaria(request, usuario):
         if request.method == 'POST':
             TipoDeVinculoComPacienteModels.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
-                paciente_filiacao_nome=request.POST.get('patient-name'),
-                paciente_filiacao_tipo_vinculo=request.POST.get('vinculo'),
-                paciente_filiacao_email=request.POST.get('patient-email'),
-                paciente_filiacao_dt_nascimento=request.POST.get('patient-year'),
-                paciente_filiacao_contato_telefone_pessoal=request.POST.get('contato'),
-                paciente_filiacao_contato_telefone_empresa=request.POST.get('contato2'),
-                paciente_filiacao_cpf=request.POST.get('patient-cpf'),
-                paciente_filiacao_nacionalidade=request.POST.get('patient-nacionalidade'),
-                paciente_filiacao_profissao=request.POST.get('patient-profissao'),
-                paciente_filiacao_estado_civil=request.POST.get('patient-ec'),
-                paceinte_filiacao_endereco=request.POST.get('patient-endereco'),
-                paceinte_filiacao_cep=request.POST.get('patient-cep'),
-                paceinte_filiacao_comprovante_residencia=request.POST.get('patient-file'),
+                dt_devolutiva=request.POST.get('patient-name'),
+                sintese=request.POST.get('vinculo'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/evolucao_diaria.html')
+        return render(request, 'pages/evolucao_diaria.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')
 
@@ -350,21 +323,12 @@ def supervisao_multiprofissional(request, usuario):
         if request.method == 'POST':
             TipoDeVinculoComPacienteModels.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
-                paciente_filiacao_nome=request.POST.get('patient-name'),
-                paciente_filiacao_tipo_vinculo=request.POST.get('vinculo'),
-                paciente_filiacao_email=request.POST.get('patient-email'),
-                paciente_filiacao_dt_nascimento=request.POST.get('patient-year'),
-                paciente_filiacao_contato_telefone_pessoal=request.POST.get('contato'),
-                paciente_filiacao_contato_telefone_empresa=request.POST.get('contato2'),
-                paciente_filiacao_cpf=request.POST.get('patient-cpf'),
-                paciente_filiacao_nacionalidade=request.POST.get('patient-nacionalidade'),
-                paciente_filiacao_profissao=request.POST.get('patient-profissao'),
-                paciente_filiacao_estado_civil=request.POST.get('patient-ec'),
-                paceinte_filiacao_endereco=request.POST.get('patient-endereco'),
-                paceinte_filiacao_cep=request.POST.get('patient-cep'),
-                paceinte_filiacao_comprovante_residencia=request.POST.get('patient-file'),
+                dt_devolutiva=request.POST.get('data'),
+                especialista=request.POST.get('especialista envolvido'),
+                observacao=request.POST.get('observacoes  coletivas'),
+                plano_de_acao=request.POST.get('plano de acao'),
             )
             return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/supervisao_multiprofissional.html')
+        return render(request, 'pages/supervisao_multiprofissional.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
     else:
         return redirect('login')

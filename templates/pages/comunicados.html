@@ -1,0 +1,28 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}Devolutiva{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+    
+    <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row py-4">
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea name="mensagem" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Mensagem</label>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Enviar</button>
+        </div>
+    </form>
+</section>
+{% endblock main %}

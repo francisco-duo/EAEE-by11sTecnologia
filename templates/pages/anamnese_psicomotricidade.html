@@ -6,22 +6,7 @@
 {% block main %}
 
 <section class="container flex-column my-5">
-    <div class="container my-2 rounded shadow-lg bg-primary">
-        <h1 class="border-bottom text-light">Anamnese Fonoaudiologia</h1>
-
-        <p class="py-3 px-2">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia ipsam sed molestiae at soluta ratione
-            beatae. Ut velit omnis ipsum voluptatibus, nulla obcaecati. Hic eius, quae possimus ex amet deserunt!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum impedit quidem doloribus minima nesciunt modi
-            libero aspernatur sit tempore culpa, ipsa repudiandae beatae similique soluta. Voluptatem nemo cupiditate
-            quas nesciunt.
-        </p>
-
-        <div class="d-flex">
-            <a href="{% url 'cadastrar_responsavel' request.user.username %}" class="btn btn-success mx-1">Cadastro de
-                Reponsável</a>
-        </div>
-    </div>
+    
     <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -31,8 +16,9 @@
                 <div class="form-floating">
                     <select name="paciente" class="form-select" id="floatingSelect"
                         aria-label="Floating label select example">
-                        <option value="sim">Sim</option>
-                        <option value="nao">Não</option>
+                        {% for paciente in pacientes %}
+                        <option value="{{ paciente.id }}">{{ paciente.paciente_nome }}</option>
+                        {% endfor %}
                     </select>
                     <label for="floatingSelect">Nome de paciente</label>
                 </div>
@@ -195,14 +181,6 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 mb-3">
-                <div class="form-floating">
-                    <textarea name="Tem autonomia para dormir?" class="form-control"
-                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
-                        style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">Tem autonomia para dormir?</label>
-                </div>
-            </div>
             <div class="col-sm-12 mb-3">
                 <div class="form-floating">
                     <textarea name="Que tipo de brinquedos gosta?" class="form-control"
