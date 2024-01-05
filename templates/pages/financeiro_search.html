@@ -22,7 +22,7 @@
         </div>
     </row>
 
-    <form action="{% url 'financeiro' %}" method="POST" class="container py-3 px-2 bg-light border rounded shadow-lg">
+    <form action="" method="POST" class="container py-3 px-2 bg-light border rounded shadow-lg">
         {% csrf_token %}
 
         <div class="row d-flex justify-content-center align-items-center py-4">
@@ -57,7 +57,7 @@
 
 <section>
     
-    <form action="{% url 'financeiro_search' %}" method="GET" class="container py-3 px-2">
+    <form action="{% url 'financeiro_busca' request.user.username %}" method="GET" class="container py-3 px-2">
         {% csrf_token %}
 
         <div class="row d-flex justify-content-center align-items-center py-4">

@@ -23,7 +23,7 @@ class RegistroFinanceiroModel(models.Model):
     registro_financeiro_valor = models.CharField(max_length=255, blank=True)
     registro_financeiro_destino = models.CharField(max_length=255, blank=True)
     registro_financeiro_tipo = models.ForeignKey(RegistroFinanceiroTipoModel, on_delete=models.DO_NOTHING)
-    registro_financeiro_dt = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    registro_financeiro_dt = models.DateTimeField(verbose_name='Data')
     data_filtro = models.DateField(null=True, blank=True)
 
     def save(self, *args, **kwargs):

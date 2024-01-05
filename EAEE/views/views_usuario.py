@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.utils import timezone
 
-from EAEE.models import PermissoesModel, ComunicadoModel, PacienteModel
+from EAEE.models import PermissoesModel, ComunicadoModel, PacienteModel, RegistroFinanceiroModel, RegistroFinanceiroTipoModel
 
 
 def inicio(request, usuario):
@@ -110,3 +110,86 @@ def pacientes_busca(request, usuario):
     else:
         return redirect('login')
     
+
+def financeiro(request, usuario):
+    if request.user.is_authenticated:
+        tipo_financeiro = RegistroFinanceiroTipoModel.objects.all()
+        registros_financeiros = RegistroFinanceiroModel.objects.all().order_by('-id')
+
+        valor_saida = 0
+        valor_entrada = 0
+
+        # Somando tipos de registro
+        for registro in registros_financeiros:
+            converte_tipo = float(registro.registro_financeiro_valor)
+            
+            if registro.registro_financeiro_tipo.id == 2:            
+                valor_entrada += converte_tipo
+            else:
+                print('outro valor')
+                valor_saida += converte_tipo
+
+        if request.user.id == 1:
+            if request.method == 'POST':
+                from datetime import datetime
+                
+                data = request.POST.get('data')
+                valor = request.POST.get('valor')
+                destino = request.POST.get('destino')
+                tipo = request.POST.get('tipo')
+
+                RegistroFinanceiroModel.objects.create(
+                    registro_financeiro_funcionario=request.user,
+                    registro_financeiro_valor=valor,
+                    registro_financeiro_destino=destino,
+                    registro_financeiro_tipo=RegistroFinanceiroTipoModel.objects.get(id=tipo),
+                    registro_financeiro_dt=datetime.strptime(data, '%Y-%m-%d')
+                )
+
+                return redirect('financeiro', usuario=request.user.username)
+            return render(request, 'pages/financeiro.html', {
+                'tipo_financeiro': tipo_financeiro,
+                'registros_financeiros': registros_financeiros,
+                'valor_saida': valor_saida,
+                'valor_entrada': valor_entrada
+            })        
+        return redirect('access')
+
+
+def financeiro_search(request, usuario):
+    if request.user.is_authenticated:
+        
+        tipo_financeiro = RegistroFinanceiroTipoModel.objects.all()
+        mes = request.GET.get('mes')
+        ano = request.GET.get('ano')
+        registros = RegistroFinanceiroModel.objects.filter(
+            data_filtro__year=ano, data_filtro__month=mes
+        )
+        
+        # Soma total
+        valor_saida = 0
+        valor_entrada = 0
+
+        # Somando tipos de registro
+        for registro in registros:
+            converte_tipo = float(registro.registro_financeiro_valor)
+            
+            if registro.registro_financeiro_tipo.id == 2:            
+                valor_entrada += converte_tipo
+            else:
+                print('outro valor')
+                valor_saida += converte_tipo
+
+        paginator = Paginator(registros, 10)
+
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'pages/financeiro_search.html', {
+            'page_obj': page_obj,
+            'tipo_financeiro': tipo_financeiro,        
+            'valor_saida': valor_saida,
+            'valor_entrada': valor_entrada
+            })
+
+    return redirect('/login/')
