@@ -1,14 +1,19 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path('', views.teste, name='site'),
     path('login/', views.app_login, name='login'),
     path('inicio/<str:usuario>/', views.inicio, name='inicio'),
     path('inicio/<str:usuario>/enviar-mensagem', views.enviar_mensagem, name='enviar_mensagem'),
+    # path('inicio/<str:usuario>/visualizar-mensagem', views.visualizar_comunicado, name='visualizar_comunicado'),
     path('inicio/<str:usuario>/cadastro-usuario', views.cadastrar_usuario, name='cadastro_usuario'),
     path('inicio/<str:usuario>/cadastro-usuario/permissoes', views.cadastrar_usuario_permissoes, name='cadastrar_usuario_permissoes'),
     path('inicio/<str:usuario>/cadastro-de-paciente', views.cadastrar_novo_paciente, name='cadastrar_paciente'),
+    path('inicio/<str:usuario>/cadastro-de-paciente/pacientes', views.pacientes, name='pacientes'),
+    path('inicio/<str:usuario>/cadastro-de-paciente/pacientes/<int:pk>', views.pacientes_visualizar, name='pacientes_visualizar'),
+    path('inicio/<str:usuario>/cadastro-de-paciente/busca', views.pacientes_busca, name='pacientes_busca'),
     path('inicio/<str:usuario>/cadastro-de-paciente/cadastro-responsavel', views.cadastrar_responsavel, name='cadastrar_responsavel'),
     path('inicio/<str:usuario>/anamnese/anamnese_psicopedagogia', views.anamnese_psicopedagogia, name='anamnese_psicopedagogia'),
     path('inicio/<str:usuario>/anamnese/anamnese_psicologia', views.anamnese_psicologia, name='anamnese_psicologia'),

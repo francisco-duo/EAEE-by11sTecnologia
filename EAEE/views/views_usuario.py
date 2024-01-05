@@ -1,11 +1,28 @@
-from django.shortcuts import HttpResponse, render, redirect
+from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from EAEE.models import PermissoesModel, ComunicadoModel
+from django.core.paginator import Paginator
+from django.utils import timezone
+
+from EAEE.models import PermissoesModel, ComunicadoModel, PacienteModel
 
 
 def inicio(request, usuario):
     if request.user.is_authenticated:
-        return render(request, 'pages/sistema/inicio.html')
+        comunicados = ComunicadoModel.objects.all().order_by('-id')
+        paginator = Paginator(comunicados, 5)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        
+        mes_atual = timezone.now().month
+        
+        return render(request, 'pages/sistema/inicio.html', {'page_obj': page_obj, 'aniversariantes': PacienteModel.objects.filter(paciente_dt_nascimento__month=mes_atual)})
+    else:
+        return redirect('login')
+    
+
+def visualizar_comunicado(request, usuario, pk):
+    if request.user.is_authenticated:
+        return render(request, 'pages/comunicados.html', {'msg': ComunicadoModel.objects.get(id=pk)})
     else:
         return redirect('login')
 
@@ -54,3 +71,42 @@ def cadastrar_usuario_permissoes(request, usuario):
         return render(request, 'pages/cadastrar_usuario_permissao.html', {'usuarios': User.objects.all()})
     else:
         return redirect('login')
+    
+
+def pacientes(request, usuario):
+    if request.user.is_authenticated:
+        pacientes = PacienteModel.objects.all().order_by('-id')
+        paginator = Paginator(pacientes, 10)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        
+        return render(request, 'pages/patient_session_view.html', {'page_obj': page_obj})
+    else:
+        return redirect('login')
+    
+    
+def pacientes_visualizar(request, usuario, pk):
+    if request.user.is_authenticated:
+        paciente = get_object_or_404(PacienteModel, id=pk)
+
+        return render(request, 'pages/visualizar_paciente.html', {'paciente': paciente})
+    else:
+        return redirect('login')
+    
+    
+def pacientes_busca(request, usuario):
+    if request.user.is_authenticated:
+        query = request.GET.get('q')
+        pacientes = PacienteModel.objects.filter(
+            paciente_nome__icontains=query
+        )
+
+        paginator = Paginator(pacientes, 10)
+
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        
+        return render(request, 'pages/patient_session_view.html', {'page_obj': page_obj})
+    else:
+        return redirect('login')
+    

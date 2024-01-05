@@ -1,0 +1,331 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}cadastrar paciente{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+   
+    <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row py-4">
+            <div class="col-sm-12">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_nome }}" name="nome" type="text" class="form-control" id="floatingInput" placeholder="Nome completo">
+                    <label for="floatingInput">Nome completo</label>
+                </div>
+            </div>
+            
+
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_dt_nascimento }}" name="idade" type="date" class="form-control" id="floatingInput"
+                        placeholder="Data de nascimento">
+                    <label for="floatingInput">Data de nascimento</label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_exame }}"  accept="media/paciente/documentos/exames/*" name="exame" type="file" class="form-control"
+                        id="floatingInput" placeholder="Exames">
+                    <label for="floatingInput">Exame</label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_exame_2 }}" accept="media/paciente/documentos/exames/*" name="exame2" type="file" class="form-control"
+                        id="floatingInput" placeholder="Exames">
+                    <label for="floatingInput">Exame</label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.paciente_exame_3 }}" accept="media/paciente/documentos/exames/*" name="exame3" type="file" class="form-control"
+                        id="floatingInput" placeholder="Exames">
+                    <label for="floatingInput">Exame</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.escola }}" name="escola" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Escola em que estuda</label>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.serie }}" name="serie" type="text" class="form-control" id="floatingInput" placeholder="Nome completo">
+                    <label for="floatingInput">Série</label>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.turno }}" name="turno" type="text" class="form-control" id="floatingInput" placeholder="Nome completo">
+                    <label for="floatingInput">Turno</label>
+                </div>
+            </div>
+
+            <h3 class="mb-3">
+                Gravidez/ Nascimento
+            </h3>
+
+            <div class="col-sm-4">
+                <div class="form-floating">
+                    <select name="gravidez" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{paciente.gravidez}}">{{ paciente.gravidez }}</option>
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <label for="floatingSelect">Gravidez Desejada?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.fatos_marcantes }}" name="fatos_marcantes" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Doenças ou fatos marcantes</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea value="{{ paciente.condicoes_emocionais }}" name="condicoes_emocionais" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Condições Emocionais</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea value="{{ paciente.pos_parto }}" name="pos_parto" class="form-control"
+                        placeholder="Com que idade começou a frequentar a escola?" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Como foi o pós-parto?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-floating">
+                    <select name="parto" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.parto }}">{{ paciente.parto }}</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Cesaria">Cesárea</option>
+                    </select>
+                    <label for="floatingSelect">Parto</label>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.semanas }}" name="semanas" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Nasceu com quantas semanas?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.peso }}" name="peso" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Peso</label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.altura }}" name="altura" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Altura</label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-floating">
+                    <select name="cuidados_parto" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.cuidados_parto }}">{{ paciente.cuidados_parto }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Necessitou de cuidados especiais?</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.apgar1 }}" name="apgar1" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Apgar 1° minuto</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.apgar5 }}" name="apgar5" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Apgar 5° minuto</label>
+                </div>
+            </div>
+
+            
+            <div class="col-sm-6">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.succao }}" name="amamentacao" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Primeira sucção (Amamentação)</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.leite_marterno }}" name="leite_materno" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Leite materno exclusivo até que idade?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-floating">
+                    <select name="mamadeira" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.usou_mamadeira }}">{{ paciente.usou_mamadeira }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Usou mamadeira?</label>
+                </div>
+            </div>
+
+            <div class="col-sm-8 mb-3">
+                <div class="form-floating">
+                    <textarea value="{{ paciente.alimento_atual }}" name="alimentacao_atual" class="form-control"
+                        placeholder="" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Alimentação Atual</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 mb-3">
+                <div class="form-floating">
+                    <textarea value="{{ paciente.recebe_ajuda }}" name="recebe_ajuda" class="form-control"
+                        placeholder="" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Recebe ajuda?</label>
+                </div>
+            </div>
+            
+            <h3 class="mb-3">Outras Informações</h3>
+
+            <div class="col-sm-4 mb-3">
+                <div class="form-floating">
+                    <select name="sono" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.sono }}">{{ paciente.sono }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Sono Agitado</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-4 mb-3">
+                <div class="form-floating">
+                    <select name="baba" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.baba }}">{{ paciente.baba }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Baba a noite?</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-4 mb-3">
+                <div class="form-floating">
+                    <select name="acorda" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.acorda }}">{{ paciente.acorda }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Acorda durante a noite?</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-4 mb-3">
+                <div class="form-floating">
+                    <select name="fala_dormindo" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ fala_dormindo }}">{{ paciente.fala_dormindo }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Fala dormindo?</label>
+                </div>
+            </div>
+            
+            <div class="col-sm-4 mb-3">
+                <div class="form-floating">
+                    <select name="dorme_sozinho" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.dorme_sozinho }}">{{ paciente.dorme_sozinho }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Dorme sozinho(a)?</label>
+                </div>
+            </div>
+                        
+            <div class="col-sm-6 mb-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.horario_de_dormir }}" name="horario_de_dormir" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Horário que costuma dormir</label>
+                </div>
+            </div>
+                        
+            <div class="col-sm-6 mb-3">
+                <div class="form-floating">
+                    <select name="esfincteres" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="{{ paciente.esfincteres }}">{{ paciente.esfincteres }}</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <label for="floatingSelect">Teve dificuldade para adiquirir o controle dos esfíncteres?</label>
+                </div>
+            </div>
+
+                                    
+            <div class="col-sm-6 mb-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.fobias }}" name="fobias" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Medos ou Fobias</label>
+                </div>
+            </div>
+
+            <div class="col-sm-6 mb-3">
+                <div class="form-floating mb-3">
+                    <input value="{{ paciente.mora }}" name="mora" type="text" class="form-control" id="floatingInput"
+                        placeholder="Nome completo">
+                    <label for="floatingInput">Que mora com a criança?</label>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Salvar</button>
+            <a href="{% url 'inicio' request.user.username %}" class="btn btn-primary mb-3 ms-2">Voltar</a>
+        </div>
+    </form>
+</section>
+{% endblock main %}
