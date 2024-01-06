@@ -191,7 +191,7 @@ def financeiro(request, usuario):
                 'valor_saida': valor_saida,
                 'valor_entrada': valor_entrada
             })        
-        return redirect('access')
+        return redirect('login')
 
 
 def financeiro_search(request, usuario):
@@ -230,7 +230,7 @@ def financeiro_search(request, usuario):
             'valor_entrada': valor_entrada
             })
 
-    return redirect('/login/')
+    return redirect('login')
 
 
 def registro_fonoaudiologia(request, usuario):
