@@ -1,0 +1,21 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}{{context_user.username}}{% endblock title %}
+
+{% block main %}
+<style>
+
+</style>
+<section class="container flex-column justify-content-center align-items-center my-5" style="height: 100vh !important;">
+    <div class="bg-light my-5 border rounded shadow-lg"
+        style="overflow-x: scroll !important; max-height: 80vh !important; overflow-y: scroll !important;">
+        <h1>Texto Destacado</h1>
+        <p class="ms-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
+    </div>
+</section>
+{% endblock main %}

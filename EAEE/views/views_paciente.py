@@ -1,9 +1,9 @@
 from django.shortcuts import HttpResponse, render, redirect
-from EAEE.models import PacienteModel, TipoDeVinculoComPacienteModels, Psicopedagogia
+from EAEE.models import *
 
 
 def teste(request, ):
-    return redirect('site')
+    return redirect('login')
 
 
 def cadastrar_novo_paciente(request, usuario):
@@ -80,34 +80,35 @@ def cadastrar_responsavel(request, usuario):
 def anamnese_psicopedagogia(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            Psicopedagogia.objects.create(
+                especialista=request.user,
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 idade_que_comecou_a_frequentar_escola=request.POST.get('idade_que_frequentou_a_escola'),
-                como_foi_adaptacao=request.POST.get('patient-name'),
-                reprovou=request.POST.get('vinculo'),
-                ralacao_professores_colegas=request.POST.get('patient-email'),
-                motivado_escola=request.POST.get('patient-year'),
-                falta_assiduo=request.POST.get('contato'),
-                realiza_atividades_com_satisfacao=request.POST.get('contato2'),
-                precisa_ajuda=request.POST.get('patient-cpf'),
-                predilecao_matematica_portugues=request.POST.get('patient-nacionalidade'),
-                dificuldades_aprendizagem=request.POST.get('patient-profissao'),
-                antecedentes_com_dificuldade=request.POST.get('patient-ec'),
-                queixas_comuns_escola=request.POST.get('patient-endereco'),
-                fala_compreensivel=request.POST.get('patient-cep'),
-                troca_ou_omissao_fonemas=request.POST.get('patient-file'),
-                conta_historia=request.POST.get('patient-file'),
-                corporalmente_desenvolto=request.POST.get('patient-file'),
-                anda_bicicleta=request.POST.get('patient-file'),
-                organizado=request.POST.get('patient-file'),
-                ajuda_em_casa=request.POST.get('patient-file'),
-                censurado=request.POST.get('patient-file'),
-                brinquedos_favorito=request.POST.get('patient-file'),
-                gosta_desenhar=request.POST.get('patient-file'),
-                uso_de_eletronicos=request.POST.get('patient-file'),
-                horas_livres=request.POST.get('patient-file'),
-                potencialidades_marcantes=request.POST.get('patient-file'),
-                fragilidades_evidentes=request.POST.get('patient-file'),
+                como_foi_adaptacao=request.POST.get('como_foi_a_adaptacao'),
+                reprovou=request.POST.get('reprovou_qual_serie'),
+                ralacao_professores_colegas=request.POST.get('como_se_relaciona_com_os_colegas_e_professores'),
+                motivado_escola=request.POST.get('motiva_a_ir_para_escola'),
+                falta_assiduo=request.POST.get('assiduo_com_frequencia'),
+                realiza_atividades_com_satisfacao=request.POST.get('realiza_atividades_com_frequencia'),
+                precisa_ajuda=request.POST.get('independente'),
+                predilecao_matematica_portugues=request.POST.get('matematica_ou_portugues'),
+                dificuldades_aprendizagem=request.POST.get('dificuldade_de_aprendizagem'),
+                antecedentes_com_dificuldade=request.POST.get('antecedentes'),
+                queixas_comuns_escola=request.POST.get('queixas'),
+                fala_compreensivel=request.POST.get('compreensivel'),
+                # troca_ou_omissao_fonemas=request.POST.get('corpo_desenvolto'),
+                # conta_historia=request.POST.get('bicicleta'),
+                corporalmente_desenvolto=request.POST.get('corpo_desenvolto'),
+                anda_bicicleta=request.POST.get('bicicleta'),
+                organizado=request.POST.get('organizado'),
+                ajuda_em_casa=request.POST.get('ajuda'),
+                censurado=request.POST.get('censura'),
+                brinquedos_favorito=request.POST.get('brinquedos'),
+                gosta_desenhar=request.POST.get('desenhar'),
+                uso_de_eletronicos=request.POST.get('tempo_eletronico'),
+                horas_livres=request.POST.get('hora_livre'),
+                potencialidades_marcantes=request.POST.get('potencialidades'),
+                fragilidades_evidentes=request.POST.get('fragilidades'),
             )
             return redirect('inicio', usuario=request.user.username)
         return render(request, 'pages/anamnese_psicopedagogia.html', {'pacientes': PacienteModel.objects.all().order_by('-id')})
@@ -118,7 +119,8 @@ def anamnese_psicopedagogia(request, usuario):
 def anamnese_psicologia(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            Psicologia.objects.create(
+                especialista=request.user,
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 numero_irmaos=request.POST.get('qnt_irmaos'),
                 reacao_nascimento_irmao=request.POST.get('reacao_nascimento'),
@@ -177,7 +179,8 @@ def anamnese_psicologia(request, usuario):
 def anamnese_fonoaudiologia(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            Fonoaudiologia.objects.create(
+                especialista=User.objects.get(id=request.user.id),
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 encaminhado=request.POST.get('Encaminhado por'),
                 queixa=request.POST.get('Queixa'),
@@ -223,7 +226,8 @@ def anamnese_fonoaudiologia(request, usuario):
 def anamnese_psicomotricidade(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            Psicomotricidade.objects.create(
+                especialista=request.user,
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 como_era_bebe=request.POST.get('Como era quando bebê? Calmo ou agitado?'),
                 idade_que_firmou_a_cabeca=request.POST.get('Em que idade firmou a cabeça?'),
@@ -262,7 +266,7 @@ def anamnese_psicomotricidade(request, usuario):
 def devolutiva(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            DevolutivaModel.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 dt_devolutiva=request.POST.get('data'),
                 para=request.POST.get('para'),
@@ -277,7 +281,7 @@ def devolutiva(request, usuario):
 def reunioes_externas(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            ReunioesExternasModel.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 dt_devolutiva=request.POST.get('data'),
                 participantes=request.POST.get('participantes envolvidos'),
@@ -292,7 +296,7 @@ def reunioes_externas(request, usuario):
 def encaminhamento(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            EncaminhamentoModel.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 dt_devolutiva=request.POST.get('data'),
                 para=request.POST.get('para'),
@@ -307,7 +311,7 @@ def encaminhamento(request, usuario):
 def evolucao_diaria(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            EvolucaoDiariaModel.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 dt_devolutiva=request.POST.get('patient-name'),
                 sintese=request.POST.get('vinculo'),
@@ -321,7 +325,7 @@ def evolucao_diaria(request, usuario):
 def supervisao_multiprofissional(request, usuario):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            TipoDeVinculoComPacienteModels.objects.create(
+            SupervisaoMultiprofissionalModel.objects.create(
                 paciente=PacienteModel.objects.get(id=request.POST.get('paciente')),
                 dt_devolutiva=request.POST.get('data'),
                 especialista=request.POST.get('especialista envolvido'),

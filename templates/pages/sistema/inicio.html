@@ -26,14 +26,12 @@
 <section class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
     <!-- Arte de boas vindas -->
     <div class="container my-2 rounded shadow-lg bg-primary">
-        <h1 class="border-bottom">Bem-Vindo ao Sistema EAEE</h1>
+        <h1 class="border-bottom text-light">Bem-vindo ao EAEE - Sistema de Gestão Integrada!</h1>
 
-        <p class="py-3 px-2">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia ipsam sed molestiae at soluta ratione
-            beatae. Ut velit omnis ipsum voluptatibus, nulla obcaecati. Hic eius, quae possimus ex amet deserunt!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum impedit quidem doloribus minima nesciunt modi
-            libero aspernatur sit tempore culpa, ipsa repudiandae beatae similique soluta. Voluptatem nemo cupiditate
-            quas nesciunt.
+        <p class="py-3 px-2 text-light">
+            É um prazer recebê-lo em nossa plataforma, onde a eficiência e a facilidade caminham juntas. No EAEE,
+            estamos comprometidos em proporcionar uma experiência intuitiva e completa para atender às suas
+            necessidades.
         </p>
     </div>
 
@@ -48,10 +46,7 @@
 
             {% for comunicados in page_obj %}
             <!-- Popup -->
-            <div id="popup-container">
-                <div id="close-icon" onclick="closePopup()">❌</div>
-                <p>{{ comunicados.comunicado_mensagem }}.</p>
-            </div>
+
             <div class="row w-100 d-flex justify-content-center align-items-center border-top">
                 <div class="col-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -67,13 +62,16 @@
                     <span>{{ comunicados.comunicado_usuario }}</span>
                 </div>
                 <div class="col-2">
-                    <svg id="open-popup-icon" onclick="openPopup()" xmlns="http://www.w3.org/2000/svg" width="16"
-                        height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5" />
-                        <path fill-rule="evenodd"
-                            d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z" />
-                    </svg>
+                    <a href="{% url 'visualizar_comunicado' request.user.username comunicados.id %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5" />
+                            <path fill-rule="evenodd"
+                                d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z" />
+                        </svg>
+                    </a>
+
 
                 </div>
             </div>

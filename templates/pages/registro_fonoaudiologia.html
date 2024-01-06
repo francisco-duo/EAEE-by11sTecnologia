@@ -1,0 +1,85 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}{{context_user.username}}{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+
+    <div class="d-flex flex-column justify-content-center align-items-center bg-light py-3 px-2 rounded shadow-lg">
+        {% for paciente in page_obj %}
+
+        <div class="accordion" id="accordionExample" style="width: 60% !important;">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        {{ paciente.paciente.paciente_nome }} {{ paciente.dt_registro }}
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>{{ paciente.especialista.username }}</p><br>
+                        <p>{{ paciente.encaminhado }}</p><br>
+                        <p>{{ paciente.tratamento_anterior }}</p><br>
+                        <p>{{ paciente.quando_comecou_sentar }}</p><br>
+                        <p>{{ paciente.quando_engatinhou }}</p><br>
+                        <p>{{ paciente.quando_andou }}</p><br>
+                        <p>{{ paciente.quando_comeu }}</p><br>
+                        <p>{{ paciente.quando_balburciou }}</p><br>
+                        <p>{{ paciente.primeiras_palavras }}</p><br>
+                        <p>{{ paciente.articulacao_palavras }}</p><br>
+                        <p>{{ paciente.regressao_linguistica }}</p><br>
+                        <p>{{ paciente.comunicacao_atual }}</p><br>
+                        <p>{{ paciente.mamadeira_chupeta }}</p><br>
+                        <p>{{ paciente.horas_de_sono }}</p><br>
+                        <p>{{ paciente.autonomia_dormir }}</p><br>
+                        <p>{{ paciente.doencas_alergias }}</p><br>
+                        <p>{{ paciente.acompanhamento_medico }}</p><br>
+                        <p>{{ paciente.acompanhamento_fonoaudiologico }}</p><br>
+                        <p>{{ paciente.exames_fonoaudiologicos }}</p><br>
+                        <p>{{ paciente.teste_orelinha }}</p><br>
+                        <p>{{ paciente.idade_comecou_escola }}</p><br>
+                        <p>{{ paciente.alfabetizado }}</p><br>
+                        <p>{{ paciente.materia_mais_gosta }}</p><br>
+                        <p>{{ paciente.relacionamento_pais }}</p><br>
+                        <p>{{ paciente.relacionamento_criancas }}</p><br>
+                        <p>{{ paciente.hobby }}</p><br>
+                        <p>{{ paciente.familiar_dificuldades_na_fala }}</p><br>
+                        <p>{{ paciente.prende_atencao }}</p><br>
+                        <p>{{ paciente.gosta_de_brincar }}</p><br>
+                        <p>{{ paciente.compreende_comandos }}</p><br>
+                        <p>{{ paciente.contato_visual }}</p><br>
+                        <p>{{ paciente.interage }}</p><br>
+                        <p>{{ paciente.atencao_por_tempo_significativo }}</p><br>
+                        <p>{{ paciente.expectativa_do_acompanhamento_fonoaudiologico }}</p><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+    <!-- {% for paciente in page_obj %}
+    
+    {% endfor %} -->
+
+    <div class="d-flex justify-content-center">
+        {% include 'partials/_pagination.html' %}
+    </div>
+
+</section>
+<script>
+    function openPopup() {
+        // Exibe o contêiner do popup
+        document.getElementById('popup-container').style.display = 'block';
+    }
+
+    function closePopup() {
+        // Oculta o contêiner do popup
+        document.getElementById('popup-container').style.display = 'none';
+    }
+</script>
+{% endblock main %}

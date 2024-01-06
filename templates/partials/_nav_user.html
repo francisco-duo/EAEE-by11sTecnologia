@@ -24,23 +24,35 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                            href="{% url 'inicio' request.user.username %}">Agenda</a>
+                            href="/admin">Administração</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Registros
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'registro_fonoaudiologia' request.user.username %}">Fonoaudiologia</a></li>
+                            <li><a class="dropdown-item" href="{% url 'registro_psicologia' request.user.username %}">Psicologia</a></li>
+                            <li><a class="dropdown-item" href="{% url 'registro_psicomotricidade' request.user.username %}">Psicomotricidade</a></li>
+                            <li><a class="dropdown-item" href="{% url 'registro_psicopedagogia' request.user.username %}">Psicopedagogia</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{% url 'cadastrar_paciente' request.user.username %}">Cadastrar
                             Paciente</a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{% url 'cadastrar_responsavel' request.user.username %}">Cadastrar
                             Responsável</a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{% url 'pacientes' request.user.username %}">Pacientes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
                             href="{% url 'cadastrar_responsavel' request.user.username %}">Responsáveis</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -61,7 +73,7 @@
                                     Psicomotricidade</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{% url 'encaminhamento' request.user.username %}">Encaminhamento</a>
                     </li>
                     <li class="nav-item">
@@ -79,13 +91,13 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'evolucao_diaria' request.user.username %}">Evolução Diária</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cadastro_usuario' request.user.username %}">Cadastrar Usuário</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cadastrar_usuario_permissoes' request.user.username %}">Permissões</a>
-                    </li>
+                    </li> -->
+                    {% if 'genilva' == request.user.username or 'carol' == request.user.username or 'admin' == request.user.username %}
+
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cadastro_usuario' request.user.username %}">Cadastrar
+                            Usuário</a>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'enviar_mensagem' request.user.username %}">Comunicados</a>
                     </li>
@@ -95,11 +107,10 @@
                             Financeiro
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item"
-                                    href="{% url 'financeiro' request.user.username %}">Anamnese
-                                    Gestão</a></li>
+                            <li><a class="dropdown-item" href="{% url 'financeiro' request.user.username %}">Gestão</a></li>
                         </ul>
                     </li>
+                    {% endif %}
                 </ul>
 
             </div>

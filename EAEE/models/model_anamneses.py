@@ -6,6 +6,12 @@ from EAEE.models import model_pacientes
 
 
 class Psicopedagogia(models.Model):
+    class Meta:
+        verbose_name = "Psicopedagogia"
+        verbose_name_plural = "Psicopedagogia"
+
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     idade_que_comecou_a_frequentar_escola = models.CharField(blank=False, max_length=255)
     como_foi_adaptacao = models.TextField(blank=False)
@@ -20,8 +26,8 @@ class Psicopedagogia(models.Model):
     antecedentes_com_dificuldade = models.TextField(blank=False)
     queixas_comuns_escola = models.TextField(blank=False)
     fala_compreensivel = models.TextField(blank=False)
-    troca_ou_omissao_fonemas = models.TextField(blank=False)
-    conta_historia = models.TextField(blank=False)
+    # troca_ou_omissao_fonemas = models.TextField(blank=False)
+    # conta_historia = models.TextField(blank=False)
     corporalmente_desenvolto = models.CharField(blank=False, max_length=255)
     anda_bicicleta = models.CharField(blank=False, max_length=255)
     organizado = models.CharField(blank=False, max_length=255)
@@ -34,8 +40,16 @@ class Psicopedagogia(models.Model):
     potencialidades_marcantes = models.TextField(blank=False)
     fragilidades_evidentes = models.TextField(blank=False)
 
+    def __str__(self, ):
+        return self.paciente
+
 
 class Psicologia(models.Model):
+    class Meta:
+        verbose_name = "Psicologia"
+        verbose_name_plural = "Psicologia"
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     numero_irmaos = models.CharField(blank=False, max_length=255)
     reacao_nascimento_irmao = models.TextField(blank=False)
@@ -55,7 +69,7 @@ class Psicologia(models.Model):
     reprovou_na_escola = models.TextField(blank=False)
     relacionamento_colegas = models.TextField(blank=False)
     relacionamento_professores = models.TextField(blank=False)
-    idade_desfralde = models.DateTimeField()
+    idade_desfralde = models.TextField(blank=False)
     dificuldades_desfraude = models.TextField(blank=False)
     higiene_sozinho = models.TextField(blank=False)
     idade_higiene_sozinho = models.TextField(blank=False)
@@ -84,9 +98,18 @@ class Psicologia(models.Model):
     encaminhamento = models.CharField(blank=False, max_length=255)
     algum_membro_ja_fez_acompanhamento_psicologico = models.TextField(blank=False)
     queixa_psicologica_principal = models.TextField(blank=False)
+    
+    def __str__(self, ):
+        return self.paciente
 
 
 class Fonoaudiologia(models.Model):
+    class Meta:
+        verbose_name = "Fonoaudiologia"
+        verbose_name_plural = "Fonoaudiologia"
+
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     encaminhado = models.TextField(blank=False)
     queixa = models.TextField(blank=False)
@@ -123,8 +146,17 @@ class Fonoaudiologia(models.Model):
     atencao_por_tempo_significativo = models.TextField(blank=False)
     expectativa_do_acompanhamento_fonoaudiologico = models.TextField(blank=False)
 
+    def __str__(self, ):
+        return self.paciente
+
 
 class Psicomotricidade(models.Model):
+    class Meta:
+        verbose_name = "Psicomotricidade"
+        verbose_name_plural = "Psicomotricidade"
+
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     como_era_bebe = models.TextField(blank=False)
     idade_que_firmou_a_cabeca = models.TextField(blank=False)
@@ -154,37 +186,75 @@ class Psicomotricidade(models.Model):
     atividades_juntos_no_tempo_livre = models.TextField(blank=False)
     pratica_esportes = models.TextField(blank=False)
 
+    def __str__(self, ):
+        return self.paciente
+
 
 class DevolutivaModel(models.Model):
+    class Meta:
+        verbose_name = "Devolutiva"
+        verbose_name_plural = "Devolutiva"
+
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     dt_devolutiva = models.DateField(blank=False, verbose_name='Data')
     para = models.CharField(blank=False, max_length=255, verbose_name='Para')
     sintese = models.TextField(blank=False, verbose_name='Síntese')
 
+    def __str__(self, ):
+        return self.paciente
+
 
 class ReunioesExternasModel(models.Model):
+    class Meta:
+        verbose_name = "Reuniões Externas"
+        verbose_name_plural = "Reuniões Externas"
+
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     dt_devolutiva = models.DateField(blank=False, verbose_name='Data')
     participantes = models.TextField(blank=False, verbose_name='Participantes')
     sintese = models.TextField(blank=False, verbose_name='Síntese')
 
+    def __str__(self, ):
+        return self.paciente
+
 
 class EncaminhamentoModel(models.Model):
+    class Meta:
+        verbose_name = "Encaminhamento"
+        verbose_name_plural = "Encaminhamento"
+
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     dt_devolutiva = models.DateField(blank=False, verbose_name='Data')
     para = models.TextField(blank=False, verbose_name='Participantes')
     sintese = models.TextField(blank=False, verbose_name='Síntese')
 
+    def __str__(self, ):
+        return self.paciente
+
 
 class EvolucaoDiariaModel(models.Model):
+    class Meta:
+        verbose_name = "Evolução Diária"
+        verbose_name_plural = "Evolução Diária"
+
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     dt_devolutiva = models.DateField(blank=False, verbose_name='Data')
     sintese = models.TextField(blank=False, verbose_name='Síntese')
 
+    def __str__(self, ):
+        return self.paciente
 
 class SupervisaoMultiprofissionalModel(models.Model):
+    class Meta:
+        verbose_name = "Supervisao Multiprofissional"
+        verbose_name_plural = "Supervisao Multiprofissional"
+
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     dt_devolutiva = models.DateField(blank=False, verbose_name='Data')
     especialista = models.TextField(blank=False, verbose_name='Especialistas')
     observacao = models.TextField(blank=False, verbose_name='Observações')
     plano_de_acao = models.TextField(blank=False, verbose_name='Plano de Ação')
+
+    def __str__(self, ):
+        return self.paciente
+    

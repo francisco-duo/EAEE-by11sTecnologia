@@ -1,0 +1,79 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}{{request.user.username}}{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+
+    <div class="d-flex flex-column justify-content-center align-items-center bg-light py-3 px-2 rounded shadow-lg">
+        {% for paciente in page_obj %}
+
+        <div class="accordion" id="accordionExample" style="width: 60% !important;">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        {{ paciente.paciente.paciente_nome }} {{ paciente.dt_registro }}
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>{{ paciente.especialista.username }}</p><br>
+                        <p>{{ paciente.como_era_bebe }}</p><br>
+                        <p>{{ paciente.idade_que_firmou_a_cabeca }}</p><br>
+                        <p>{{ paciente.sentou_sem_apoio }}</p><br>
+                        <p>{{ paciente.engatinhou }}</p><br>
+                        <p>{{ paciente.ficou_de_pe }}</p><br>
+                        <p>{{ paciente.andou }}</p><br>
+                        <p>{{ paciente.fez_uso_do_andaja }}</p><br>
+                        <p>{{ paciente.preferecia_pela_mao }}</p><br>
+                        <p>{{ paciente.como_realiza_atividades }}</p><br>
+                        <p>{{ paciente.anda_bicicleta }}</p><br>
+                        <p>{{ paciente.idade_andou_bicicleta }}</p><br>
+                        <p>{{ paciente.como_se_sai_nas_brincadeiras }}</p><br>
+                        <p>{{ paciente.abotoa_roupas }}</p><br>
+                        <p>{{ paciente.troca_roupas_sozinho }}</p><br>
+                        <p>{{ paciente.amarra_cadarco }}</p><br>
+                        <p>{{ paciente.pega_obj_pequenos }}</p><br>
+                        <p>{{ paciente.preferencias_brinquedos }}</p><br>
+                        <p>{{ paciente.brincadeiras_sozinho }}</p><br>
+                        <p>{{ paciente.outras_preferencias }}</p><br>
+                        <p>{{ paciente.nao_gosta }}</p><br>
+                        <p>{{ paciente.idade_frequentou_escola }}</p><br>
+                        <p>{{ paciente.gosta_escola }}</p><br>
+                        <p>{{ paciente.gosta_professores }}</p><br>
+                        <p>{{ paciente.relacao_colegas }}</p><br>
+                        <p>{{ paciente.dificuldades_no_ambiente_escolar }}</p><br>
+                        <p>{{ paciente.atividades_juntos_no_tempo_livre }}</p><br>
+                        <p>{{ paciente.prenpratica_esportesde_atencao }}</p><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+    <!-- {% for paciente in page_obj %}
+    
+    {% endfor %} -->
+
+    <div class="d-flex justify-content-center">
+        {% include 'partials/_pagination.html' %}
+    </div>
+
+</section>
+<script>
+    function openPopup() {
+        // Exibe o contêiner do popup
+        document.getElementById('popup-container').style.display = 'block';
+    }
+
+    function closePopup() {
+        // Oculta o contêiner do popup
+        document.getElementById('popup-container').style.display = 'none';
+    }
+</script>
+{% endblock main %}
