@@ -43,7 +43,7 @@
             <div class="d-flex w-100 justify-content-start">
                 <h5>Mural de Avisos</h5>
             </div>
-
+            {% if page_obj %}
             {% for comunicados in page_obj %}
             <!-- Popup -->
 
@@ -76,6 +76,7 @@
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
 
         </div>
         <div class="d-flex justify-content-center">
@@ -88,6 +89,8 @@
             <div class="d-flex w-100 justify-content-start">
                 <h5>Aniversáriantes</h5>
             </div>
+
+            {% if aniversariantes %}
             {% for aniversariante in aniversariantes %}
             <div class="row w-100 d-flex justify-content-center align-items-center border-top">
                 <div class="col-2">
@@ -103,6 +106,7 @@
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
 
         </div>
     </div>
