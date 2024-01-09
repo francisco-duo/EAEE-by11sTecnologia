@@ -225,8 +225,7 @@ class EncaminhamentoModel(models.Model):
 
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     dt_devolutiva = models.DateField(blank=False, verbose_name='Data')
-    para = models.TextField(blank=False, verbose_name='Participantes')
-    sintese = models.TextField(blank=False, verbose_name='Síntese')
+    sintese = models.TextField(blank=False, verbose_name='Observações')
 
     def __str__(self, ):
         return self.paciente
@@ -244,6 +243,7 @@ class EvolucaoDiariaModel(models.Model):
     def __str__(self, ):
         return self.paciente
 
+
 class SupervisaoMultiprofissionalModel(models.Model):
     class Meta:
         verbose_name = "Supervisao Multiprofissional"
@@ -257,4 +257,3 @@ class SupervisaoMultiprofissionalModel(models.Model):
 
     def __str__(self, ):
         return self.paciente
-    
