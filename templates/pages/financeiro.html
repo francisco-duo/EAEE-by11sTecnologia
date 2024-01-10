@@ -22,7 +22,7 @@
         </div>
     </row>
 
-    <form action="" method="POST" class="container py-3 px-2 bg-light border rounded shadow-lg">
+    <form action="{% url 'financeiro' request.user.username %}" method="POST" class="container py-3 px-2 bg-light border rounded shadow-lg">
         {% csrf_token %}
 
         <div class="row d-flex justify-content-center align-items-center py-4">
@@ -61,7 +61,9 @@
                 <button type="submit" class="btn btn-primary mb-3">Registrar</button>
             </div>
     </form>
+</section>
 
+<section>
     <form action="{% url 'financeiro_busca' request.user.username %}" method="GET" class="container py-3 px-2">
         {% csrf_token %}
 
@@ -98,7 +100,6 @@
                 <button type="submit" class="btn btn-primary mb-3">Pesquisar</button>
             </div>
     </form>
-
 </section>
 
 <section class="d-flex justify-content-center align-items-center mx-5 mt-5">

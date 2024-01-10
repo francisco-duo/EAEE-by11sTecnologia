@@ -22,12 +22,20 @@
         </div>
     </row>
 
-    <form action="" method="POST" class="container py-3 px-2 bg-light border rounded shadow-lg">
+    <form action="{% url 'financeiro' request.user.username %}" method="POST" class="container py-3 px-2 bg-light border rounded shadow-lg">
         {% csrf_token %}
 
         <div class="row d-flex justify-content-center align-items-center py-4">
+            <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                    <input name="data" type="date" class="form-control" id="floatingInput"
+                        placeholder="Data de nascimento">
+                    <label for="floatingInput">Data</label>
+                </div>
+            </div>
             <div class="col-sm-2">
                 <div class="form-floating mb-3">
+                    
                     <select name="tipo" class="form-select" id="floatingSelect"
                         aria-label="Floating label select example">
                         {% for tipo in tipo_financeiro %}
