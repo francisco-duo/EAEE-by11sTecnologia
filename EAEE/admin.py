@@ -7,9 +7,17 @@ class AgendamentoAdmin(admin.ModelAdmin):
         'paciente',
         'especialidade',
         'dt_agendamento',
-        'frequencia',
+        'presente',
+        'falta',
+        'reposicao',
+        'justificativa',
     )
-    list_editable = ('frequencia',)
+    list_editable = (
+        'presente',
+        'falta',
+        'reposicao',
+        'justificativa',
+    )
 
 
 class DevolutivaAdmin(admin.ModelAdmin):
