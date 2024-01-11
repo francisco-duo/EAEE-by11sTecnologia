@@ -12,7 +12,7 @@
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="text-transform: capitalize;">
-                    Olá, {{ request.user.username }}
+                    Olá, {{ request.user.first_name }}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -57,17 +57,13 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
-                                    href="{% url 'anamnese_psicopedagogia' request.user.username %}">Anamnese
-                                    Psicopedagogia</a></li>
+                                    href="{% url 'anamnese_psicopedagogia' request.user.username %}">Psicopedagogia</a></li>
                             <li><a class="dropdown-item"
-                                    href="{% url 'anamnese_psicologia' request.user.username %}">Anamnese
-                                    Psicologica</a></li>
+                                    href="{% url 'anamnese_psicologia' request.user.username %}">Psicologica</a></li>
                             <li><a class="dropdown-item"
-                                    href="{% url 'anamnese_fonoaudiologia' request.user.username %}">Anamnese
-                                    Fonoaudiologia</a></li>
+                                    href="{% url 'anamnese_fonoaudiologia' request.user.username %}">Fonoaudiologia</a></li>
                             <li><a class="dropdown-item"
-                                    href="{% url 'anamnese_psicomotricidade' request.user.username %}">Anamnese
-                                    Psicomotricidade/ Terapia Ocupacional</a></li>
+                                    href="{% url 'anamnese_psicomotricidade' request.user.username %}">Psicomotricidade/ Terapia Ocupacional</a></li>
                         </ul>
                     </li>
                     <!-- <li class="nav-item">
@@ -89,7 +85,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'evolucao_diaria' request.user.username %}">Evolução Diária</a>
                     </li> -->
-                    {% if 'genilva' == request.user.username or 'carol' == request.user.username or 'admin' == request.user.username %}
+                    {% if 'genilva' == request.user.username or 'admin' == request.user.username or 'francisco_admin' == request.user.username %}
 
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="{% url 'cadastro_usuario' request.user.username %}">Cadastrar

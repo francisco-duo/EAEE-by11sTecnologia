@@ -167,7 +167,7 @@ def financeiro(request, usuario):
                 print('outro valor')
                 valor_saida += converte_tipo
 
-        if request.user.id == 1 or request.user.id == 2 or request.user.id == 3:
+        if request.user.id == 1 or request.user.id == 2:
             if request.method == 'POST':
                 from datetime import datetime
 
@@ -192,7 +192,7 @@ def financeiro(request, usuario):
                 'valor_saida': valor_saida,
                 'valor_entrada': valor_entrada
             })        
-        return redirect('login')
+    return redirect('login')
 
 
 def financeiro_search(request, usuario):
