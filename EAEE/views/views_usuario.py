@@ -170,9 +170,10 @@ def financeiro(request, usuario):
         if request.user.id == 1 or request.user.id == 2 or request.user.id == 3:
             if request.method == 'POST':
                 from datetime import datetime
-                
+
                 data = request.POST.get('data')
-                valor = request.POST.get('valor')
+                valor_virgula = request.POST.get('valor')
+                valor = valor_virgula.replace(',', '.')
                 destino = request.POST.get('destino')
                 tipo = request.POST.get('tipo')
 

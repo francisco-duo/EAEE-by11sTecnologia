@@ -98,7 +98,7 @@ class Psicologia(models.Model):
     encaminhamento = models.CharField(blank=True, null=True, max_length=255)
     algum_membro_ja_fez_acompanhamento_psicologico = models.TextField(blank=True, null=True)
     queixa_psicologica_principal = models.TextField(blank=True, null=True)
-    
+
     def __str__(self, ):
         return self.paciente
 

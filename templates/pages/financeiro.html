@@ -7,15 +7,15 @@
 <section>
     <row class="d-flex gap-5 justify-content-center align-items-center mb-5">
         <div class="col-2 col-sm-3">
-            <div class="card border-danger shadow">
-                <div class="card-body card-exit">
+            <div class="card border-success shadow">
+                <div class="card-body card-enter">
                     <h3 class="card-title text-light">R$ {{ valor_saida }}</h3>
                 </div>
             </div>
         </div>
         <div class="col-2 col-sm-3">
-            <div class="card border-success shadow">
-                <div class="card-body card-enter">
+            <div class="card border-danger shadow">
+                <div class="card-body card-exit">
                     <h3 class="card-title text-light">R$ {{ valor_entrada }}</h3>
                 </div>
             </div>
@@ -117,6 +117,16 @@
             {% for registro in registros_financeiros%}
             {% if registro.registro_financeiro_tipo.registro_financeiro_tipo == 'Entrada' %}
             <tr class="table-success">
+                <th scope="row">{{ registro.id }}</th>
+                <th scope="row">{{ registro.registro_financeiro_destino }}</th>
+                <th scope="row">{{ registro.registro_financeiro_valor }}</th>
+
+                <th scope="row">{{ registro.registro_financeiro_tipo.registro_financeiro_tipo }}</th>
+
+                <th scope="row">{{ registro.registro_financeiro_dt }}</th>
+            </tr>
+            {% elif registro.registro_financeiro_tipo.registro_financeiro_tipo == 'Plano de Saúde' %}
+            <tr class="table-primary">
                 <th scope="row">{{ registro.id }}</th>
                 <th scope="row">{{ registro.registro_financeiro_destino }}</th>
                 <th scope="row">{{ registro.registro_financeiro_valor }}</th>

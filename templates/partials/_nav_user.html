@@ -23,8 +23,12 @@
                             href="{% url 'inicio' request.user.username %}">Início</a>
                     </li>
                     <li class="nav-item">
+                        <a target="_blank" class="nav-link active" aria-current="page" href="/admin">Administração</a>
+                    </li>
+                    <li class="nav-item">
                         <a target="_blank" class="nav-link active" aria-current="page"
-                            href="/admin">Administração</a>
+                            href="https://docs.google.com/presentation/d/1uTlcifm6QvhwAv9J2pKQKLkO0-j-EFOXHjAfC6n1ZwI/edit?usp=sharing">Criar
+                            Documento</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -32,31 +36,24 @@
                             Registros
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'registro_fonoaudiologia' request.user.username %}">Fonoaudiologia</a></li>
-                            <li><a class="dropdown-item" href="{% url 'registro_psicologia' request.user.username %}">Psicologia</a></li>
-                            <li><a class="dropdown-item" href="{% url 'registro_psicomotricidade' request.user.username %}">Psicomotricidade</a></li>
-                            <li><a class="dropdown-item" href="{% url 'registro_psicopedagogia' request.user.username %}">Psicopedagogia</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'registro_fonoaudiologia' request.user.username %}">Fonoaudiologia</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'registro_psicologia' request.user.username %}">Psicologia</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'registro_psicomotricidade' request.user.username %}">Psicomotricidade</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'registro_psicopedagogia' request.user.username %}">Psicopedagogia</a>
+                            </li>
                         </ul>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cadastrar_paciente' request.user.username %}">Cadastrar
-                            Paciente</a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cadastrar_responsavel' request.user.username %}">Cadastrar
-                            Responsável</a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="{% url 'pacientes' request.user.username %}">Pacientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            href="{% url 'cadastrar_responsavel' request.user.username %}">Responsáveis</a>
-                    </li> -->
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Procedimentos Avaliativos
+                            Anamneses
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
@@ -70,7 +67,7 @@
                                     Fonoaudiologia</a></li>
                             <li><a class="dropdown-item"
                                     href="{% url 'anamnese_psicomotricidade' request.user.username %}">Anamnese
-                                    Psicomotricidade</a></li>
+                                    Psicomotricidade/ Terapia Ocupacional</a></li>
                         </ul>
                     </li>
                     <!-- <li class="nav-item">
@@ -107,7 +104,8 @@
                             Financeiro
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'financeiro' request.user.username %}">Gestão</a></li>
+                            <li><a class="dropdown-item" href="{% url 'financeiro' request.user.username %}">Gestão</a>
+                            </li>
                         </ul>
                     </li>
                     {% endif %}

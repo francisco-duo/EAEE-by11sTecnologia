@@ -15,7 +15,6 @@ class Devolutiva(models.Model):
     dt_devolutiva = models.DateField(blank=True, null=True, verbose_name='Data')
     para = models.CharField(blank=True, null=True, max_length=255, verbose_name='Para')
     sintese = models.TextField(blank=True, null=True, verbose_name='Síntese')
-    
 
 
 class ReunioesExternas(models.Model):
