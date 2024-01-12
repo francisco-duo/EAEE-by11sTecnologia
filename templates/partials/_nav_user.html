@@ -85,15 +85,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'evolucao_diaria' request.user.username %}">Evolução Diária</a>
                     </li> -->
+                    {%if 'carol' ==  request.user.username or 'genilva' == request.user.username or 'francisco_admin' == request.user.username %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'enviar_mensagem' request.user.username %}">Comunicados</a>
+                    </li>
+                    {% endif %}
                     {% if 'genilva' == request.user.username or 'admin' == request.user.username or 'francisco_admin' == request.user.username %}
 
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="{% url 'cadastro_usuario' request.user.username %}">Cadastrar
                             Usuário</a>
                     </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'enviar_mensagem' request.user.username %}">Comunicados</a>
-                    </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
