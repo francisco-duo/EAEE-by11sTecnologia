@@ -6,6 +6,11 @@
 </head>
 <body>
     {% include 'partials/_nav_user.html' %}
+    <div class="w-100 mt-5 d-flex justify-content-center align-items-center">
+        <a class="navbar-brand" href="{% url 'inicio' request.user.username %}">
+            <img src="../../static/img/eaee_png.png" alt="" style="width: 300px !important;">
+        </a>
+    </div>
     {% block main %}
     {% endblock main %}
     

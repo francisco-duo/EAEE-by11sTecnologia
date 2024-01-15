@@ -5,6 +5,7 @@ from EAEE.models import *
 class PacienteModelAdmin(admin.ModelAdmin):
     list_display = ('paciente_nome', 'paciente_dt_nascimento', )
     search_fields = ['paciente_nome', ]
+    ordering = ('paciente_nome', )
 
 
 class ResponsavelAdmin(admin.ModelAdmin):
@@ -19,6 +20,7 @@ class ResponsavelAdmin(admin.ModelAdmin):
         'paceinte_filiacao_endereco',
         'paceinte_filiacao_cep',
     )
+    ordering = ('paciente_filiacao_nome', )
     search_fields = ['paciente_filiacao_nome',]
 
 
@@ -38,6 +40,8 @@ class AgendamentoAdmin(admin.ModelAdmin):
         'reposicao',
         'justificativa',
     )
+    ordering = ('paciente', )
+    search_fields = ['dt_agendamento', ]
 
 
 class DevolutivaAdmin(admin.ModelAdmin):

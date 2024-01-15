@@ -2,9 +2,7 @@
 
 <nav class="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'inicio' request.user.username %}">
-            <img src="../../static/img/eaee_png.png" alt="" style="width: 100px !important;">
-        </a>
+        <div class=""></div>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,7 +25,7 @@
                     </li>
                     <li class="nav-item">
                         <a target="_blank" class="nav-link active" aria-current="page"
-                            href="https://docs.google.com/presentation/d/1uTlcifm6QvhwAv9J2pKQKLkO0-j-EFOXHjAfC6n1ZwI/edit?usp=sharing">Criar
+                            href="https://docs.google.com/document/d/15W_2M-VBCME28YCFy7yTv_4MmHRtEWUjNVFgfNnqIZA/edit?usp=sharing">Criar
                             Documento</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -90,7 +88,7 @@
                         <a class="nav-link" href="{% url 'enviar_mensagem' request.user.username %}">Comunicados</a>
                     </li>
                     {% endif %}
-                    {% if 'genilva' == request.user.username or 'admin' == request.user.username or 'francisco_admin' == request.user.username %}
+                    {% if 'genilva' == request.user.username or 'marcos_cesar' == request.user.username or 'francisco_admin' == request.user.username %}
 
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="{% url 'cadastro_usuario' request.user.username %}">Cadastrar

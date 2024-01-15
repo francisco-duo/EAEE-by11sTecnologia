@@ -4,8 +4,8 @@ from .model_pacientes import PacienteModel
 
 class Agendamento(models.Model):
     class Meta:
-        verbose_name = 'Agendamento'
-        verbose_name_plural = 'Agendamentos'
+        verbose_name = 'Atendimento'
+        verbose_name_plural = 'Atendimentos'
 
     paciente = models.ForeignKey(PacienteModel, on_delete=models.DO_NOTHING, verbose_name='Paciente')
     especialidade = models.CharField(blank=True, null=True, max_length=255, verbose_name='Especialidade')
