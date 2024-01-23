@@ -1,9 +1,11 @@
 from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
+from django.http import Http404
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.utils import timezone
 
 from EAEE.models import *
+from EAEE.forms import PacienteForm, InformacoesComplementaresForm, ResponsavelForm
 
 
 def inicio(request, usuario):
@@ -12,13 +14,13 @@ def inicio(request, usuario):
         paginator = Paginator(comunicados, 5)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         mes_atual = timezone.now().month
-        
+
         return render(request, 'pages/sistema/inicio.html', {'page_obj': page_obj, 'aniversariantes': PacienteModel.objects.filter(paciente_dt_nascimento__month=mes_atual)})
     else:
         return redirect('login')
-    
+
 
 def visualizar_comunicado(request, usuario, pk):
     if request.user.is_authenticated:
@@ -40,60 +42,35 @@ def enviar_mensagem(request, usuario):
         return redirect('login')
 
 
-def cadastrar_usuario(request, usuario):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            username = request.POST.get('name')
-            email = request.POST.get('email')
-
-            senha = request.POST.get('password')
-            confirma_senha = request.POST.get('confirm_password')
-
-            if senha == confirma_senha:
-                cadastro = User.objects.create_user(username, email, confirma_senha)
-                cadastro.save()
-
-            return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/cadastrar_usuario.html')
-    else:
-        return redirect('login')
-
-
-def cadastrar_usuario_permissoes(request, usuario):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            PermissoesModel.objects.create(
-                usuario=User.objects.get(id=request.POST.get('usuario')),
-                permissao=request.POST.get('permissao')
-            )
-
-            return redirect('inicio', usuario=request.user.username)
-        return render(request, 'pages/cadastrar_usuario_permissao.html', {'usuarios': User.objects.all()})
-    else:
-        return redirect('login')
-    
-
 def responsaveis(request, usuario):
     if request.user.is_authenticated:
-        pacientes = PacienteModel.objects.all().order_by('-id')
+        pacientes = TipoDeVinculoComPacienteModels.objects.all().order_by('-id')
         paginator = Paginator(pacientes, 10)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
-        return render(request, 'pages/patient_session_view.html', {'page_obj': page_obj})
+
+        return render(request, 'pages/responsavel_session_view.html', {'page_obj': page_obj})
     else:
         return redirect('login')
-    
-    
+
+
 def responsavel_visualizar(request, usuario, pk):
     if request.user.is_authenticated:
-        paciente = get_object_or_404(PacienteModel, id=pk)
+        try:
+            paciente = TipoDeVinculoComPacienteModels.objects.get(id=pk)
+            paciente_form = ResponsavelForm(instance=paciente)
 
-        return render(request, 'pages/visualizar_paciente.html', {'paciente': paciente})
+        except PacienteModel.DoesNotExist:
+            raise Http404('Responsável não encontrado')
+
+        if request.method == 'POST':
+            paciente_form.save()
+
+        return render(request, 'pages/responsavel_visualizar.html', {'paciente_form': paciente_form})
     else:
         return redirect('login')
-    
-    
+
+
 def responsavel_busca(request, usuario):
     if request.user.is_authenticated:
         query = request.GET.get('q')
@@ -105,11 +82,11 @@ def responsavel_busca(request, usuario):
 
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         return render(request, 'pages/patient_session_view.html', {'page_obj': page_obj})
     else:
         return redirect('login')
-    
+
 
 def pacientes(request, usuario):
     if request.user.is_authenticated:
@@ -117,21 +94,42 @@ def pacientes(request, usuario):
         paginator = Paginator(pacientes, 10)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         return render(request, 'pages/patient_session_view.html', {'page_obj': page_obj})
     else:
         return redirect('login')
-    
-    
+
+
 def pacientes_visualizar(request, usuario, pk):
     if request.user.is_authenticated:
-        paciente = get_object_or_404(PacienteModel, id=pk)
+        try:
+            paciente = PacienteModel.objects.get(id=pk)
 
-        return render(request, 'pages/visualizar_paciente.html', {'paciente': paciente})
+            try:
+                paciente_info = InformacoesComplementares.objects.get(paciente=paciente)
+
+                paciente_form = PacienteForm(instance=paciente)
+                informacao_complementar_form = InformacoesComplementaresForm(instance=paciente_info)
+            
+            except InformacoesComplementares.DoesNotExist:
+                raise Http404('Informações complementares não encontradas para o paciente')
+        except PacienteModel.DoesNotExist:
+            raise Http404('Paciente não encontrado')
+
+        if request.method == 'POST':
+            paciente_form.save()
+
+        return render(
+            request, 'pages/visualizar_paciente.html',
+            {
+                'form_paciente': paciente_form,
+                'form_info': informacao_complementar_form
+            }
+        )
     else:
         return redirect('login')
-    
-    
+
+
 def pacientes_busca(request, usuario):
     if request.user.is_authenticated:
         query = request.GET.get('q')
@@ -143,11 +141,11 @@ def pacientes_busca(request, usuario):
 
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         return render(request, 'pages/patient_session_view.html', {'page_obj': page_obj})
     else:
         return redirect('login')
-    
+
 
 def financeiro(request, usuario):
     if request.user.is_authenticated:
@@ -160,8 +158,8 @@ def financeiro(request, usuario):
         # Somando tipos de registro
         for registro in registros_financeiros:
             converte_tipo = float(registro.registro_financeiro_valor)
-            
-            if registro.registro_financeiro_tipo.id == 2:            
+
+            if registro.registro_financeiro_tipo.id == 2:
                 valor_entrada += converte_tipo
             else:
                 print('outro valor')
@@ -181,7 +179,8 @@ def financeiro(request, usuario):
                     registro_financeiro_funcionario=request.user,
                     registro_financeiro_valor=valor,
                     registro_financeiro_destino=destino,
-                    registro_financeiro_tipo=RegistroFinanceiroTipoModel.objects.get(id=tipo),
+                    registro_financeiro_tipo=RegistroFinanceiroTipoModel.objects.get(
+                        id=tipo),
                     registro_financeiro_dt=datetime.strptime(data, '%Y-%m-%d')
                 )
 
@@ -191,20 +190,20 @@ def financeiro(request, usuario):
                 'registros_financeiros': registros_financeiros,
                 'valor_saida': valor_saida,
                 'valor_entrada': valor_entrada
-            })        
+            })
     return redirect('login')
 
 
 def financeiro_search(request, usuario):
     if request.user.is_authenticated:
-        
+
         tipo_financeiro = RegistroFinanceiroTipoModel.objects.all()
         mes = request.GET.get('mes')
         ano = request.GET.get('ano')
         registros = RegistroFinanceiroModel.objects.filter(
             data_filtro__year=ano, data_filtro__month=mes
         )
-        
+
         # Soma total
         valor_saida = 0
         valor_entrada = 0
@@ -212,8 +211,8 @@ def financeiro_search(request, usuario):
         # Somando tipos de registro
         for registro in registros:
             converte_tipo = float(registro.registro_financeiro_valor)
-            
-            if registro.registro_financeiro_tipo.id == 2:            
+
+            if registro.registro_financeiro_tipo.id == 2:
                 valor_entrada += converte_tipo
             else:
                 print('outro valor')
@@ -226,10 +225,10 @@ def financeiro_search(request, usuario):
 
         return render(request, 'pages/financeiro_search.html', {
             'page_obj': page_obj,
-            'tipo_financeiro': tipo_financeiro,        
+            'tipo_financeiro': tipo_financeiro,
             'valor_saida': valor_saida,
             'valor_entrada': valor_entrada
-            })
+        })
 
     return redirect('login')
 
@@ -240,10 +239,9 @@ def registro_fonoaudiologia(request, usuario):
         paginator = Paginator(comunicados, 5)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         mes_atual = timezone.now().month
 
-        
         return render(request, 'pages/registro_fonoaudiologia.html', {'page_obj': page_obj, 'aniversariantes': PacienteModel.objects.filter(paciente_dt_nascimento__month=mes_atual)})
     else:
         return redirect('login')
@@ -255,10 +253,9 @@ def registro_fonoaudiologia_visualizar(request, usuario, pk):
         paginator = Paginator(comunicados, 5)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         mes_atual = timezone.now().month
 
-        
         return render(request, 'pages/registro_fonoaudiologia_visualizar.html', {'page_obj': page_obj, 'aniversariantes': PacienteModel.objects.filter(paciente_dt_nascimento__month=mes_atual)})
     else:
         return redirect('login')
@@ -270,9 +267,9 @@ def registro_psicologia(request, usuario):
         paginator = Paginator(comunicados, 5)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         mes_atual = timezone.now().month
-        
+
         return render(request, 'pages/registro_psicologia.html', {'page_obj': page_obj, 'aniversariantes': PacienteModel.objects.filter(paciente_dt_nascimento__month=mes_atual)})
     else:
         return redirect('login')
@@ -284,9 +281,9 @@ def registro_psicomotricidade(request, usuario):
         paginator = Paginator(comunicados, 5)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         mes_atual = timezone.now().month
-        
+
         return render(request, 'pages/registro_psicomotricidade.html', {'page_obj': page_obj, 'aniversariantes': PacienteModel.objects.filter(paciente_dt_nascimento__month=mes_atual)})
     else:
         return redirect('login')
@@ -298,10 +295,9 @@ def registro_psicopedagogia(request, usuario):
         paginator = Paginator(comunicados, 5)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        
+
         mes_atual = timezone.now().month
-        
+
         return render(request, 'pages/registro_psicopedagogia.html', {'page_obj': page_obj, 'aniversariantes': PacienteModel.objects.filter(paciente_dt_nascimento__month=mes_atual)})
     else:
         return redirect('login')
-    

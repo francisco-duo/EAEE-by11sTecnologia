@@ -1,127 +1,20 @@
 {% extends 'base_user.html' %}
 {% load static %}
 
-{% block title %}cadastrar responável{% endblock title %}
+{% block title %}Responsavel{% endblock title %}
 
 {% block main %}
 
 <section class="container flex-column my-5">
-
+   
     <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
         {% csrf_token %}
-
-        <div class="row py-4">
-            <div class="col-sm-4">
-                <div class="form-floating">
-                    <select name="paciente" class="form-select" id="floatingSelect"
-                        aria-label="Floating label select example">
-                        {% for paciente in pacientes %}
-                        <option value="{{ paciente.id }}">{{ paciente.paciente_nome }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="floatingSelect">Nome do Paciente</label>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="form-floating mb-3">
-                    <input required name="patient-name" type="text" class="form-control" id="floatingInput"
-                        placeholder="Nome completo">
-                    <label for="floatingInput">Nome completo</label>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-floating">
-                    <select required name="vinculo" class="form-select" id="floatingSelect"
-                        aria-label="Floating label select example">
-                        <option value=""></option>
-                        <option value="mae">Mãe</option>
-                        <option value="pai">Pai</option>
-                    </select>
-                    <label for="floatingSelect">Tipo de Vinculo</label>
-                </div>
-            </div>
-
-            <div class="col-sm-8">
-                <div class="form-floating mb-3">
-                    <input required name="patient-email" type="email" class="form-control" id="floatingInput"
-                        placeholder="exammple@exameple.com">
-                    <label for="floatingInput">Email</label>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="form-floating mb-3">
-                    <input required name="patient-year" type="date" class="form-control" id="floatingInput"
-                        placeholder="Data de nascimento">
-                    <label for="floatingInput">Data de nascimento</label>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="contato" type="text" class="form-control" id="floatingInput"
-                        placeholder="(xx) x xxxx-xxxx">
-                    <label for="floatingInput">Contato Pessoal</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="contato2" type="text" class="form-control" id="floatingInput"
-                        placeholder="(xx) x xxxx-xxxx">
-                    <label for="floatingInput">Contato Residencial</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="patient-cpf" type="text" class="form-control" id="floatingInput" placeholder="CPF/ RG">
-                    <label for="floatingInput">CPF/ RG</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="patient-nacionalidade" type="text" class="form-control" id="floatingInput"
-                        placeholder="CPF/ RG">
-                    <label for="floatingInput">Nacionalidade</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="patient-profissao" type="text" class="form-control" id="floatingInput"
-                        placeholder="CPF/ RG">
-                    <label for="floatingInput">Profissão</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="patient-ec" type="text" class="form-control" id="floatingInput" placeholder="CPF/ RG">
-                    <label for="floatingInput">Estado Civíl</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="patient-endereco" type="text" class="form-control" id="floatingInput"
-                        placeholder="CPF/ RG">
-                    <label for="floatingInput">Endereço</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required name="patient-cep" type="text" class="form-control" id="floatingInput" placeholder="CPF/ RG">
-                    <label for="floatingInput">CEP</label>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="form-floating mb-3">
-                    <input required accept="media/files/*" name="patient-file" type="file" class="form-control"
-                        id="floatingInput" placeholder="Exames">
-                    <label for="floatingInput">Comprovante de Residência</label>
-                </div>
-            </div>
-        </div>
+        {{ paciente_form.as_p }}
         <div class="d-flex justify-content-center align-items-center mb-3">
-            <button type="submit" class="btn btn-primary mb-3">Cadastrar</button>
+            <button type="submit" class="btn btn-primary mb-3">Salvar</button>
+            <a href="{% url 'inicio' request.user.username %}" class="btn btn-primary mb-3 ms-2">Voltar</a>
         </div>
     </form>
+    
 </section>
 {% endblock main %}

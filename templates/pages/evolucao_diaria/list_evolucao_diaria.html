@@ -1,10 +1,23 @@
 {% extends 'base_user.html' %}
 
-{% block tittle %}Meus Planejamentos{% endblock tittle %}
+{% block tittle %}Encaminhamentos{% endblock tittle %}
 
 {% block main %}
 <section>
-    <h3 class="text-center my-5">Últimos Planejamentos</h1>
+    <h3 class="text-center my-5">Encaminhamentos</h1>
+
+        <div class="w-100 d-flex justify-content-center align-items-center mb-5">
+            <form 
+                action="{% url 'search_encaminhamento' request.user.username %}" 
+                method="GET" class="d-flex justify-content-center align-items-center">
+                <input 
+                    name="q"
+                    type="text" class="form-control" 
+                    placeholder="Pesquisar por encaminhamentos">
+                <button type="submit" class="btn btn-primary ms-3">Pesquisar</button>
+            </form>
+        </div>
+
         <!-- Planejamentos recentes -->
         <div class="container rounded mb-4">
 
@@ -22,10 +35,10 @@
                     </svg>
                 </div>
                 <div class="col-8 d-flex justify-content-center align-items-center">
-                    {{ registro.paciente_filiacao_nome }}
+                    {{ registro.paciente.paciente_nome }}
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="{% url 'responsaveis_visualizar' request.user.username registro.id %}">
+                    <a href="{% url 'edit_evolucao_diaria' request.user.username registro.id %}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
