@@ -49,7 +49,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'responsaveis' request.user.username %}">
-                            Responsaveis</a>
+                            Responsáveis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                            class="nav-link active" aria-current="page" 
+                            href="{% url 'form_evolucao_diaria' request.user.username %}">
+                            Reuniões Externas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'devolutiva' request.user.username %}">
@@ -62,6 +68,10 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'form_evolucao_diaria' request.user.username %}">
                             Evolução Diária</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'form_supervisao_multidisciplinar' request.user.username %}">
+                            Supervisão Multidisciplinar</a>
                     </li>
                     <li class="nav-item">
                         <a target="_blank" class="nav-link active" aria-current="page"
@@ -93,6 +103,12 @@
                             </li>
                             <li><a class="dropdown-item"
                                     href="{% url 'list_evolucao_diaria' request.user.username %}">Evoluções Diárias</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'list_evolucao_diaria' request.user.username %}">Reuniões Externas</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'list_supervisao_multidisciplinar' request.user.username %}">Supervisao Multidisciplinar</a>
                             </li>
                         </ul>
                     </li>

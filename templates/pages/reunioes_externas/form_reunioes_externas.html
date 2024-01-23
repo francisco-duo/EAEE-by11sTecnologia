@@ -1,0 +1,19 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block title %}Encaminhamento{% endblock title %}
+
+{% block main %}
+
+<section class="container flex-column my-5">
+    <form action="" method="POST"
+        class="py-5 px-3 container bg-light rounded shadow-lg border border-primary"
+        enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+</section>
+{% endblock main %}

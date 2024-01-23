@@ -76,6 +76,26 @@ urlpatterns = [
          views.edit_evolucao_diaria, name='edit_evolucao_diaria'),
     path('inicio/<str:usuario>/evolucao_diaria/search',
          views.search_evolucao_diaria, name='search_evolucao_diaria'),
+    
+    # REUNIÕES EXTERNAS
+    path('inicio/<str:usuario>/reuniao_externa',
+         views.form_reunioes_externas, name='form_evolucao_diaria'),
+    path('inicio/<str:usuario>/reunioes_externas',
+         views.list_reunioes_externas, name='list_reunioes_externas'),
+    path('inicio/<str:usuario>/reunioes_externas/<int:pk>',
+         views.edit_reunioes_externas, name='edit_reunioes_externas'),
+    path('inicio/<str:usuario>/reunioes_externas/search',
+         views.search_reunioes_externas, name='search_reunioes_externas'),
+    
+    # SUPERVISÃO MULTIDISCIPLINAR
+    path('inicio/<str:usuario>/supervisao_multidisciplinar',
+         views.form_supervisao_multidisciplinar, name='form_supervisao_multidisciplinar'),
+    path('inicio/<str:usuario>/supervisoes_multidisciplinares',
+         views.list_supervisao_multidisciplinar, name='list_supervisao_multidisciplinar'),
+    path('inicio/<str:usuario>/supervisao_multidisciplinar/<int:pk>',
+         views.edit_supervisao_multidisciplinar, name='edit_supervisao_multidisciplinar'),
+    path('inicio/<str:usuario>/supervisao_multidisciplinar/search',
+         views.search_supervisao_multidisciplinar, name='search_supervisao_multidisciplinar'),
 
     path('inicio/<str:usuario>/pdi/supervisao_multiprofissional',
          views.supervisao_multiprofissional, name='supervisao_multiprofissional'),
