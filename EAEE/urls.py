@@ -4,29 +4,22 @@ from . import views
 
 urlpatterns = [
     path('', views.teste, name='site'),
-    # path('backup', views.pacientes_e_responsaveis),
-    # path('inserir', views.armazenar),
-    # path('inserir_resp', views.armazenar_responsavel),
     path('login/', views.app_login, name='login'),
     path('inicio/<str:usuario>/', views.inicio, name='inicio'),
     path('inicio/<str:usuario>/comunicado/<int:pk>',
          views.visualizar_comunicado, name='visualizar_comunicado'),
-    path('inicio/<str:usuario>/registro_fonoaudiologia',
-         views.registro_fonoaudiologia, name='registro_fonoaudiologia'),
-    path('inicio/<str:usuario>/registro_fonoaudiologia/<int:pk>',
-         views.registro_fonoaudiologia_visualizar, name='registro_fonoaudiologia_visualizar'),
-    path('inicio/<str:usuario>/registro_psicologia',
-         views.registro_psicologia, name='registro_psicologia'),
-    path('inicio/<str:usuario>/registro_psicomotricidade',
-         views.registro_psicomotricidade, name='registro_psicomotricidade'),
-    path('inicio/<str:usuario>/registro_psicopedagogia',
-         views.registro_psicopedagogia, name='registro_psicopedagogia'),
+
+    # FINANCEIRO
     path('inicio/<str:usuario>/financeiro',
          views.financeiro, name='financeiro'),
     path('inicio/<str:usuario>/financeiro-busca',
          views.financeiro_search, name='financeiro_busca'),
+
+    # MENSAGEM
     path('inicio/<str:usuario>/enviar-mensagem',
          views.enviar_mensagem, name='enviar_mensagem'),
+
+    # PACIENTES E RESPONSAVEIS
     path('inicio/<str:usuario>/cadastro-de-paciente',
          views.cadastrar_novo_paciente, name='cadastrar_paciente'),
     path('inicio/<str:usuario>/cadastro-de-paciente/pacientes',
@@ -41,23 +34,80 @@ urlpatterns = [
          views.responsaveis, name='responsaveis'),
     path('inicio/<str:usuario>/responsaveis/<int:pk>',
          views.responsavel_visualizar, name='responsaveis_visualizar'),
-     path('inicio/<str:usuario>/informacoes-coplementares',
-          views.paciente_inforacoes_complementares, name='paciente_inforacoes_complementares'),
+    path('inicio/<str:usuario>/informacoes-coplementares',
+         views.paciente_inforacoes_complementares,
+         name='paciente_inforacoes_complementares'),
+
+    # ANAMNESES
+    # psicopedagogia
     path('inicio/<str:usuario>/anamnese/anamnese_psicopedagogia',
-         views.anamnese_psicopedagogia, name='anamnese_psicopedagogia'),
-    path('inicio/<str:usuario>/anamnese/anamnese_psicologia',
-         views.anamnese_psicologia, name='anamnese_psicologia'),
+         views.form_anamnese_psicopedagogia,
+         name='form_anamnese_psicopedagogia'),
+    path('inicio/<str:usuario>/anamnese/anamnese_psicopedagogia',
+         views.list_anamnese_psicopedagogia,
+         name='list_anamnese_psicopedagogia'),
+    path('inicio/<str:usuario>/anamnese/anamnese_psicopedagogia',
+         views.edit_anamnese_psicopedagogia,
+         name='edit_anamnese_psicopedagogia'),
+    path('inicio/<str:usuario>/anamnese/anamnese_psicopedagogia',
+         views.search_anamnese_psicopedagogia,
+         name='search_anamnese_psicopedagogia'),
+
+    # ANAMNESES
+    # fonoaudiologia
     path('inicio/<str:usuario>/anamnese/anamnese_fonoaudiologia',
-         views.anamnese_fonoaudiologia, name='anamnese_fonoaudiologia'),
+         views.form_anamnese_fonoaudiologia,
+         name='form_anamnese_fonoaudiologia'),
+    path('inicio/<str:usuario>/anamnese/registro_anamnese_fonoaudiologia',
+         views.list_anamnese_fonoaudiologia,
+         name='list_anamnese_fonoaudiologia'),
+    path('inicio/<str:usuario>/anamnese/anamnese_fonoaudiologia/<int:pk>',
+         views.edit_anamnese_fonoaudiologia,
+         name='edit_anamnese_fonoaudiologia'),
+    path('inicio/<str:usuario>/anamnese/anamnese_fonoaudiologia/search',
+         views.search_anamnese_fonoaudiologia,
+         name='search_anamnese_fonoaudiologia'),
+
+    # ANAMNESES
+    # psicologia
+    path('inicio/<str:usuario>/anamnese/anamnese_psicologia',
+         views.form_anamnese_psicologia,
+         name='form_anamnese_psicologia'),
+    path('inicio/<str:usuario>/anamnese/registro_anamnese_psicologia',
+         views.list_anamnese_psicologia,
+         name='list_anamnese_psicologia'),
+    path('inicio/<str:usuario>/anamnese/anamnese_psicologia/<int:pk>',
+         views.edit_anamnese_psicologia,
+         name='edit_anamnese_psicologia'),
+    path('inicio/<str:usuario>/anamnese/anamnese_psicologia/search',
+         views.search_anamnese_psicologia,
+         name='search_anamnese_psicologia'),
+
+    # ANAMNESES
+    # psicomotricidade
     path('inicio/<str:usuario>/anamnese/anamnese_psicomotricidade',
-         views.anamnese_psicomotricidade, name='anamnese_psicomotricidade'),
-    path('inicio/<str:usuario>/pdi/devolutiva', views.devolutiva, name='devolutiva'),
-    path('inicio/<str:usuario>/pdi/devolutivas', views.devolutivas, name='devolutivas'),
-    path('inicio/<str:usuario>/pdi/devolutiva/<int:pk>', views.devolutiva_visualizar, name='devolutiva_visualizar'),
+         views.form_anamnese_psicomotricidade,
+         name='form_anamnese_psicomotricidade'),
+    path('inicio/<str:usuario>/anamnese/anamneses_psicomotricidade',
+         views.list_anamnese_psicomotricidade,
+         name='list_anamnese_psicomotricidade'),
+    path('inicio/<str:usuario>/anamnese/anamnese_psicomotricidade/<int:pk>',
+         views.edit_anamnese_psicomotricidade,
+         name='edit_anamnese_psicomotricidade'),
+    path('inicio/<str:usuario>/anamnese/anamnese_psicomotricidade/search',
+         views.search_anamnese_psicomotricidade,
+         name='search_anamnese_psicomotricidade'),
+
+    path('inicio/<str:usuario>/pdi/devolutiva',
+         views.devolutiva, name='devolutiva'),
+    path('inicio/<str:usuario>/pdi/devolutivas',
+         views.devolutivas, name='devolutivas'),
+    path('inicio/<str:usuario>/pdi/devolutiva/<int:pk>',
+         views.devolutiva_visualizar, name='devolutiva_visualizar'),
     path('inicio/<str:usuario>/pdi/reunioes_externas',
          views.reunioes_externas, name='reunioes_externas'),
 
-     # ENCAMINHAMENTOS URLS
+    # ENCAMINHAMENTOS URLS
     path('inicio/<str:usuario>/encaminhamento',
          views.form_encaminhamento, name='view_encaminhamento'),
     path('inicio/<str:usuario>/encaminhamento/<int:pk>',
@@ -67,7 +117,7 @@ urlpatterns = [
     path('inicio/<str:usuario>/encaminhamento/search',
          views.search_encaminhamento, name='search_encaminhamento'),
 
-     # EVOLUÇÃO DIÁRIA
+    # EVOLUÇÃO DIÁRIA
     path('inicio/<str:usuario>/evolucao_diaria',
          views.form_evolucao_diaria, name='form_evolucao_diaria'),
     path('inicio/<str:usuario>/evolucoes_diarias',
@@ -76,7 +126,7 @@ urlpatterns = [
          views.edit_evolucao_diaria, name='edit_evolucao_diaria'),
     path('inicio/<str:usuario>/evolucao_diaria/search',
          views.search_evolucao_diaria, name='search_evolucao_diaria'),
-    
+
     # REUNIÕES EXTERNAS
     path('inicio/<str:usuario>/reuniao_externa',
          views.form_reunioes_externas, name='form_evolucao_diaria'),
@@ -86,33 +136,22 @@ urlpatterns = [
          views.edit_reunioes_externas, name='edit_reunioes_externas'),
     path('inicio/<str:usuario>/reunioes_externas/search',
          views.search_reunioes_externas, name='search_reunioes_externas'),
-    
+
     # SUPERVISÃO MULTIDISCIPLINAR
     path('inicio/<str:usuario>/supervisao_multidisciplinar',
-         views.form_supervisao_multidisciplinar, name='form_supervisao_multidisciplinar'),
+         views.form_supervisao_multidisciplinar,
+         name='form_supervisao_multidisciplinar'),
     path('inicio/<str:usuario>/supervisoes_multidisciplinares',
-         views.list_supervisao_multidisciplinar, name='list_supervisao_multidisciplinar'),
+         views.list_supervisao_multidisciplinar,
+         name='list_supervisao_multidisciplinar'),
     path('inicio/<str:usuario>/supervisao_multidisciplinar/<int:pk>',
-         views.edit_supervisao_multidisciplinar, name='edit_supervisao_multidisciplinar'),
+         views.edit_supervisao_multidisciplinar,
+         name='edit_supervisao_multidisciplinar'),
     path('inicio/<str:usuario>/supervisao_multidisciplinar/search',
-         views.search_supervisao_multidisciplinar, name='search_supervisao_multidisciplinar'),
+         views.search_supervisao_multidisciplinar,
+         name='search_supervisao_multidisciplinar'),
 
     path('inicio/<str:usuario>/pdi/supervisao_multiprofissional',
-         views.supervisao_multiprofissional, name='supervisao_multiprofissional'),
-
-    # path('', home_page, name='home'),
-    # path('login/', app_login, name='login'),
-    # path('usuario/cadastrar', cadastrar_usuario, name='cadastro'),
-    # path('usuario/inicio', user_page, name='access'),
-    # path('usuario/cadastro', patient_register, name='patient_register'),
-    # path('usuario/pacientes', patient_view, name='patient_view'),
-    # path('usuario/pacientes/editar/<int:pk>', patient_edit, name='patient_edit'),
-    # path('usuario/registros', register_patients_sessions, name='register_patients_sessions'),
-    # path('usuario/registros_usuario', patient_session_view, name='patient_session_view'),
-    # path('usuario/registros_usuario/busca', patient_session_search_view, name='patient_session_search_view'),
-    # path('usuario/registros_usuario/pdf/<int:pk>', render_pdf_view, name='pdf_view'),
-    # path('usuario/registros_usuario/pdf/registro/<int:pk>', render_pdf_session, name='pdf_view_session'),
-    # path('usuario/pacientes/busca', patient_search_view, name='patient_search_view'),
-    # path('usuario/financeiro', financeiro, name='financeiro'),
-    # path('usuario/financeiro/busca', financeiro_search, name='financeiro_search'),
+         views.supervisao_multiprofissional,
+         name='supervisao_multiprofissional')
 ]

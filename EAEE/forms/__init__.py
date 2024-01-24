@@ -6,3 +6,9 @@ from .form_encaminhamento import EncaminhamentoForms
 from .form_evolucao_diaria import EvolucaoDiariaForm
 from .form_reunioes_externas import ReunioesExternasForms
 from .form_supervisao_multidisciplinar import SupervisaoMultiprofissionalForm
+
+
+from .form_anamnese_fonoaudiologia import FonoaudiologiaForm
+from .form_anamnese_psicologia import PsicologiaForm
+from .form_anamnese_psicomotricidade import PsicomotricidadeForm
+from .form_anamnese_psicopedagogia import PsicopedagogiaForm

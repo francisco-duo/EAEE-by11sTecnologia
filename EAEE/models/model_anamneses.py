@@ -327,40 +327,143 @@ class Fonoaudiologia(models.Model):
     dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
     especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
-    encaminhado = models.TextField(blank=True, null=True)
-    queixa = models.TextField(blank=True, null=True)
-    tratamento_anterior = models.TextField(blank=True, null=True)
-    quando_comecou_sentar = models.TextField(blank=True, null=True)
-    quando_engatinhou = models.TextField(blank=True, null=True)
-    quando_andou = models.TextField(blank=True, null=True)
-    quando_comeu = models.TextField(blank=True, null=True)
-    quando_balburciou = models.TextField(blank=True, null=True)
-    primeiras_palavras = models.TextField(blank=True, null=True)
-    articulacao_palavras = models.TextField(blank=True, null=True)
-    regressao_linguistica = models.TextField(blank=True, null=True)
-    comunicacao_atual = models.TextField(blank=True, null=True)
-    mamadeira_chupeta = models.TextField(blank=True, null=True)
-    horas_de_sono = models.TextField(blank=True, null=True)
-    autonomia_dormir = models.TextField(blank=True, null=True)
-    doencas_alergias = models.TextField(blank=True, null=True)
-    acompanhamento_medico = models.TextField(blank=True, null=True)
-    acompanhamento_fonoaudiologico = models.TextField(blank=True, null=True)
-    exames_fonoaudiologicos = models.TextField(blank=True, null=True)
-    teste_orelinha = models.TextField(blank=True, null=True)
-    idade_comecou_escola = models.TextField(blank=True, null=True)
-    alfabetizado = models.TextField(blank=True, null=True)
-    materia_mais_gosta = models.TextField(blank=True, null=True)
-    relacionamento_pais = models.TextField(blank=True, null=True)
-    relacionamento_criancas = models.TextField(blank=True, null=True)
-    hobby = models.TextField(blank=True, null=True)
-    familiar_dificuldades_na_fala = models.TextField(blank=True, null=True)
-    prende_atencao = models.TextField(blank=True, null=True)
-    gosta_de_brincar = models.TextField(blank=True, null=True)
-    compreende_comandos = models.TextField(blank=True, null=True)
-    contato_visual = models.TextField(blank=True, null=True)
-    interage = models.TextField(blank=True, null=True)
-    atencao_por_tempo_significativo = models.TextField(blank=True, null=True)
-    expectativa_do_acompanhamento_fonoaudiologico = models.TextField(blank=True, null=True)
+    
+    encaminhado = models.TextField(
+        blank=True, null=True,
+        verbose_name='Encaminhado por'
+    )
+    queixa = models.TextField(
+        blank=True, null=True,
+        verbose_name='Queixa'
+    )
+    tratamento_anterior = models.TextField(
+        blank=True, null=True,
+        verbose_name='Tratamentos anteriores'
+    )
+    quando_comecou_sentar = models.TextField(
+        blank=True, null=True,
+        verbose_name='Quando começou a sentar?'
+    )
+    quando_engatinhou = models.TextField(
+        blank=True, null=True,
+        verbose_name='Quando começou a engatinhar?'
+    )
+    quando_andou = models.TextField(
+        blank=True, null=True,
+        verbose_name='Quando começou a andar?'
+    )
+    quando_comeu = models.TextField(
+        blank=True, null=True,
+        verbose_name='Quando começou a comer?'
+    )
+    quando_balburciou = models.TextField(
+        blank=True, null=True,
+        verbose_name='Quando começou a balburciar?'
+    )
+    primeiras_palavras = models.TextField(
+        blank=True, null=True,
+        verbose_name='Primeiras palavras'
+    )
+    articulacao_palavras = models.TextField(
+        blank=True, null=True,
+        verbose_name='Articula bem?'
+    )
+    regressao_linguistica = models.TextField(
+        blank=True, null=True,
+        verbose_name='Houve alguma regressão da linguagem em algum momento?'
+    )
+    comunicacao_atual = models.TextField(
+        blank=True, null=True,
+        verbose_name='Como é a comunicação atualmente?'
+    )
+    mamadeira_chupeta = models.TextField(
+        blank=True, null=True,
+        verbose_name='Faz uso de mamadeira/ chupeta?'
+    )
+    horas_de_sono = models.TextField(
+        blank=True, null=True,
+        verbose_name='Dorme por quantas horas?'
+    )
+    autonomia_dormir = models.TextField(
+        blank=True, null=True,
+        verbose_name='Tem autonomia para dormir?'
+    )
+    doencas_alergias = models.TextField(
+        blank=True, null=True,
+        verbose_name='Doenças/ alergias?'
+    )
+    acompanhamento_medico = models.TextField(
+        blank=True, null=True,
+        verbose_name='Faz algum acompanhamento médico atualmente?'
+    )
+    acompanhamento_fonoaudiologico = models.TextField(
+        blank=True, null=True,
+        verbose_name='Faz algum acompanhamento fonoaudiológico'
+    )
+    exames_fonoaudiologicos = models.TextField(
+        blank=True, null=True,
+        verbose_name='Já fez exames audiológicos?'
+    )
+    teste_orelinha = models.TextField(
+        blank=True, null=True,
+        verbose_name='Já fez teste da orelinha?'
+    )
+    idade_comecou_escola = models.TextField(
+        blank=True, null=True,
+        verbose_name='Iniciou a escola com que idade?'
+    )
+    alfabetizado = models.TextField(
+        blank=True, null=True,
+        verbose_name='É alfabetizado?'
+    )
+    materia_mais_gosta = models.TextField(
+        blank=True, null=True,
+        verbose_name='Matéria que mais gosta?'
+    )
+    relacionamento_pais = models.TextField(
+        blank=True, null=True,
+        verbose_name='Como é o relacionamento com os pais?'
+    )
+    relacionamento_criancas = models.TextField(
+        blank=True, null=True,
+        verbose_name='Como se relaciona com outras crianças?'
+    )
+    hobby = models.TextField(
+        blank=True, null=True,
+        verbose_name='O que gosta de fazer (hobby)?'
+    )
+    familiar_dificuldades_na_fala = models.TextField(
+        blank=True, null=True,
+        verbose_name='Alguém na família apresenta/ apresentou dificuldade na fala?'
+    )
+    prende_atencao = models.TextField(
+        blank=True, null=True,
+        verbose_name='O que prende a atenção?'
+    )
+    gosta_de_brincar = models.TextField(
+        blank=True, null=True,
+        verbose_name='Com o que gosta de brincar?'
+    )
+    compreende_comandos = models.TextField(
+        blank=True, null=True,
+        verbose_name='Atende e compreende comandos?'
+    )
+    contato_visual = models.TextField(
+        blank=True, null=True,
+        verbose_name='Faz contato visual?'
+    )
+    interage = models.TextField(
+        blank=True, null=True,
+        verbose_name='Interage?'
+    )
+    atencao_por_tempo_significativo = models.TextField(
+        blank=True, null=True,
+        verbose_name='Mantém a atenção em uma atividade por tempo significativo?'
+    )
+    expectativa_do_acompanhamento_fonoaudiologico = models.TextField(
+        blank=True, null=True,
+        verbose_name='Qual a expectativa com o acompanhamento fonoaudiológico?'
+    )
 
     def __str__(self, ):
         return self.paciente
@@ -374,33 +477,115 @@ class Psicomotricidade(models.Model):
     dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
     especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
-    como_era_bebe = models.TextField(blank=True, null=True)
-    idade_que_firmou_a_cabeca = models.TextField(blank=True, null=True)
-    sentou_sem_apoio = models.TextField(blank=True, null=True)
-    engatinhou = models.TextField(blank=True, null=True)
-    ficou_de_pe = models.TextField(blank=True, null=True)
-    andou = models.TextField(blank=True, null=True)
-    fez_uso_do_andaja = models.TextField(blank=True, null=True)
-    preferecia_pela_mao = models.TextField(blank=True, null=True)
-    como_realiza_atividades = models.TextField(blank=True, null=True)
-    anda_bicicleta = models.TextField(blank=True, null=True)
-    idade_andou_bicicleta = models.TextField(blank=True, null=True)
-    como_se_sai_nas_brincadeiras = models.TextField(blank=True, null=True)
-    abotoa_roupas = models.TextField(blank=True, null=True)
-    troca_roupas_sozinho = models.TextField(blank=True, null=True)
-    amarra_cadarco = models.TextField(blank=True, null=True)
-    pega_obj_pequenos = models.TextField(blank=True, null=True)
-    preferencias_brinquedos = models.TextField(blank=True, null=True)
-    brincadeiras_sozinho = models.TextField(blank=True, null=True)
-    outras_preferencias = models.TextField(blank=True, null=True)
-    nao_gosta = models.TextField(blank=True, null=True)
-    idade_frequentou_escola = models.TextField(blank=True, null=True)
-    gosta_escola = models.TextField(blank=True, null=True)
-    gosta_professores = models.TextField(blank=True, null=True)
-    relacao_colegas = models.TextField(blank=True, null=True)
-    dificuldades_no_ambiente_escolar = models.TextField(blank=True, null=True)
-    atividades_juntos_no_tempo_livre = models.TextField(blank=True, null=True)
-    pratica_esportes = models.TextField(blank=True, null=True)
+    
+    como_era_bebe = models.TextField(
+        blank=True, null=True,
+        verbose_name='Como era quando bebê? Calmo ou agitado?'
+    )
+    idade_que_firmou_a_cabeca = models.TextField(
+        blank=True, null=True,
+        verbose_name='Em que idade firmou a cabeça?'
+    )
+    sentou_sem_apoio = models.TextField(
+        blank=True, null=True,
+        verbose_name='Sentou sem apoio?'
+    )
+    engatinhou = models.TextField(
+        blank=True, null=True,
+        verbose_name='Engatinhou?'
+    )
+    ficou_de_pe = models.TextField(
+        blank=True, null=True,
+        verbose_name='Ficou de pé?'
+    )
+    andou = models.TextField(
+        blank=True, null=True,
+        verbose_name='Andou?'
+    )
+    fez_uso_do_andaja = models.TextField(
+        blank=True, null=True,
+        verbose_name='Fez uso do "anda já"? Se sim, por quanto tempo?'
+    )
+    preferecia_pela_mao = models.TextField(
+        blank=True, null=True,
+        verbose_name='Preferência por qual das mãos?'
+    )
+    como_realiza_atividades = models.TextField(
+        blank=True, null=True,
+        verbose_name='Como realiza as seguintes atividades (pintura, desenho, recorte, colagem, encaixes, quebra-cabeças)?'
+    )
+    anda_bicicleta = models.TextField(
+        blank=True, null=True,
+        verbose_name='Sabe andar de bicicleta?'
+    )
+    idade_andou_bicicleta = models.TextField(
+        blank=True, null=True,
+        verbose_name='Com que idade aprendeu?'
+    )
+    como_se_sai_nas_brincadeiras = models.TextField(
+        blank=True, null=True,
+        verbose_name='Como se sai nas seguintes brincadeiras? (Bola/ Correr/ Corda/ Peteca/ Subir em árvore/ Natação/ Esportes em geral)?'
+    )
+    abotoa_roupas = models.TextField(
+        blank=True, null=True,
+        verbose_name='Sabe abotoar e desabotoar roupas?'
+    )
+    troca_roupas_sozinho = models.TextField(
+        blank=True, null=True,
+        verbose_name='Troca de roupa sozinho?'
+    )
+    amarra_cadarco = models.TextField(
+        blank=True, null=True,
+        verbose_name='Sabe amarrar o cadarço?'
+    )
+    pega_obj_pequenos = models.TextField(
+        blank=True, null=True,
+        verbose_name='Conse pegar objetos bem pequenos?'
+    )
+    preferencias_brinquedos = models.TextField(
+        blank=True, null=True,
+        verbose_name='Que tipo de brinquedos gosta?'
+    )
+    brincadeiras_sozinho = models.TextField(
+        blank=True, null=True,
+        verbose_name='Brincadeiras que pratica sozinho?'
+    )
+    outras_preferencias = models.TextField(
+        blank=True, null=True,
+        verbose_name='Outras preferências:'
+    )
+    nao_gosta = models.TextField(
+        blank=True, null=True,
+        verbose_name='Do que a criança não gosta?'
+    )
+    idade_frequentou_escola = models.TextField(
+        blank=True, null=True,
+        verbose_name='Quando começou a frequentar a escola?'
+    )
+    gosta_escola = models.TextField(
+        blank=True, null=True,
+        verbose_name='Gosta de ir à escola?'
+    )
+    gosta_professores = models.TextField(
+        blank=True, null=True,
+        verbose_name='Gosta dos professores?'
+    )
+    relacao_colegas = models.TextField(
+        blank=True, null=True,
+        verbose_name='Como se relaciona com os colegas da escola?'
+    )
+    dificuldades_no_ambiente_escolar = models.TextField(
+        blank=True, null=True,
+        verbose_name='Dificuldades observadas no ambiente escolar?'
+    )
+    atividades_juntos_no_tempo_livre = models.TextField(
+        blank=True, null=True,
+        verbose_name='O que fazem juntos no tempo livre?'
+    )
+    pratica_esportes = models.TextField(
+        blank=True, null=True,
+        verbose_name='Pratica esportes?'
+    )
 
     def __str__(self, ):
         return self.paciente
