@@ -17,7 +17,7 @@ def form_anamnese_psicopedagogia(request, usuario):
                 return redirect('form_anamnese_psicopedagogia', request.user.username)
         return render(
             request,
-            'pages/anamnese/psicopedagogia/form_anamnese_psicopedagogia.html',
+            'pages/anamneses/psicopedagogia/form_psicopedagogia.html',
             {'form': PsicopedagogiaForm()}
         )
     else:
@@ -33,7 +33,7 @@ def list_anamnese_psicopedagogia(request, usuario):
 
         return render(
             request,
-            'pages/anamnese/psicopedagogia/list_anamnese_psicopedagogia.html',
+            'pages/anamneses/psicopedagogia/list_psicopedagogia.html',
             {'page_obj': page_obj}
         )
     else:
@@ -50,11 +50,12 @@ def edit_anamnese_psicopedagogia(request, usuario, pk):
             raise Http404('Anamnese não encontrado')
 
         if request.method == 'POST':
-            anamnese_psicopedagogia_form.save()
+            if anamnese_psicopedagogia_form.is_valid():
+                anamnese_psicopedagogia_form.save()
 
         return render(
             request,
-            'pages/anamnese/psicopedagogia/edit_anamnese_psicopedagogiao.html',
+            'pages/anamneses/psicopedagogia/edit_psicopedagogia.html',
             {'anamnese_psicopedagogia_form': anamnese_psicopedagogia_form}
         )
     else:
@@ -75,7 +76,7 @@ def search_anamnese_psicopedagogia(request, usuario):
 
         return render(
             request,
-            'pages/anamnese/anamnese_psicopedagogia/search_anamnese_psicopedagogia.html',
+            'pages/anamneses/psicopedagogia/search_psicopedagogia.html',
             {'page_obj': page_obj}
         )
     else:

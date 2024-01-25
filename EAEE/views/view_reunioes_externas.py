@@ -50,7 +50,8 @@ def edit_reunioes_externas(request, usuario, pk):
             raise Http404('Devolutiva não encontrado')
 
         if request.method == 'POST':
-            reunioes_externas_form.save()
+            if reunioes_externas_form.is_valid():
+                reunioes_externas_form.save()
 
         return render(
             request,

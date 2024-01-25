@@ -4,11 +4,11 @@
 
 {% block main %}
 <section>
-    <h3 class="text-center my-5">Encaminhamentos</h1>
+    <h3 class="text-center my-5">Psicomotricidade</h1>
 
         <div class="w-100 d-flex justify-content-center align-items-center mb-5">
             <form 
-                action="{% url 'search_encaminhamento' request.user.username %}" 
+                action="{% url 'search_anamnese_psicomotricidade' request.user.username %}" 
                 method="GET" class="d-flex justify-content-center align-items-center">
                 <input 
                     name="q"

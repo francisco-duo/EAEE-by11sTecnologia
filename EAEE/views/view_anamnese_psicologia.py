@@ -17,7 +17,7 @@ def form_anamnese_psicologia(request, usuario):
                 return redirect('form_anamnese_psicologia', request.user.username)
         return render(
             request,
-            'pages/anamneses/psicologia/form_anamnese_psicologia.html',
+            'pages/anamneses/psicologia/form_psicologia.html',
             {'form': PsicologiaForm()}
         )
     else:
@@ -33,7 +33,7 @@ def list_anamnese_psicologia(request, usuario):
 
         return render(
             request,
-            'pages/anamneses/psicologia/list_anamnese_psicologia.html',
+            'pages/anamneses/psicologia/list_psicologia.html',
             {'page_obj': page_obj}
         )
     else:
@@ -51,11 +51,12 @@ def edit_anamnese_psicologia(request, usuario, pk):
             raise Http404('Anamnese não encontrado')
 
         if request.method == 'POST':
-            anamnese_psicologia_form.save()
+            if anamnese_psicologia_form.is_valid():
+                anamnese_psicologia_form.save()
 
         return render(
             request,
-            'pages/anamneses/psicologia/edit_anamnese_psicologia.html',
+            'pages/anamneses/psicologia/edit_psicologia.html',
             {'anamnese_psicologia_form': anamnese_psicologia_form}
         )
     else:
@@ -76,7 +77,7 @@ def search_anamnese_psicologia(request, usuario):
 
         return render(
             request,
-            'pages/anamneses/psicologia/search_anamnese_psicologia.html',
+            'pages/anamneses/psicologia/search_psicologia.html',
             {'page_obj': page_obj}
         )
     else:

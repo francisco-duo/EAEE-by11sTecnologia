@@ -113,9 +113,6 @@ class Psicopedagogia(models.Model):
         verbose_name='Fragilidades evidentes'
     )
 
-    def __str__(self, ):
-        return self.paciente
-
 
 class Psicologia(models.Model):
     class Meta:
@@ -315,9 +312,6 @@ class Psicologia(models.Model):
         verbose_name='Queixa psicológica principal'
     )
 
-    def __str__(self, ):
-        return self.paciente
-
 
 class Fonoaudiologia(models.Model):
     class Meta:
@@ -465,9 +459,6 @@ class Fonoaudiologia(models.Model):
         verbose_name='Qual a expectativa com o acompanhamento fonoaudiológico?'
     )
 
-    def __str__(self, ):
-        return self.paciente
-
 
 class Psicomotricidade(models.Model):
     class Meta:
@@ -586,6 +577,3 @@ class Psicomotricidade(models.Model):
         blank=True, null=True,
         verbose_name='Pratica esportes?'
     )
-
-    def __str__(self, ):
-        return self.paciente

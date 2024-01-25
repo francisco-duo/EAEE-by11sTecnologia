@@ -50,7 +50,8 @@ def edit_encaminhamento(request, usuario, pk):
             raise Http404('Devolutiva não encontrado')
 
         if request.method == 'POST':
-            encaminhamento_form.save()
+            if encaminhamento_form.is_valid():
+                encaminhamento_form.save()
 
         return render(
             request,

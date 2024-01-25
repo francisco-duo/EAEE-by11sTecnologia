@@ -6,9 +6,7 @@ class SupervisaoMultiprofissionalForm(forms.ModelForm):
 
     class Meta:
         model = SupervisaoMultiprofissional
-        fields = (
-            'paciente',
-        )
+        fields = '__all__'
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

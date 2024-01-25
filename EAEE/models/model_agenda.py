@@ -14,3 +14,6 @@ class Agendamento(models.Model):
     falta = models.BooleanField(default=False, blank=True, verbose_name='Falta')
     reposicao = models.BooleanField(default=False, blank=True, verbose_name='Reposição')
     justificativa = models.TextField(blank=True, null=True, verbose_name='Justificativa')
+    paciente_atestado = models.FileField(
+        blank=True, null=True, upload_to='paciente/documentos/exames', verbose_name='Atestado'
+    )

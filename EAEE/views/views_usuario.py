@@ -64,7 +64,8 @@ def responsavel_visualizar(request, usuario, pk):
             raise Http404('Responsável não encontrado')
 
         if request.method == 'POST':
-            paciente_form.save()
+            if paciente_form.is_valid():
+                paciente_form.save()
 
         return render(request, 'pages/responsavel_visualizar.html', {'paciente_form': paciente_form})
     else:
@@ -106,18 +107,23 @@ def pacientes_visualizar(request, usuario, pk):
             paciente = PacienteModel.objects.get(id=pk)
 
             try:
-                paciente_info = InformacoesComplementares.objects.get(paciente=paciente)
+                paciente_info = InformacoesComplementares.objects.get(
+                    paciente=paciente)
 
                 paciente_form = PacienteForm(instance=paciente)
-                informacao_complementar_form = InformacoesComplementaresForm(instance=paciente_info)
-            
+                informacao_complementar_form = InformacoesComplementaresForm(
+                    instance=paciente_info)
+
             except InformacoesComplementares.DoesNotExist:
-                raise Http404('Informações complementares não encontradas para o paciente')
+                raise Http404(
+                    'Informações complementares não encontradas para o paciente')
         except PacienteModel.DoesNotExist:
             raise Http404('Paciente não encontrado')
 
         if request.method == 'POST':
-            paciente_form.save()
+            if paciente_form.is_valid() and informacao_complementar_form.is_valid():
+                paciente_form.save()
+                informacao_complementar_form.save()
 
         return render(
             request, 'pages/visualizar_paciente.html',

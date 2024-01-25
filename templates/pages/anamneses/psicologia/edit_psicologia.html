@@ -9,7 +9,7 @@
    
     <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ encaminhamento_form.as_p }}
+        {{ anamnese_psicologia_form.as_p }}
         <div class="d-flex justify-content-center align-items-center mb-3">
             <button type="submit" class="btn btn-primary mb-3">Salvar</button>
             <a href="{% url 'inicio' request.user.username %}" class="btn btn-primary mb-3 ms-2">Voltar</a>

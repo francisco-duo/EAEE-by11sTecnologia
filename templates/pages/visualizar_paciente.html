@@ -10,6 +10,7 @@
     <form action="" method="POST" class="container bg-light rounded shadow-lg" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form_paciente.as_p }}
+        <h3>Informações Complementares</h3>
         {{ form_info.as_p }}
         <div class="d-flex justify-content-center align-items-center mb-3">
             <button type="submit" class="btn btn-primary mb-3">Salvar</button>

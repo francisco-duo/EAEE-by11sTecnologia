@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.http import Http404
+from django.db.models import Q
 
 from EAEE.models import SupervisaoMultiprofissional
 from EAEE.forms import SupervisaoMultiprofissionalForm
@@ -50,7 +53,8 @@ def edit_supervisao_multidisciplinar(request, usuario, pk):
             raise Http404('Supervisão não encontrado')
 
         if request.method == 'POST':
-            supervisao_multidisciplinar_form.save()
+            if supervisao_multidisciplinar_form.is_valid():
+                supervisao_multidisciplinar_form.save()
 
         return render(
             request,
@@ -64,9 +68,11 @@ def edit_supervisao_multidisciplinar(request, usuario, pk):
 def search_supervisao_multidisciplinar(request, usuario):
     if request.user.is_authenticated:
         query = request.GET.get('q')
+
         supervisao_multidisciplinar = SupervisaoMultiprofissional.objects.filter(
-            paciente__paciente_nome__icontains=query
-        )
+            Q(paciente__paciente_nome__icontains=query) |
+            Q(especialista__username__icontains=query)
+        ).order_by('dt_registro')
 
         paginator = Paginator(supervisao_multidisciplinar, 10)
 

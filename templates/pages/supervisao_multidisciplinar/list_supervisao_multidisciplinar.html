@@ -4,11 +4,11 @@
 
 {% block main %}
 <section>
-    <h3 class="text-center my-5">Encaminhamentos</h1>
+    <h3 class="text-center my-5">Superivsão Multidisciplinar</h1>
 
         <div class="w-100 d-flex justify-content-center align-items-center mb-5">
             <form 
-                action="{% url 'search_encaminhamento' request.user.username %}" 
+                action="{% url 'search_supervisao_multidisciplinar' request.user.username %}" 
                 method="GET" class="d-flex justify-content-center align-items-center">
                 <input 
                     name="q"
@@ -16,6 +16,7 @@
                     placeholder="Pesquisar por encaminhamentos">
                 <button type="submit" class="btn btn-primary ms-3">Pesquisar</button>
             </form>
+
         </div>
 
         <!-- Planejamentos recentes -->
@@ -35,7 +36,7 @@
                     </svg>
                 </div>
                 <div class="col-8 d-flex justify-content-center align-items-center">
-                    {{ registro.paciente.paciente_nome }}
+                    {{ registro.paciente.paciente_nome }} | {{ registro.dt_registro}}
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     <a href="{% url 'edit_evolucao_diaria' request.user.username registro.id %}">

@@ -10,6 +10,8 @@ class Devolutiva(models.Model):
         verbose_name = "Devolutiva"
         verbose_name_plural = "Devolutiva"
 
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data', blank=True, null=True)
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     anexo = models.FileField(blank=True, null=True, upload_to='paciente/documentos/exames', verbose_name='Anexo')
     dt_devolutiva = models.DateField(blank=True, null=True, verbose_name='Data')
@@ -22,6 +24,8 @@ class ReunioesExternas(models.Model):
         verbose_name = "Reuniões Externas"
         verbose_name_plural = "Reuniões Externas"
 
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data', blank=True, null=True)
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     anexo = models.FileField(blank=True, null=True, upload_to='paciente/documentos/exames', verbose_name='Anexo')
     dt_devolutiva = models.DateField(blank=True, null=True, verbose_name='Data')
@@ -34,6 +38,8 @@ class Encaminhamento(models.Model):
         verbose_name = "Encaminhamento"
         verbose_name_plural = "Encaminhamento"
 
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data', blank=True, null=True)
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     anexo = models.FileField(blank=True, null=True, upload_to='paciente/documentos/exames', verbose_name='Anexo')
     dt_devolutiva = models.DateField(blank=True, null=True, verbose_name='Data')
@@ -45,6 +51,8 @@ class EvolucaoDiaria(models.Model):
         verbose_name = "Evolução Diária"
         verbose_name_plural = "Evolução Diária"
 
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data', blank=True, null=True)
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     anexo = models.FileField(blank=True, null=True, upload_to='paciente/documentos/exames', verbose_name='Anexo')
     dt_devolutiva = models.DateField(blank=True, null=True, verbose_name='Data')
@@ -56,6 +64,8 @@ class SupervisaoMultiprofissional(models.Model):
         verbose_name = "Supervisao Multiprofissional"
         verbose_name_plural = "Supervisao Multiprofissional"
 
+    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data', blank=True, null=True)
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
     anexo = models.FileField(blank=True, null=True, upload_to='paciente/documentos/exames', verbose_name='Anexo')
     dt_devolutiva = models.DateField(blank=True, null=True, verbose_name='Data')

@@ -50,7 +50,8 @@ def edit_evolucao_diaria(request, usuario, pk):
             raise Http404('Devolutiva não encontrado')
 
         if request.method == 'POST':
-            evolucao_diaria.save()
+            if evolucao_diaria_form.is_valid():
+                evolucao_diaria.save()
 
         return render(
             request,

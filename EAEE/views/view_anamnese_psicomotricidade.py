@@ -17,7 +17,7 @@ def form_anamnese_psicomotricidade(request, usuario):
                 return redirect('form_anamnese_psicomotricidade', request.user.username)
         return render(
             request,
-            'pages/anamneses/psicomotricidade/form_anamnese_psicomotricidade.html',
+            'pages/anamneses/psicomotricidade/form_psicomotricidade.html',
             {'form': PsicomotricidadeForm()}
         )
     else:
@@ -33,7 +33,7 @@ def list_anamnese_psicomotricidade(request, usuario):
 
         return render(
             request,
-            'pages/anamneses/psicomotricidade/list_anamnese_psicomotricidade.html',
+            'pages/anamneses/psicomotricidade/list_psicomotricidade.html',
             {'page_obj': page_obj}
         )
     else:
@@ -51,11 +51,12 @@ def edit_anamnese_psicomotricidade(request, usuario, pk):
             raise Http404('Anamnese não encontrado')
 
         if request.method == 'POST':
-            anamnese_psicomotricidade_form.save()
+            if anamnese_psicomotricidade_form.is_valid():
+                anamnese_psicomotricidade_form.save()
 
         return render(
             request,
-            'pages/anamneses/psicomotricidade/edit_anamnese_psicomotricidade.html',
+            'pages/anamneses/psicomotricidade/edit_psicomotricidade.html',
             {'anamnese_psicomotricidade_form': anamnese_psicomotricidade_form}
         )
     else:
@@ -76,7 +77,7 @@ def search_anamnese_psicomotricidade(request, usuario):
 
         return render(
             request,
-            'pages/anamneses/psicomotricidade/search_anamnese_psicomotricidade.html',
+            'pages/anamneses/psicomotricidade/search_psicomotricidade.html',
             {'page_obj': page_obj}
         )
     else:

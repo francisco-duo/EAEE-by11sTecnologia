@@ -14,10 +14,10 @@ def form_anamnese_fonoaudiologia(request, usuario):
             if form.is_valid():
                 form.save()
 
-                return redirect('view_anamnese_fonoaudiologia', request.user.username)
+                return redirect('form_anamnese_fonoaudiologia', request.user.username)
         return render(
             request,
-            'pages/anamneses/fonoaudiologia/form_anamnese_fonoaudiologia.html',
+            'pages/anamneses/fonoaudiologia/form_fonoaudiologia.html',
             {'form': FonoaudiologiaForm()}
         )
     else:
@@ -33,7 +33,7 @@ def list_anamnese_fonoaudiologia(request, usuario):
 
         return render(
             request,
-            'pages/anamneses/fonoaudiologia/list_anamnese_fonoaudiologia.html',
+            'pages/anamneses/fonoaudiologia/list_fonoaudiologia.html',
             {'page_obj': page_obj}
         )
     else:
@@ -46,17 +46,18 @@ def edit_anamnese_fonoaudiologia(request, usuario, pk):
             anamnese_fonoaudiologia = Fonoaudiologia.objects.get(id=pk)
             anamnese_fonoaudiologia_form = FonoaudiologiaForm(
                 instance=anamnese_fonoaudiologia)
+            
+            if request.method == 'POST':
+                if anamnese_fonoaudiologia_form.is_valid():
+                    anamnese_fonoaudiologia_form.save()
 
         except Fonoaudiologia.DoesNotExist:
             raise Http404('Devolutiva não encontrado')
 
-        if request.method == 'POST':
-            anamnese_fonoaudiologia_form.save()
-
         return render(
             request,
-            'pages/anamneses/fonoaudiologia/edit_anamnese_fonoaudiologia.html',
-            {'encaminhamento_form': anamnese_fonoaudiologia_form}
+            'pages/anamneses/fonoaudiologia/edit_fonoaudiologia.html',
+            {'anamnese_fonoaudiologia_form': anamnese_fonoaudiologia_form}
         )
     else:
         return redirect('login')
@@ -76,7 +77,7 @@ def search_anamnese_fonoaudiologia(request, usuario):
 
         return render(
             request,
-            'pages/anamneses/fonoaudiologia/search_anamnese_fonoaudiologia.html',
+            'pages/anamneses/fonoaudiologia/search_fonoaudiologia.html',
             {'page_obj': page_obj}
         )
     else:
