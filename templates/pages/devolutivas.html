@@ -4,7 +4,7 @@
 
 {% block main %}
 <section>
-    <h3 class="text-center my-5">Últimos Planejamentos</h1>
+    <h3 class="text-center my-5">Devolutivas</h1>
         <!-- Planejamentos recentes -->
         <div class="container rounded mb-4">
 
@@ -22,7 +22,7 @@
                     </svg>
                 </div>
                 <div class="col-8 d-flex justify-content-center align-items-center">
-                    {{ registro.paciente.paciente_nome }}
+                    {{ registro.paciente.paciente_nome }} | {{ registro.dt_registro }}
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     <a href="{% url 'devolutiva_visualizar' request.user.username registro.id %}">

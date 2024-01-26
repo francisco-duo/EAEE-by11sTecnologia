@@ -260,14 +260,14 @@ class FonoaudiologiaAdmin(admin.ModelAdmin):
         return queryset, use_distinct
 
 
-admin.site.register(Psicopedagogia, PsicopedagogiaAdmin)
-admin.site.register(Psicologia, PsicologiaAdmin)
-admin.site.register(Psicomotricidade, PsicomotricidadeAdmin)
-admin.site.register(Fonoaudiologia, FonoaudiologiaAdmin)
+# admin.site.register(Psicopedagogia, PsicopedagogiaAdmin)
+# admin.site.register(Psicologia, PsicologiaAdmin)
+# admin.site.register(Psicomotricidade, PsicomotricidadeAdmin)
+# admin.site.register(Fonoaudiologia, FonoaudiologiaAdmin)
 
 admin.site.register(PacienteModel, PacienteModelAdmin)
 admin.site.register(TipoDeVinculoComPacienteModels, ResponsavelAdmin)
-admin.site.register(InformacoesComplementares)
+# admin.site.register(InformacoesComplementares)
 admin.site.register(RegistroFinanceiroModel)
 admin.site.register(RegistroFinanceiroTipoModel)
 

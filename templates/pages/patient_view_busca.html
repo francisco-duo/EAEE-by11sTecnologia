@@ -5,18 +5,15 @@
 
 {% block main %}
 <section class="container flex-column my-5">
-    <div class="row d-flex justify-content-center align-items-center w-50"
-        style="height: 275px !important; width: 100% !important;">
-        <form class="w-100" action="{% url 'patient_search_view' %}" method="GET">
-            {% csrf_token %}
-            <div class="form-floating mb-3">
-                <input name="q" class="form-control shadow" placeholder="Leave a comment here"
-                    id="floatingTextarea"></input>
-                <label for="floatingTextarea">Buscar paciente</label>
-            </div>
-            <div class="container d-flex justify-content-center align-items-center">
-                <button class="btn btn-primary shadow" type="submit">Buscar</button>
-            </div>
+    <div class="w-100 d-flex justify-content-center align-items-center mb-5">
+        <form 
+            action="{% url 'pacientes_busca' request.user.username %}" 
+            method="GET" class="d-flex justify-content-center align-items-center">
+            <input 
+                name="q"
+                type="text" class="form-control" 
+                placeholder="Pesquisar por encaminhamentos">
+            <button type="submit" class="btn btn-primary ms-3">Pesquisar</button>
         </form>
     </div>
     {% for paciente in page_obj %}

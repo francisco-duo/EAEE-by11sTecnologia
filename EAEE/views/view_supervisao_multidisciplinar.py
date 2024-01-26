@@ -70,8 +70,8 @@ def search_supervisao_multidisciplinar(request, usuario):
         query = request.GET.get('q')
 
         supervisao_multidisciplinar = SupervisaoMultiprofissional.objects.filter(
-            Q(paciente__paciente_nome__icontains=query) |
-            Q(especialista__username__icontains=query)
+            Q(paciente__paciente_nome__icontains=query)
+            # Q(especialista__username__in=query)
         ).order_by('dt_registro')
 
         paginator = Paginator(supervisao_multidisciplinar, 10)

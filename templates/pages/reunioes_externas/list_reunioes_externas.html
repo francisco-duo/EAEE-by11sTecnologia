@@ -35,7 +35,7 @@
                     </svg>
                 </div>
                 <div class="col-8 d-flex justify-content-center align-items-center">
-                    {{ registro.paciente.paciente_nome }}
+                    {{ registro.paciente.paciente_nome }} | {{ registro.dt_registro }}
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     <a href="{% url 'edit_evolucao_diaria' request.user.username registro.id %}">
