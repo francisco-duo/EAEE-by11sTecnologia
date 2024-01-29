@@ -2,7 +2,13 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from EAEE.models import model_pacientes
+from EAEE.models import model_pacientes, TipoDeVinculoComPacienteModels
+
+ESCOLHA_SIM_NAO = {
+    'Sim': 'Sim',
+    'Não': 'Não'
+}
+
 
 
 class Psicopedagogia(models.Model):
@@ -10,9 +16,11 @@ class Psicopedagogia(models.Model):
         verbose_name = "Psicopedagogia"
         verbose_name_plural = "Psicopedagogia"
 
-    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    dt_registro = models.DateTimeField(
+        default=timezone.now, verbose_name='Data')
     especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(
+        model_pacientes.PacienteModel, on_delete=models.CASCADE)
 
     idade_que_comecou_a_frequentar_escola = models.CharField(
         blank=True, null=True, max_length=255,
@@ -119,9 +127,11 @@ class Psicologia(models.Model):
         verbose_name = "Psicologia"
         verbose_name_plural = "Psicologia"
 
-    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    dt_registro = models.DateTimeField(
+        default=timezone.now, verbose_name='Data')
     especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(
+        model_pacientes.PacienteModel, on_delete=models.CASCADE)
 
     numero_irmaos = models.CharField(
         blank=True, null=True, max_length=255,
@@ -162,7 +172,7 @@ class Psicologia(models.Model):
     estranha_mudancas_ambiente = models.TextField(
         blank=True, null=True,
         verbose_name='Estranha mudanças no ambiente?'
-    ) 
+    )
     aceita_seguir_comandos = models.TextField(
         blank=True, null=True,
         verbose_name='Aceita seguir comandos?'
@@ -318,10 +328,12 @@ class Fonoaudiologia(models.Model):
         verbose_name = "Fonoaudiologia"
         verbose_name_plural = "Fonoaudiologia"
 
-    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    dt_registro = models.DateTimeField(
+        default=timezone.now, verbose_name='Data')
     especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
-    
+    paciente = models.ForeignKey(
+        model_pacientes.PacienteModel, on_delete=models.CASCADE)
+
     encaminhado = models.TextField(
         blank=True, null=True,
         verbose_name='Encaminhado por'
@@ -465,10 +477,12 @@ class Psicomotricidade(models.Model):
         verbose_name = "Psicomotricidade"
         verbose_name_plural = "Psicomotricidade"
 
-    dt_registro = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    dt_registro = models.DateTimeField(
+        default=timezone.now, verbose_name='Data')
     especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    paciente = models.ForeignKey(model_pacientes.PacienteModel, on_delete=models.CASCADE)
-    
+    paciente = models.ForeignKey(
+        model_pacientes.PacienteModel, on_delete=models.CASCADE)
+
     como_era_bebe = models.TextField(
         blank=True, null=True,
         verbose_name='Como era quando bebê? Calmo ou agitado?'
@@ -577,3 +591,126 @@ class Psicomotricidade(models.Model):
         blank=True, null=True,
         verbose_name='Pratica esportes?'
     )
+
+
+class TerapiaOcupacional(models.Model):
+    class Meta:
+        verbose_name = "Terapia Ocupacional"
+        verbose_name_plural = "Terapia Ocupacional"
+
+    dt_registro = models.DateTimeField(
+        default=timezone.now, verbose_name='Data')
+    especialista = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    paciente = models.ForeignKey(
+        model_pacientes.PacienteModel, on_delete=models.CASCADE,
+        verbose_name='Especialista'
+    )
+
+    data_nascimento = models.DateTimeField(
+        blank=True, null=True, verbose_name='Datas de nascimento'
+    )
+    escolaridade = models.TextField(
+        blank=True, null=True, verbose_name='Escolaridade'
+    )
+    mae = models.ForeignKey(
+        TipoDeVinculoComPacienteModels, blank=True, null=True,
+        verbose_name='Mãe'
+    )
+    pai = models.ForeignKey(
+        TipoDeVinculoComPacienteModels, blank=True, null=True,
+        verbose_name='Pai'
+    )
+    diagnostico = models.TextField(
+        blank=True, null=True, verbose_name='Diagnóstico'
+    )
+    medicaco = models.TextField(
+        blank=True, null=True, verbose_name='Medicação'
+    )
+    composicao_familiar = models.TextField(
+        blank=True, null=True, verbose_name='Composição familiar'
+    )
+    idade_pregressa_da_gravidez = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='História pregressa da gravidez - idade?'
+    )
+    planejada_pregressa_da_gravidez = models.CharField(
+        blank=True, null=True, choices=ESCOLHA_SIM_NAO,
+        verbose_name='História pregressa da gravidez - planejada?'
+    )
+    pre_natal_pregressa_da_gravidez = models.TextField(
+        blank=True, null=True, 
+        verbose_name='História pregressa da gravidez - medicamentos?'
+    )
+    intercorrencias_pregressa_da_gravidez = models.TextField(
+        blank=True, null=True,
+        verbose_name='História pregressa da gravidez - intercorrências?'
+    )
+    tipo_de_parto_parto = models.TextField(
+        blank=True, null=True,
+        verbose_name='Parto - tipo de parto?'
+    )
+    idade_gestacional = models.TextField(
+        blank=True, null=True,
+        verbose_name='Parto - idade gestacional?'
+    )
+    intercorrencias_parto = models.TextField(
+        blank=True, null=True,
+        verbose_name='Parto - intercorrências?'
+    )
+    ictericia_periodo_neonatal = models.TextField(
+        blank=True, null=True,
+        verbose_name='Período Neonatal - ictericia?'
+    )
+    convulcoes_periodo_neonatal = models.TextField(
+        blank=True, null=True,
+        verbose_name='Período Neonatal - convulções?'
+    )
+    amamentacao_periodo_neonatal = models.TextField(
+        blank=True, null=True,
+        verbose_name='Período Neonatal - amamentação?'
+    )
+    internacao_periodo_neonatal = models.TextField(
+        blank=True, null=True,
+        verbose_name='Período Neonatal - internação?'
+    )
+    controlou_cabeca_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100, choices=ESCOLHA_SIM_NAO,
+        verbose_name='Histórico de Desenvolvimento - controlou cabeça?'
+    )
+    idade_controlou_cabeca_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses controlou cabeça?'
+    )
+    rolou__historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100, choices=ESCOLHA_SIM_NAO,
+        verbose_name='Histórico de Desenvolvimento - rolou?'
+    )
+    idade_rolou__historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses rolou?'
+    )
+    arrastou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100, choices=ESCOLHA_SIM_NAO,
+        verbose_name='Histórico de Desenvolvimento - arrastou?'
+    )
+    idade_arrastou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses arrastou?'
+    )
+    sentou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100, choices=ESCOLHA_SIM_NAO,
+        verbose_name='Histórico de Desenvolvimento - sentou?'
+    )
+    idade_sentou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses sentou?'
+    )
+    engatinhou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100, choices=ESCOLHA_SIM_NAO,
+        verbose_name='Histórico de Desenvolvimento - engatinhou?'
+    )
+    idade_engatinhou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses engatinhou?'
+    )
+    
