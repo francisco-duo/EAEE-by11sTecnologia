@@ -97,6 +97,21 @@ urlpatterns = [
     path('inicio/<str:usuario>/anamnese/anamnese_psicomotricidade/search',
          views.search_anamnese_psicomotricidade,
          name='search_anamnese_psicomotricidade'),
+    
+    # ANAMNESES
+    # terapia_ocupacional
+    path('inicio/<str:usuario>/anamnese/anamnese_terapia_ocupacional',
+         views.form_anamnese_terapia_ocupacional,
+         name='form_anamnese_terapia_ocupacional'),
+    path('inicio/<str:usuario>/anamnese/anamneses_terapia_ocupacional',
+         views.list_anamnese_terapia_ocupacional,
+         name='list_anamnese_terapia_ocupacional'),
+    path('inicio/<str:usuario>/anamnese/anamnese_terapia_ocupacional/<int:pk>',
+         views.edit_anamnese_terapia_ocupacional,
+         name='edit_anamnese_terapia_ocupacional'),
+    path('inicio/<str:usuario>/anamnese/anamnese_terapia_ocupacional/search',
+         views.search_anamnese_terapia_ocupacional,
+         name='search_anamnese_terapia_ocupacional'),
 
     path('inicio/<str:usuario>/pdi/devolutiva',
          views.devolutiva, name='devolutiva'),

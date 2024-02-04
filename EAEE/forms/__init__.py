@@ -12,3 +12,4 @@ from .form_anamnese_fonoaudiologia import FonoaudiologiaForm
 from .form_anamnese_psicologia import PsicologiaForm
 from .form_anamnese_psicomotricidade import PsicomotricidadeForm
 from .form_anamnese_psicopedagogia import PsicopedagogiaForm
+from .form_anamnese_terapia_ocupacional import TerapiaOcupacionalForm

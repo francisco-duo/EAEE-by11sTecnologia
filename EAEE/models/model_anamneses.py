@@ -4,10 +4,36 @@ from django.contrib.auth.models import User
 
 from EAEE.models import model_pacientes, TipoDeVinculoComPacienteModels
 
-ESCOLHA_SIM_NAO = {
-    'Sim': 'Sim',
-    'Não': 'Não'
-}
+ESCOLHA_SIM_NAO = (
+    ('Sim', 'Sim'),
+    ('Não', 'Não')
+)
+
+DESENVOLVIMENTO_MOTOR = (
+    ('Coordenação motora fina', 'Coordenação motora fina'),
+    ('Coordenação motora global', 'Coordenação motora global'),
+    ('Senta em W', 'Senta em W'),
+    ('Equilibrio', 'Equilibrio')
+)
+
+SENSORIAL = (
+    ('Gustativo', 'Gustativo'),
+    ('Olfativo', 'Olfativo'),
+    ('Tátil', 'Tátil'),
+    ('Visual', 'Visual'),
+    ('Auditivo', 'Auditivo'),
+    ('Vestibular', 'Vestibular'),
+    ('Propiocepção', 'Propiocepção')
+)
+
+COGNITIVO = (
+    ('Reconhece cores', 'Reconhece cores'),
+    ('Reconhece números', 'Reconhece números'),
+    ('Reconhece formas', 'Reconhece formas'),
+    ('Atenção', 'Atenção'),
+    ('Concentração', 'Concentração'),
+    ('Reciocínio lógico', 'Reciocínio lógico')
+)
 
 
 
@@ -614,10 +640,11 @@ class TerapiaOcupacional(models.Model):
     )
     mae = models.ForeignKey(
         TipoDeVinculoComPacienteModels, blank=True, null=True,
-        verbose_name='Mãe'
+        on_delete=models.DO_NOTHING, verbose_name='Mãe'
     )
     pai = models.ForeignKey(
         TipoDeVinculoComPacienteModels, blank=True, null=True,
+        on_delete=models.DO_NOTHING, related_name='terapiaocupacional_pais',
         verbose_name='Pai'
     )
     diagnostico = models.TextField(
@@ -634,7 +661,7 @@ class TerapiaOcupacional(models.Model):
         verbose_name='História pregressa da gravidez - idade?'
     )
     planejada_pregressa_da_gravidez = models.CharField(
-        blank=True, null=True, choices=ESCOLHA_SIM_NAO,
+        blank=True, null=True, choices=ESCOLHA_SIM_NAO, max_length=100,
         verbose_name='História pregressa da gravidez - planejada?'
     )
     pre_natal_pregressa_da_gravidez = models.TextField(
@@ -681,11 +708,11 @@ class TerapiaOcupacional(models.Model):
         blank=True, null=True, max_length=100,
         verbose_name='Histórico de Desenvolvimento - idade/ meses controlou cabeça?'
     )
-    rolou__historico_de_desenvolvimento = models.CharField(
+    rolou_historico_de_desenvolvimento = models.CharField(
         blank=True, null=True, max_length=100, choices=ESCOLHA_SIM_NAO,
         verbose_name='Histórico de Desenvolvimento - rolou?'
     )
-    idade_rolou__historico_de_desenvolvimento = models.CharField(
+    idade_rolou_historico_de_desenvolvimento = models.CharField(
         blank=True, null=True, max_length=100,
         verbose_name='Histórico de Desenvolvimento - idade/ meses rolou?'
     )
@@ -713,4 +740,99 @@ class TerapiaOcupacional(models.Model):
         blank=True, null=True, max_length=100,
         verbose_name='Histórico de Desenvolvimento - idade/ meses engatinhou?'
     )
-    
+    andou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - andou?'
+    )
+    idade_andou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses andou?'
+    )
+    falou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - falou?'
+    )
+    idade_falou_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses falou?'
+    )
+    controle_esfincter_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - controle de esfincter?'
+    )
+    idade_controle_esfincter_historico_de_desenvolvimento = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='Histórico de Desenvolvimento - idade/ meses controle de esfincter?'
+    )
+    desenvolimento_motor = models.CharField(
+        blank=True, null=True, max_length=100,
+        choices=DESENVOLVIMENTO_MOTOR, verbose_name='Desenvolvimento Motor'
+    )
+    com_quem_e_onde_fica_a_crianca_rotina_da_crianca = models.CharField(
+        blank=True, null=True, max_length=255,
+        verbose_name='Rotina da criança - Com quem/ onde fica a criança e o que faz durante o dia?'
+    )
+    relacionamento_familiar_rotina_da_crianca = models.CharField(
+        blank=True, null=True, max_length=255,
+        verbose_name='Rotina da criança - Relacionamento Familiar?'
+    )
+    gosta_de_musica_rotina_da_crianca = models.CharField(
+        blank=True, null=True, max_length=255,
+        verbose_name='Rotina da criança - Gosta de música?'
+    )
+    hiperfoco_rotina_da_crianca = models.CharField(
+        blank=True, null=True, max_length=255,
+        verbose_name='Rotina da criança - Hiperfoco?'
+    )
+    comportamento_rotina_da_crianca = models.CharField(
+        blank=True, null=True, max_length=255,
+        verbose_name='Rotina da criança - Comportamento (humor, birras, medos, tolerância à frustração)?'
+    )
+    alimentacao_atividades_de_vida_diaria = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='AVD - alimentação?'
+    )
+    banho_atividades_de_vida_diaria = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='AVD - banho?'
+    )
+    vesrtir_despir_atividades_de_vida_diaria = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='AVD - vestir/ despir?'
+    )
+    escovar_dentes_atividades_de_vida_diaria = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='AVD - escovar dentes?'
+    )
+    uso_do_banheiro_atividades_de_vida_diaria = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name='AVD - uso do banheiro?'
+    )
+    sensorial_choices = models.CharField(
+        blank=True, null=True, max_length=100,
+        choices=SENSORIAL, verbose_name='Sensorial'
+    )
+    sensorial_observacao = models.TextField(
+        blank=True, null=True,
+        verbose_name='Sensorial - observações'
+    )
+    seletividade_alimentar_choices = models.CharField(
+        blank=True, null=True, max_length=10, choices=ESCOLHA_SIM_NAO,
+        verbose_name='Seletividade alimentar?'
+    )
+    seletividade_alimentar_observacao = models.TextField(
+        blank=True, null=True,
+        verbose_name='Seletividade alimentar?'
+    )
+    cognitivo_choices = models.CharField(
+        blank=True, null=True, max_length=100, choices=COGNITIVO,
+        verbose_name='Cognitivo'
+    )
+    cognitivo_observacao = models.TextField(
+        blank=True, null=True,
+        verbose_name='Cognitivo observações'
+    )
+    principais_demandas = models.TextField(
+        blank=True, null=True,
+        verbose_name='Principais demandas/ queixas e expectativas com a terapia'
+    )
